@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const graphqlHttp = require('express-graphql')
 
@@ -7,6 +8,8 @@ const graphQLSchema = require('./graphql/schema/index')
 
 const PORT = process.env.PORT || 4000
 const app = express()
+
+mongoose.connect(process.env.MONGODB_URI)
 
 app.use(bodyParser.json())
 
