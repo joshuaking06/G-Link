@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const graphqlHttp = require('express-graphql')
 
+console.log(process.env.USER_KEY)
+
 const graphQLSchema = require('./graphql/schema/index')
 
 const PORT = process.env.PORT || 4000
