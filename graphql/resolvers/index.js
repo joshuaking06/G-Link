@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-console.log(process.env.USER_KEY, 'USERKEY')
+require('dotenv').config()
 
 const fields = {
 	covers: 'fields alpha_channel,animated,game,height,image_id,url,width;',
@@ -70,16 +70,15 @@ const getSingleData = async (endpoint, data) => {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
-				'user-key': '40bd81ee538daaccdcb30cb5aba695af'
+				'user-key': process.env.USER_KEY
 			},
 			data: data
 		})
 	} catch (error) {
-		console.log(error)
+		console.log(data)
 	}
 }
 
-// getGameDataFromApiAndSave(darksouls).then((game) => console.log(game))
 module.exports = {
 	fetchAndSaveGame: getGameDataFromApiAndSave
 }
