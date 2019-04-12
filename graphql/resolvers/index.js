@@ -1,8 +1,11 @@
 const axios = require('axios')
-const darksouls = '2155'
 
 const fields = {
 	cover: 'fields alpha_channel,animated,game,height,image_id,url,width;',
+	artworks: 'fields alpha_channel,animated,game,height,image_id,url,width;',
+	genres: 'fields id,name,slug;',
+	platforms: 'fields id,abbreviation,alternative_name,name;',
+	game_modes: 'fields name,slug,id;',
 	games:
 		'fields cover, summary, slug, similar_games, screenshots, id, rating, rating_count,platforms, player_perspectives, genres, game_modes, dlcs, artworks, name, url, videos; exclude tags;'
 }
@@ -12,8 +15,13 @@ const getGameDataFromApiAndSave = async (gameId) => {
 	const gameToSave = {}
 	const game = await getSingleData('games', fields.games + `where id=${gameId};`)
 
-	console.log(game.data[0].cover)
+	// console.log(fields.cover + "where id=43486")
+	// const cover = await getSingleData('covers', `fields id,game,height,width,image_id,url,width; where id=${game.data[0].cover};`)
+	// gameToSave.cover =
 	gameToSave.artworks = await getMultipleData(game.data[0].artworks, 'artworks')
+	gameToSave.game_modes = await getMultipleData(game.data[0].game_modes, 'game_modes')
+	gameToSave.genres = await getMultipleData(game.data[0].genres, 'genres')
+	gameToSave.platforms = await getMultipleData(game.data[0].platforms, 'platforms')
 	gameToSave.name = game.data[0].name
 	gameToSave.summary = game.data[0].summary
 	gameToSave.url = game.data[0].url
@@ -24,10 +32,7 @@ const getMultipleData = (ids, endpoint) => {
 	try {
 		return Promise.all(
 			ids.map(async (i) => {
-				const single = await getSingleData(
-					endpoint,
-					`fields alpha_channel,animated,game,height,image_id,url,width;where id=${i};`
-				)
+				const single = await getSingleData(endpoint, fields[endpoint] + `where id=${i};`)
 				return single.data[0]
 			})
 		)
