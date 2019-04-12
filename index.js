@@ -4,7 +4,14 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const graphqlHttp = require('express-graphql')
 
-console.log(process.env.USER_KEY)
+const gameresolver = require('./graphql/resolvers/index')
+
+let baca
+
+gameresolver.fetchAndSaveGame('2155').then((res) => {
+	baca = res
+	console.log(baca)
+})
 
 const graphQLSchema = require('./graphql/schema/index')
 
