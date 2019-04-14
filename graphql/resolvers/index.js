@@ -1,7 +1,15 @@
 const axios = require('axios')
-
 require('dotenv').config()
 
+const gameToSaveFields = [
+	'artworks',
+	'genres',
+	'platforms',
+	'game_modes',
+	'screenshots',
+	'videos',
+	'dlcs'
+]
 const fields = {
 	covers: 'fields alpha_channel,animated,game,height,image_id,url,width;',
 	artworks: 'fields alpha_channel,animated,game,height,image_id,url,width;',
@@ -19,35 +27,45 @@ const fields = {
 // create and build up a new game object which will be saved to the database
 const getGameDataFromApiAndSave = async (gameId) => {
 	const gameToSave = {}
-	const game = await getSingleData('games', fields.gamesShow + `where id=${gameId};`)
-
-	// console.log(fields.cover + "where id=43486")
+	let game = await getSingleData('games', fields.gamesShow + `where id=${gameId};`)
+	game = game.data[0]
 	const cover = await getSingleData(
 		'covers',
-		`fields id,game,height,width,image_id,url,width; where id=${game.data[0].cover};`
+		`fields id,game,height,width,image_id,url,width; where id=${game.cover};`
 	)
-	gameToSave.cover = cover.data[0]
-	gameToSave.artworks = await getMultipleData(game.data[0].artworks, 'artworks')
-	gameToSave.game_modes = await getMultipleData(game.data[0].game_modes, 'game_modes')
-	gameToSave.genres = await getMultipleData(game.data[0].genres, 'genres')
-	gameToSave.platforms = await getMultipleData(game.data[0].platforms, 'platforms')
-	gameToSave.screenshots = await getMultipleData(game.data[0].screenshots, 'screenshots')
-	gameToSave.game_videos = await getMultipleData(game.data[0].videos, 'game_videos')
-	gameToSave.dlcs = await getMultipleData(game.data[0].dlcs, 'games')
-	gameToSave.similar_games = await getMultipleData(game.data[0].similar_games, 'games')
+	const otherFieldData = await getOtherFieldData(game)
 
 	gameToSave.player_perspectives = await getMultipleData(
-		game.data[0].player_perspectives,
+		game.player_perspectives,
 		'player_perspectives'
 	)
-	gameToSave.name = game.data[0].name
-	gameToSave.summary = game.data[0].summary
-	gameToSave.slug = game.data[0].slug
-	gameToSave.id = game.data[0].id
-	gameToSave.rating = game.data[0].rating
-	gameToSave.rating_count = game.data[0].rating_count
-	gameToSave.url = game.data[0].url
+
+	gameToSaveFields.forEach((field, index) => {
+		gameToSave[field] = otherFieldData[index]
+	})
+
+	gameToSave.cover = cover.data[0]
+	gameToSave.name = game.name
+	gameToSave.summary = game.summary
+	gameToSave.id = game.id
+	gameToSave.rating = game.rating
+	gameToSave.rating_count = game.rating_count
+	gameToSave.url = game.url
 	return gameToSave
+}
+
+const getOtherFieldData = (game) => {
+	return Promise.all(
+		Object.keys(fields)
+			.filter((field) => field !== 'covers' && field !== 'gamesShow')
+			.map((field) => {
+				if (field === 'games') return getMultipleData(game.dlcs, 'games')
+				if (field === 'game_videos') return getMultipleData(game.videos, 'game_videos')
+				if (field !== 'games' && field !== 'game_videos') {
+					return getMultipleData(game[field], field)
+				}
+			})
+	)
 }
 
 const getMultipleData = (ids, endpoint) => {

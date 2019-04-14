@@ -6,11 +6,11 @@ const graphqlHttp = require('express-graphql')
 
 const gameresolver = require('./graphql/resolvers/index')
 
-let baca
+let gameBack
 
 gameresolver.fetchAndSaveGame('2155').then((res) => {
-	baca = res
-	console.log(baca)
+	gameBack = res
+	console.log(gameBack)
 })
 
 const graphQLSchema = require('./graphql/schema/index')
@@ -18,7 +18,7 @@ const graphQLSchema = require('./graphql/schema/index')
 const PORT = process.env.PORT || 4000
 const app = express()
 
-mongoose.connect(process.env.MONGODB_URI)
+// mongoose.connect(process.env.MONGODB_URI)
 
 app.use(bodyParser.json())
 
@@ -47,4 +47,4 @@ app.use(
 	})
 )
 
-app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
+// app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
