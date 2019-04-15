@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const graphqlHttp = require('express-graphql')
 
-const gameresolver = require('./graphql/resolvers/index')
+const gameresolver = require('./graphql/resolvers/games')
 
 let gameBack
 
@@ -27,23 +27,25 @@ app.use(
 	'/graphql',
 	graphqlHttp({
 		schema: graphQLSchema,
-		rootValue: {
-			games: () => {
-				return games
-			},
-			createGame: (args, req) => {
-				const game = {
-					_id: Math.random().toString(),
-					title: args.gameInput.title,
-					genre: args.gameInput.genre,
-					price: +args.gameInput.price,
-					releaseDate: args.gameInput.releaseDate,
-					rating: +args.gameInput.rating
-				}
-				games.push(game)
-				return game
-			}
-		},
+		rootValue: gameresolver,
+
+		// {
+		// 	games: () => {
+		// 		return games
+		// 	},
+		// 	createGame: (args, req) => {
+		// 		const game = {
+		// 			_id: Math.random().toString(),
+		// 			title: args.gameInput.title,
+		// 			genre: args.gameInput.genre,
+		// 			price: +args.gameInput.price,
+		// 			releaseDate: args.gameInput.releaseDate,
+		// 			rating: +args.gameInput.rating
+		// 		}
+		// 		games.push(game)
+		// 		return game
+		// 	}
+		// },
 		graphiql: true
 	})
 )
