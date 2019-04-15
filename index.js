@@ -3,22 +3,26 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const graphqlHttp = require('express-graphql')
-
-const gameresolver = require('./graphql/resolvers/index')
-
-let gameBack
-
-gameresolver.fetchAndSaveGame('2155').then((res) => {
-	gameBack = res
-	console.log(gameBack)
-})
-
 const graphQLSchema = require('./graphql/schema/index')
 
 const PORT = process.env.PORT || 4000
 const app = express()
+mongoose.connect(process.env.MONGODB_URI)
+const gameresolver = require('./graphql/resolvers/index')
+const Game = require('./models/Game')
 
-// mongoose.connect(process.env.MONGODB_URI)
+// testing fetch function
+let gameBack
+const gameExist = Game.findById(2155)
+if (gameExist) console.log(gameExist)
+if (gameExist) {
+	console.log("doesn't exist")
+	// gameresolver.fetchGame('2155').then((res) => {
+	// 	gameBack = res
+	// 	Game.create(gameBack)
+	// 	Game.save()
+	// })
+}
 
 app.use(bodyParser.json())
 

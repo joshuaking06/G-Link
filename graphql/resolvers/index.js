@@ -14,7 +14,7 @@ const fields = {
 	games: 'fields cover,id,name;',
 	player_perspectives: 'fields id,name,slug;',
 	gamesShow:
-		'fields cover, dlcs,summary, slug,similar_games, screenshots, id, rating, rating_count,platforms, player_perspectives, genres, game_modes, artworks, name, url, videos; exclude tags;'
+		'fields cover, dlcs,summary, similar_games, screenshots, id, rating, rating_count,platforms, player_perspectives, genres, game_modes, artworks, name, url, videos; exclude tags;'
 }
 // create and build up a new game object which will be saved to the database
 const getGameDataFromApi = async (gameId) => {
@@ -77,7 +77,6 @@ const assignGameToObj = async (gameId) => {
 	return Object.assign({}, ...game)
 }
 
-// getGameDataFromApiAndSave(darksouls).then((res) => console.log(Object.assign(gameToSave, ...res)))
 module.exports = {
-	fetchAndSaveGame: assignGameToObj
+	fetchGame: assignGameToObj
 }
