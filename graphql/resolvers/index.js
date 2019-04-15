@@ -74,7 +74,7 @@ const getSingleData = async (endpoint, data) => {
 
 const assignGameToObj = async (gameId) => {
 	let game = await getGameDataFromApi(gameId)
-	return game
+	return Object.assign({}, ...game)
 }
 
 // getGameDataFromApiAndSave(darksouls).then((res) => console.log(Object.assign(gameToSave, ...res)))

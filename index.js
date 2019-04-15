@@ -47,4 +47,4 @@ app.use(
 	})
 )
 
-// app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
+app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
