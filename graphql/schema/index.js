@@ -18,6 +18,7 @@ type User {
     bio: String
     image: String
     password: String
+    passwordConfirmation: String
   }
 
 
@@ -39,6 +40,7 @@ type RootQuery{
 input UserInput {
     username: String!
     password: String!
+    passwordConfirmation: String!
     email: String!
     image: String
     bio: String
