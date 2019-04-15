@@ -1,14 +1,89 @@
 const mongoose = require('mongoose')
 
 const gameSchema = new mongoose.Schema({
-	name: { type: String, required: true },
-	image: { type: String, required: true },
-	continent: { type: mongoose.Schema.ObjectId, ref: 'Continent', required: true },
-	population: { type: String },
-	currency: { type: Number },
-	videoID: { type: String },
-	lat: { type: Number },
-	lng: { type: Number }
+	name: {
+		type: String,
+		required: true
+	},
+	id: {
+		type: Number,
+		required: true
+	},
+	rating: { type: Number },
+	rating_count: { type: Number },
+	url: { type: String },
+	summary: { type: String },
+	videos: [
+		{
+			id: { type: Number },
+			game: { type: Number },
+			name: { type: String },
+			video_id: { type: String }
+		}
+	],
+	similar_games: [
+		{
+			id: { type: Number },
+			cover: { type: Number },
+			name: { type: String }
+		}
+	],
+	screenshots: [
+		{
+			id: { type: Number },
+			game: { type: Number },
+			height: { type: Number },
+			image_id: { type: String },
+			url: { type: String },
+			width: { type: Number }
+		}
+	],
+	artworks: [
+		{
+			id: { type: Number },
+			game: { type: Number },
+			height: { type: Number },
+			image_id: { type: String },
+			url: { type: String },
+			width: { type: Number }
+		}
+	],
+	platforms: [
+		{
+			id: { type: Number },
+			abbreviation: { type: String },
+			name: { type: String }
+		}
+	],
+	genres: [
+		{
+			id: { type: Number },
+			slug: { type: String },
+			name: { type: String }
+		}
+	],
+	game_modes: [
+		{
+			id: { type: Number },
+			slug: { type: String },
+			name: { type: String }
+		}
+	],
+	dlcs: [
+		{
+			id: { type: Number },
+			cover: { type: Number },
+			name: { type: String }
+		}
+	],
+	cover: {
+		id: { type: Number },
+		game: { type: Number },
+		height: { type: Number },
+		image_id: { type: String },
+		url: { type: String },
+		width: { type: Number }
+	}
 })
 
 module.exports = mongoose.model('Game', gameSchema)
