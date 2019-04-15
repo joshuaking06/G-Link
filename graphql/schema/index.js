@@ -10,6 +10,7 @@ type Game{
     rating: Float!
 }
 
+
 input GameInput{
     title: String!
     genre: String!
@@ -22,8 +23,17 @@ type RootQuery{
     games: [Game!]!
 }
 
-input UserInput {
+type User {
+    _id: ID!
     email: String!
+    username: String!
+    bio: String!
+    image: String!
+    password: String
+  }
+
+input UserInput {
+    username: String!
     password: String!
     email: String!
     image: String!
