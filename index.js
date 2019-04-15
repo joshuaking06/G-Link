@@ -8,10 +8,11 @@ const gameresolver = require('./graphql/resolvers/index')
 
 let gameBack
 
-gameresolver.fetchAndSaveGame('2155').then((res) => {
-	gameBack = res
-	console.log(gameBack)
-})
+console.log(process.env.USER_KEY)
+// gameresolver.fetchAndSaveGame('2155').then((res) => {
+// 	gameBack = res
+// 	console.log(gameBack)
+// })
 
 const graphQLSchema = require('./graphql/schema/index')
 

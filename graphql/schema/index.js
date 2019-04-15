@@ -22,8 +22,18 @@ type RootQuery{
     games: [Game!]!
 }
 
+input UserInput {
+    email: String!
+    password: String!
+    email: String!
+    image: String!
+    bio: String!
+}
+
+
 type RootMutation{
     createGame(gameInput: GameInput): Game
+    createUser(userInput: UserInput): User
 }
 
 schema{
