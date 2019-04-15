@@ -8,7 +8,7 @@ const graphQLSchema = require('./graphql/schema/index')
 const PORT = process.env.PORT || 4000
 const app = express()
 mongoose.connect(process.env.MONGODB_URI)
-const gameresolver = require('./graphql/resolvers/index')
+const gameHelper = require('./helpers/getGame')
 const Game = require('./models/Game')
 
 // testing fetch function
@@ -16,7 +16,7 @@ let gameBack
 Game.findOne({ id: 2166 }).then((game) => {
 	if (game) console.log(game)
 	if (!game) {
-		gameresolver.fetchGame(2166).then((res) => {
+		gameHelper.fetchGame(2166).then((res) => {
 			gameBack = res
 			Game.create(gameBack).then((game) => game.save())
 		})
