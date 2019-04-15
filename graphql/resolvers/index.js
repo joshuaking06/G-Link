@@ -1,18 +1,11 @@
 const axios = require('axios')
+const darksouls = '2155'
+
 require('dotenv').config()
 
-const gameToSaveFields = [
-	'artworks',
-	'genres',
-	'platforms',
-	'game_modes',
-	'screenshots',
-	'videos',
-	'dlcs'
-]
 const fields = {
-	covers: 'fields alpha_channel,animated,game,height,image_id,url,width;',
-	artworks: 'fields alpha_channel,animated,game,height,image_id,url,width;',
+	covers: 'fields game,height,image_id,url,width;',
+	artworks: 'fields game,height,image_id,url,width;',
 	genres: 'fields id,name,slug;',
 	platforms: 'fields id,abbreviation,alternative_name,name;',
 	game_modes: 'fields name,slug,id;',
@@ -23,54 +16,36 @@ const fields = {
 	gamesShow:
 		'fields cover, dlcs,summary, slug,similar_games, screenshots, id, rating, rating_count,platforms, player_perspectives, genres, game_modes, artworks, name, url, videos; exclude tags;'
 }
-
 // create and build up a new game object which will be saved to the database
-const getGameDataFromApiAndSave = async (gameId) => {
-	const gameToSave = {}
-	let game = await getSingleData('games', fields.gamesShow + `where id=${gameId};`)
-	game = game.data[0]
-	const cover = await getSingleData(
-		'covers',
-		`fields id,game,height,width,image_id,url,width; where id=${game.cover};`
-	)
-	const otherFieldData = await getOtherFieldData(game)
-
-	gameToSave.player_perspectives = await getMultipleData(
-		game.player_perspectives,
-		'player_perspectives'
-	)
-
-	gameToSaveFields.forEach((field, index) => {
-		gameToSave[field] = otherFieldData[index]
-	})
-
-	gameToSave.cover = cover.data[0]
-	gameToSave.name = game.name
-	gameToSave.summary = game.summary
-	gameToSave.id = game.id
-	gameToSave.rating = game.rating
-	gameToSave.rating_count = game.rating_count
-	gameToSave.url = game.url
-	return gameToSave
-}
-
-const getOtherFieldData = (game) => {
+const getGameDataFromApi = async (gameId) => {
+	const game = await getSingleData('games', fields.gamesShow + `where id=${gameId};`)
 	return Promise.all(
-		Object.keys(fields)
-			.filter((field) => field !== 'covers' && field !== 'gamesShow')
-			.map((field) => {
-				if (field === 'games') return getMultipleData(game.dlcs, 'games')
-				if (field === 'game_videos') return getMultipleData(game.videos, 'game_videos')
-				if (field !== 'games' && field !== 'game_videos') {
-					return getMultipleData(game[field], field)
+		Object.keys(game.data[0]).map(async (field) => {
+			if (Array.isArray(game.data[0][field])) {
+				const data = await getMultipleData(
+					game.data[0][field],
+					field
+						.replace(/dlcs|similar_games/gi, 'games')
+						.replace(/videos/gi, 'game_videos')
+				)
+				return { [field]: data }
+			} else if (field === 'cover') {
+				return {
+					[field]: (await getSingleData(
+						'covers',
+						fields[field + 's'] + `where id=${game.data[0][field]};`
+					)).data[0]
 				}
-			})
+			} else {
+				return { [field]: game.data[0][field] }
+			}
+		})
 	)
 }
 
-const getMultipleData = (ids, endpoint) => {
+const getMultipleData = async (ids, endpoint) => {
 	try {
-		return Promise.all(
+		return await Promise.all(
 			ids.map(async (i) => {
 				const single = await getSingleData(endpoint, fields[endpoint] + `where id=${i};`)
 				return single.data[0]
@@ -97,6 +72,12 @@ const getSingleData = async (endpoint, data) => {
 	}
 }
 
+const assignGameToObj = async (gameId) => {
+	let game = await getGameDataFromApi(gameId)
+	return game
+}
+
+// getGameDataFromApiAndSave(darksouls).then((res) => console.log(Object.assign(gameToSave, ...res)))
 module.exports = {
-	fetchAndSaveGame: getGameDataFromApiAndSave
+	fetchAndSaveGame: assignGameToObj
 }
