@@ -13,16 +13,15 @@ const Game = require('./models/Game')
 
 // testing fetch function
 let gameBack
-const gameExist = Game.findById(2155)
-if (gameExist) console.log(gameExist)
-if (gameExist) {
-	console.log("doesn't exist")
-	// gameresolver.fetchGame('2155').then((res) => {
-	// 	gameBack = res
-	// 	Game.create(gameBack)
-	// 	Game.save()
-	// })
-}
+Game.findOne({ id: 2166 }).then((game) => {
+	if (game) console.log(game)
+	if (!game) {
+		gameresolver.fetchGame(2166).then((res) => {
+			gameBack = res
+			Game.create(gameBack).then((game) => game.save())
+		})
+	}
+})
 
 app.use(bodyParser.json())
 
@@ -51,4 +50,4 @@ app.use(
 	})
 )
 
-app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
+// app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
