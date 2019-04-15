@@ -16,7 +16,7 @@ const graphQLResolver = require('./graphql/resolvers/index')
 
 const PORT = process.env.PORT || 4000
 const app = express()
-mongoose.connect(process.env.MONGODB_URI)
+// mongoose.connect(process.env.MONGODB_URI)
 // const gameHelper = require('./helpers/getGame')
 // const Game = require('./models/Game')
 
