@@ -17,8 +17,12 @@ module.exports = {
     },
     getUsers: async args => {
         try {
+            const user = await User.findOne({ _id: args });
+            if (!user) {
+                throw new Error('User does not exist!');
+            }
+            return { ...user._doc, password: null, _id: user.id };
 
-            return { ...args };
         }
         catch (err) {
             throw err;
