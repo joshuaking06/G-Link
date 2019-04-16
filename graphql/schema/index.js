@@ -82,6 +82,7 @@ input UserInput {
 
 input UserInterest {
     _id: ID!
+    gameId: ID!
 }
 
 

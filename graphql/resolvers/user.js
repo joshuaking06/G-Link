@@ -33,17 +33,17 @@ module.exports = {
     updateUserGameInterest: async args => {
 
         try {
-            return { ...args.userInput }
-            // let user = await User.findById(args.userInput.id);
-            // if (!user) {
-            //     throw new Error('User does not exist!');
-            // }
-            // const game = await Game.findById(args.userInput.gameId)
+            let user = await User.findById(args.userInput._id);
+            if (!user) {
+                throw new Error('User does not exist!');
+            }
+            const game = await Game.findById(args.userInput.gameId)
 
-            // user = await user.gamesInterestedIn.push(game)
-            // await user.save();
-
-            // return { ...user._doc, password: null, _id: user.id };
+            user.gamesInterestedIn.push(game)
+            await user.save()
+            // creator.createdEvents.push(event);
+            // await creator.save();
+            return { ...user._doc, password: null, _id: user._id };
         }
         catch (err) {
             throw err;
