@@ -57,6 +57,7 @@ type User {
     image: String
     password: String
     passwordConfirmation: String
+    gamesInterestedIn: [Game!]
   }
 
 
@@ -79,8 +80,14 @@ input UserInput {
 
 
 
+input UpdateUserInterest {
+    _id: ID!
+}
+
+
 type RootMutation{
     createUser(userInput: UserInput): User
+    updateUserGameInterest(userInput: UpdateUserInterest): User
 }
 
 schema{
