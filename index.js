@@ -6,11 +6,6 @@ const graphqlHttp = require('express-graphql')
 
 const gameresolver = require('./graphql/resolvers/games')
 
-// gameresolver.fetchAndSaveGame('2155').then((res) => {
-// 	gameBack = res
-// 	console.log(gameBack)
-// })
-
 const graphQLSchema = require('./graphql/schema/index')
 const graphQLResolver = require('./graphql/resolvers/index')
 
@@ -32,9 +27,6 @@ const app = express()
 // 	}
 // })
 
-
-
-
 app.use(bodyParser.json())
 
 app.use(
@@ -42,24 +34,6 @@ app.use(
 	graphqlHttp({
 		schema: graphQLSchema,
 		rootValue: graphQLResolver,
-
-		// {
-		// 	games: () => {
-		// 		return games
-		// 	},
-		// 	createGame: (args, req) => {
-		// 		const game = {
-		// 			_id: Math.random().toString(),
-		// 			title: args.gameInput.title,
-		// 			genre: args.gameInput.genre,
-		// 			price: +args.gameInput.price,
-		// 			releaseDate: args.gameInput.releaseDate,
-		// 			rating: +args.gameInput.rating
-		// 		}
-		// 		games.push(game)
-		// 		return game
-		// 	}
-		// },
 		graphiql: true
 	})
 )
