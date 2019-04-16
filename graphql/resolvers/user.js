@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../../models/user');
+const Game = require('../../models/game')
 
 module.exports = {
     createUser: async args => {
@@ -17,7 +18,7 @@ module.exports = {
     },
     getUsers: async args => {
         try {
-            const user = await User.findOne({ _id: args });
+            const user = await User.findById(args);
             if (!user) {
                 throw new Error('User does not exist!');
             }
@@ -32,13 +33,17 @@ module.exports = {
     updateUserGameInterest: async args => {
 
         try {
-            // const user = await User.findOne({ _id: args.userInput._id });
+            return { ...args.userInput }
+            // let user = await User.findById(args.userInput.id);
             // if (!user) {
             //     throw new Error('User does not exist!');
             // }
-            // user = user.gamesInterestedIn.push(args)
+            // const game = await Game.findById(args.userInput.gameId)
+
+            // user = await user.gamesInterestedIn.push(game)
+            // await user.save();
+
             // return { ...user._doc, password: null, _id: user.id };
-            return { ...args.userInput }
         }
         catch (err) {
             throw err;
