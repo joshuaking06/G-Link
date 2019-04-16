@@ -89,6 +89,7 @@ input UserInterest {
 type RootMutation{
     createUser(userInput: UserInput): User
     updateUserGameInterest(userInput: UserInterest): User
+    removeUserGameInterest(userInput: UserInterest): User
 }
 
 schema{
