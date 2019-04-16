@@ -37,12 +37,10 @@ module.exports = {
         try {
             let user = await User.findById(args.userInput._id);
             const game = await Game.findById(args.userInput.gameId)
-
             if (!user) {
                 throw new Error('User does not exist!');
             }
-
-            if (user.gamesInterestedIn.includes(new ObjectId(args.userInput.gameId))) {
+            if (user.gamesInterestedIn.some(game => game.equals(args.userInput.gameId))) {
                 throw new Error('Games has already been added');
             }
             user.gamesInterestedIn.push(game)
@@ -54,7 +52,6 @@ module.exports = {
         }
     },
     removeUserGameInterest: async args => {
-
         try {
             let user = await User.findById(args.userInput._id);
             await User.update(
