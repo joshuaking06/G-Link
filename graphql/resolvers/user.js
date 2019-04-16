@@ -14,6 +14,31 @@ module.exports = {
         catch (err) {
             throw err;
         }
+    },
+    getUsers: async args => {
+        try {
+
+            return { ...args };
+        }
+        catch (err) {
+            throw err;
+        }
     }
 
+
 }
+
+
+///(_id: ID!)
+
+
+// ,
+//     getUsers: async args => {
+//         try {
+
+//             return { ...args };
+//         }
+//         catch (err) {
+//             throw err;
+//         }
+//     }

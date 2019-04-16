@@ -63,7 +63,7 @@ type User {
 type RootQuery{
     games: [Game!]!
     getGame(id: Int!): Game!
-    users: User!
+    getUsers(_id: ID!): User!
 }
 
 
@@ -93,3 +93,6 @@ schema{
 //     password
 //     username
 // }
+
+
+// getUsers(_id: ID!): User!
