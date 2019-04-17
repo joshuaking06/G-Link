@@ -6,9 +6,15 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: 'Password is required' },
     email: { type: String, required: 'Email address is required', unique: 'Email address already exist, please enter different Email address' },
     image: { type: String },
+    gamesInterestedIn: [{ type: mongoose.Schema.ObjectId, ref: 'Game' }],
     bio: { type: String }
 })
 
 userSchema.plugin(uniqueValidator)
 
 module.exports = mongoose.model('User', userSchema)
+
+
+
+
+// gamesInterestedIn: [{ type: mongoose.Schema.ObjectId, ref: 'Game' }],

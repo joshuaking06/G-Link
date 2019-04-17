@@ -86,4 +86,22 @@ const gameSchema = new mongoose.Schema({
 	}
 })
 
+
+
+gameSchema.virtual('usersInstterestedin', {
+	ref: 'User',
+	localField: '_id',
+	foreignField: 'gamesInterestedIn'
+})
+
+
+gameSchema.set('toJSON', {
+	virtuals: true,
+	transform(doc, json) {
+		delete json.__v
+		delete json.id
+		return json
+	}
+})
+
 module.exports = mongoose.model('Game', gameSchema)

@@ -30,6 +30,17 @@ type NestedGame{
 }
 
 
+type User {
+    _id: ID!
+    email: String!
+    username: String!
+    bio: String
+    image: String
+    password: String
+    passwordConfirmation: String
+    gamesInterestedIn: [Game]
+  }
+
 type Game{
     _id: ID!
     id: Int!
@@ -46,24 +57,16 @@ type Game{
     game_modes: [GenreGameMode]!
     dlcs: [NestedGame]!
     similar_games: [NestedGame]!
+    usersInstterestedin: [User]
 }
 
 
-type User {
-    _id: ID!
-    email: String!
-    username: String!
-    bio: String
-    image: String
-    password: String
-    passwordConfirmation: String
-  }
 
 
 type RootQuery{
     games: [Game]!
     getGame(id: Int!): Game!
-    users: User!
+    getUsers(_id: ID!): User!
 }
 
 
@@ -79,8 +82,16 @@ input UserInput {
 
 
 
+input UserInterest {
+    _id: ID!
+    gameId: ID!
+}
+
+
 type RootMutation{
     createUser(userInput: UserInput): User
+    updateUserGameInterest(userInput: UserInterest): User
+    removeUserGameInterest(userInput: UserInterest): User
 }
 
 schema{
@@ -93,3 +104,7 @@ schema{
 //     password
 //     username
 // }
+
+
+// getUsers(_id: ID!): User!
+// gamesInterestedIn: [ID]
