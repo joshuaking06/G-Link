@@ -61,7 +61,7 @@ type User {
 
 
 type RootQuery{
-    games: [Game!]!
+    games: [Game]!
     getGame(id: Int!): Game!
     users: User!
 }
