@@ -3,6 +3,7 @@ const darksouls = '2155'
 
 require('dotenv').config()
 
+// fields we will use to build our game Object, with the related query fields for each api call
 const fields = {
 	covers: 'fields game,height,image_id,url,width;',
 	artworks: 'fields game,height,image_id,url,width;',
@@ -17,7 +18,7 @@ const fields = {
 		'fields cover, dlcs,summary, similar_games, screenshots, id, rating, rating_count,platforms, player_perspectives, genres, game_modes, artworks, name, url, videos; exclude tags;'
 }
 
-// requesting a single bit of data from an endpoint
+// requesting a single bit of data from an endpoint, data is the querystring
 const getSingleData = async (endpoint, data) => {
 	try {
 		return await axios({
@@ -50,8 +51,11 @@ const getMultipleData = async (ids, endpoint) => {
 
 // create and build up a new game object which will be saved to the database
 const getGameDataFromApi = async (gameId) => {
+	// intial call to database with game id
 	const game = await getSingleData('games', fields.gamesShow + `where id=${gameId};`)
+	// loop through all ids in the game object that was returned and make api calls to get the related data
 	return Promise.all(
+		// if the field is an Array, use the get multiple data to retrieve multiple artworks,screenshots,etc
 		Object.keys(game.data[0]).map(async (field) => {
 			if (Array.isArray(game.data[0][field])) {
 				const data = await getMultipleData(
@@ -75,12 +79,14 @@ const getGameDataFromApi = async (gameId) => {
 	)
 }
 
+// take the array of data and spread them into a larger game Object, to be returned
 const assignGameToObj = async (gameId) => {
 	let game = await getGameDataFromApi(gameId)
 	console.log(game)
 	return Object.assign({}, ...game)
 }
 
+// function to search through the database based on user input(queryString)
 const searchGames = async (queryString) => {
 	try {
 		return await axios({
