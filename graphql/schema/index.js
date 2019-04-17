@@ -57,16 +57,27 @@ type Game{
     game_modes: [GenreGameMode]!
     dlcs: [NestedGame]!
     similar_games: [NestedGame]!
-    usersInstterestedin: [User]
+    usersInterestedin: [User]
+}
+
+type SearchResult{
+    id: Int!
+    name: String!
+    summary: String
+}
+
+type LoginData{
+    userId: ID!
+    token: String!
+    tokenExpiration: Int! 
 }
 
 
-
-
 type RootQuery{
-    games: [Game]!
+    searchGames(query: String!): [SearchResult]
     getGame(id: Int!): Game!
     getUsers(_id: ID!): User!
+    login(email: String!, password: String!): LoginData!
 }
 
 
@@ -104,7 +115,6 @@ schema{
 //     password
 //     username
 // }
-
 
 // getUsers(_id: ID!): User!
 // gamesInterestedIn: [ID]

@@ -14,12 +14,21 @@ module.exports = {
 				if (!game) {
 					return gameHelper.fetchGame(args.id).then((res) => {
 						return Game.create(res).then(async (newGame) => {
-							await newGame.populate('usersInstterestedin').execPopulate()
+							await newGame.populate('usersInterestedin').execPopulate()
 							return newGame.save()
 						})
 					})
 				}
 			})
+		} catch (err) {
+			throw err
+		}
+	},
+	searchGames: async ({ query }) => {
+		try {
+			const results = await gameHelper.searchGames(query)
+			console.log(results.data, 'results')
+			return results.data
 		} catch (err) {
 			throw err
 		}

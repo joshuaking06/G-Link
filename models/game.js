@@ -86,14 +86,11 @@ const gameSchema = new mongoose.Schema({
 	}
 })
 
-
-
-gameSchema.virtual('usersInstterestedin', {
+gameSchema.virtual('usersInterestedin', {
 	ref: 'User',
 	localField: '_id',
 	foreignField: 'gamesInterestedIn'
 })
-
 
 gameSchema.set('toJSON', {
 	virtuals: true,

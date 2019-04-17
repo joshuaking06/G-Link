@@ -77,6 +77,23 @@ const assignGameToObj = async (gameId) => {
 	return Object.assign({}, ...game)
 }
 
+const searchGames = async (queryString) => {
+	try {
+		return await axios({
+			url: 'https://api-v3.igdb.com/games',
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'user-key': process.env.USER_KEY
+			},
+			data: queryString
+		})
+	} catch (err) {
+		console.log(err)
+	}
+}
+
 module.exports = {
-	fetchGame: assignGameToObj
+	fetchGame: assignGameToObj,
+	searchGames: searchGames
 }
