@@ -30,6 +30,17 @@ type NestedGame{
 }
 
 
+type User {
+    _id: ID!
+    email: String!
+    username: String!
+    bio: String
+    image: String
+    password: String
+    passwordConfirmation: String
+    gamesInterestedIn: [Game]
+  }
+
 type Game{
     _id: ID!
     id: Int!
@@ -46,19 +57,10 @@ type Game{
     game_modes: [GenreGameMode]!
     dlcs: [NestedGame]!
     similar_games: [NestedGame]!
+    usersInstterestedin: [User]
 }
 
 
-type User {
-    _id: ID!
-    email: String!
-    username: String!
-    bio: String
-    image: String
-    password: String
-    passwordConfirmation: String
-    gamesInterestedIn: [Game]
-  }
 
 
 type RootQuery{
