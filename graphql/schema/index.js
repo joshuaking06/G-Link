@@ -1,5 +1,7 @@
 const { buildSchema } = require('graphql')
 
+// defining all the types of  objects that can or will be sent/received to/from the client
+
 module.exports = buildSchema(`
 type Image{
     id: Int!

@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 app.use(secureRoute)
 
 app.use(
-	'/graphql',
+	'/api/graphql',
 	graphqlHttp({
 		schema: graphQLSchema,
 		rootValue: graphQLResolver,
