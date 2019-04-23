@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 
+import 'bulma'
 import './style.scss'
 
 class App extends React.Component {
