@@ -33,4 +33,25 @@ body {
 			width: 95%;
 		}
 	}
+	.is-centered{
+		text-align: center;
+	}
+
+	.navbar{
+		position: fixed;
+		width: 100%;
+
+		.control{
+			.input{
+				width: 400px;
+				&.input:focus{
+					outline: none;
+					// background-color: red;
+				}
+			}
+		}
+		.field:not(:last-child) {
+			 margin-bottom: 0rem; 
+		}
+	}
 }
