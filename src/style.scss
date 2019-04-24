@@ -1,7 +1,36 @@
+// @charset "utf-8";
+
+// Import a Google Font
+// @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+//change colors
 $secondary: #282c34;
 $primary: #61dafb;
+$link: #282c34;
 $grey: #dbd9d6;
+$label-color: $grey;
+
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/_all.sass";
+@import "../node_modules/bulma/sass/elements/_all.sass";
+@import "../node_modules/bulma/sass/elements/_all.sass";
+@import "../node_modules/bulma/sass/elements/_all.sass";
+@import "../node_modules/bulma/sass/components/_all.sass";
+@import "../node_modules/bulma/sass/layout/_all.sass";
+@import "../node_modules/bulma/sass/layout/_all.sass";
+@import "../node_modules/bulma/sass/grid/_all.sass";
 
 body {
 	background-color: $grey;
+	height: 100vh;
+	.login {
+		background-color: $secondary;
+		margin-top: 20%;
+		border-radius: 10px;
+		.form {
+			margin: auto;
+			width: 95%;
+		}
+	}
 }
