@@ -53,16 +53,12 @@ class Home extends React.Component {
 
 
 
-                <section className="hero is-info is-large">
-                    <div className="hero-body">
-                        <div className="container">
-                            <h1 className="title">
-                                Large title
-      </h1>
-                            <h2 className="subtitle">
-                                Large subtitle
-      </h2>
-                        </div>
+                <section className="section">
+                    <div className="container is-set-to-zero container-full-screen">
+                        <h2 className="title is-4">
+                            Gaming News
+                        </h2>
+
                     </div>
                 </section>
 
@@ -73,10 +69,10 @@ class Home extends React.Component {
                         <div className="container">
                             <h1 className="title">
                                 Large title
-      </h1>
+                            </h1>
                             <h2 className="subtitle">
                                 Large subtitle
-      </h2>
+                            </h2>
                         </div>
                     </div>
                 </section>
