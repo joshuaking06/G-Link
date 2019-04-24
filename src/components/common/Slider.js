@@ -1,18 +1,28 @@
 import React from 'react'
 
-const Slider = () => {
+import ImageCard from './ImageCard'
+const Slider = ({ title }) => {
+    console.log(title)
     return (
-        <section className="hero is-primary is-medium">
-            <div className="hero-body">
-                <div className="container">
-                    <h1 className="title">
-                        Medium title
-                    </h1>
-                    <h2 className="subtitle">
-                        Medium subtitle
-                    </h2>
+        <section className="section slider">
+            <div >
+                <h2 className="title is-4">{title}</h2>
+                <div className="columns">
+                    <div className="column">
+                        <ImageCard />
+                    </div>
+                    <div className="column">
+                        <ImageCard />
+                    </div>
+                    <div className="column">
+                        <ImageCard />
+                    </div>
+                    <div className="column">
+                        <ImageCard />
+                    </div>
                 </div>
             </div>
+
         </section>
     )
 }

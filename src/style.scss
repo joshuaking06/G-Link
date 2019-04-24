@@ -37,9 +37,29 @@ body {
 		text-align: center;
 	}
 
+
+	.section.slider{ 
+		
+		width: 100%;
+		.container{
+			padding: 0;
+			margin: 0;
+
+		}
+
+		
+	}
+
 	.navbar{
 		position: fixed;
 		width: 100%;
+		background-color: $secondary;
+		.navbar-item{
+			color: #ffffff;
+			&:hover{
+				color: $secondary;
+			}
+		}
 
 		.control{
 			.input{

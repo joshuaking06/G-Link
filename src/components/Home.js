@@ -22,7 +22,7 @@ class Home extends React.Component {
                         </div>
                     </div>
                 </section>
-                <Slider />
+                <Slider title={"Hottest Game right now"} />
                 <section className="hero is-info is-large">
                     <div className="hero-body">
                         <div className="container">
@@ -36,7 +36,7 @@ class Home extends React.Component {
                     </div>
                 </section>
 
-                <Slider />
+                <Slider title={"Popular Streamers"} />
 
                 <section className="hero is-info is-large">
                     <div className="hero-body">
