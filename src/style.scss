@@ -49,7 +49,25 @@ body {
 	.section{
 		background-color: $grey;
 	}
+	.media{
+		// background-color: #ffffff;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		.media-left{
+			height: 250px;
+			width: 250px;
+			.img{
+				height: 250px;
+				width: 250px;			
+			}
+		}
+		.content{
+			padding: 40px 70px 40px 0;
+		}
 
+	}
+
+	//line-height: 2.5;
 	.navbar{
 		position: fixed;
 		width: 100%;

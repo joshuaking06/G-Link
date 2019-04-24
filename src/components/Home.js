@@ -1,5 +1,6 @@
 import React from 'react'
 import Slider from './common/Slider'
+import NewsSection from './common/NewsSection'
 
 class Home extends React.Component {
     constructor() {
@@ -58,7 +59,7 @@ class Home extends React.Component {
                         <h2 className="title is-4">
                             Gaming News
                         </h2>
-
+                        <NewsSection />
                     </div>
                 </section>
 
