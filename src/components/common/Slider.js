@@ -2,7 +2,6 @@ import React from 'react'
 
 import ImageCard from './ImageCard'
 const Slider = ({ title }) => {
-    console.log(title)
     return (
         <section className="section">
             <div className="container is-set-to-zero container-full-screen">
