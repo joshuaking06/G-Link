@@ -17,6 +17,7 @@ $input-hover-border-color: $primary;
 $input-focus-border-color: $primary;
 $input-focus-box-shadow-size: 0;
 @import "~bulma/bulma";
+@import "~react-alice-carousel/lib/alice-carousel.css";
 
 
 *{
@@ -74,8 +75,16 @@ body {
 	.is-white{
 		color: #ffffff;
 	}
+
+	.column{
+        &.has-button{
+			padding-top: calc(125% / 2);
+			text-align: center;
+        }
+	}
+	
+
 	.media{
-		// background-color: #ffffff;
 		padding-top: 1rem;
 		padding-bottom: 1rem;
 		.media-left{

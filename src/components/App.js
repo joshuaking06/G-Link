@@ -1,10 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-
-import "react-alice-carousel/lib/alice-carousel.css";
-
-
 // import components
 import Login from './auth/Login'
 import Home from './Home'
