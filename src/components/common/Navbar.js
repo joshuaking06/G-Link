@@ -49,7 +49,7 @@ class NavBar extends React.Component {
                     <div className="navbar-end">
                         <div className="navbar-item">
                             <div className="buttons">
-                                <Link className="button is-primary" to="/login">
+                                <Link className="button is-primary" to="/register">
                                     <strong>Sign up</strong>
                                 </Link>
                                 <Link className="button is-light" to="/login">

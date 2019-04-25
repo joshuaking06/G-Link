@@ -25,6 +25,7 @@
 		"mongoose-unique-validator": "^2.0.2",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
+		"react-parallax": "^2.2.0",
 		"react-router-dom": "^5.0.0",
 		"request": "^2.88.0",
 		"request-promise": "^4.2.4"
