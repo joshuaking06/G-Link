@@ -1,36 +1,59 @@
-// @charset "utf-8";
+@charset "utf-8";
 
 // Import a Google Font
-// @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
 //change colors
 $secondary: #282c34;
 $primary: #61dafb;
-$link: #282c34;
+$link: $primary;
 $grey: #dbd9d6;
 $label-color: $grey;
-
-@import "../node_modules/bulma/sass/utilities/_all.sass";
-@import "../node_modules/bulma/sass/base/_all.sass";
-@import "../node_modules/bulma/sass/elements/_all.sass";
-@import "../node_modules/bulma/sass/elements/_all.sass";
-@import "../node_modules/bulma/sass/elements/_all.sass";
-@import "../node_modules/bulma/sass/elements/_all.sass";
-@import "../node_modules/bulma/sass/components/_all.sass";
-@import "../node_modules/bulma/sass/layout/_all.sass";
-@import "../node_modules/bulma/sass/layout/_all.sass";
-@import "../node_modules/bulma/sass/grid/_all.sass";
+$input-background-color: transparent;
+$input-border-color: none;
+$input-shadow: $primary;
+$input-color: $primary;
+$input-hover-border-color: $primary;
+$input-focus-border-color: $primary;
+$input-focus-box-shadow-size: 0;
+@import "~bulma/bulma";
 
 body {
+	padding-bottom: 20px;
 	background-color: $grey;
 	height: 100vh;
-	.login {
+	margin: 0;
+	.login-section {
+		height: 105vh;
 		background-color: $secondary;
-		margin-top: 20%;
-		border-radius: 10px;
-		.form {
+		.login-form {
+			.field {
+				padding-bottom: 20px;
+			}
+			$button-background-color: $primary;
 			margin: auto;
 			width: 95%;
+			label {
+				color: $primary;
+			}
+			.input {
+				border-bottom: 1px solid $primary;
+			}
 		}
 	}
+}
+
+/* Change Autocomplete styles on input*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	border: none;
+	border-bottom: 1px solid $primary;
+	-webkit-text-fill-color: $primary;
+	background-color: $secondary;
+	transition: background-color 5000s ease-in-out 0s;
 }
