@@ -30,9 +30,7 @@ class Home extends React.Component {
                             <h1 className="title">
                                 Large title
                              </h1>
-                            <h2 className="subtitle">
-                                Large subtitle
-                             </h2>
+
                         </div>
                     </div>
                 </section>
@@ -45,9 +43,7 @@ class Home extends React.Component {
                             <h1 className="title">
                                 Large title
       </h1>
-                            <h2 className="subtitle">
-                                Large subtitle
-      </h2>
+
                         </div>
                     </div>
                 </section>
@@ -71,9 +67,7 @@ class Home extends React.Component {
                             <h1 className="title">
                                 Large title
                             </h1>
-                            <h2 className="subtitle">
-                                Large subtitle
-                            </h2>
+
                         </div>
                     </div>
                 </section>

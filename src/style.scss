@@ -21,6 +21,12 @@ $label-color: $grey;
 @import "../node_modules/bulma/sass/layout/_all.sass";
 @import "../node_modules/bulma/sass/grid/_all.sass";
 
+
+*{
+	scroll-behavior: smooth;
+
+}
+
 body {
 	background-color: $grey;
 	height: 100vh;

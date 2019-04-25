@@ -8,7 +8,7 @@ const NewsHeadline = () => {
             <figure className="media-left">
                 <img className="img" src="https://bulma.io/images/placeholders/128x128.png" />
             </figure>
-            <div className="media-content">
+            <div className="media-content ">
                 <div className="content">
                     <h3 className="title is-5"><strong>John Smith</strong></h3>
                     <p>
