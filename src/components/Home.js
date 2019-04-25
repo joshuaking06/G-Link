@@ -28,10 +28,10 @@ class Home extends React.Component {
                 <Slider title={"Hottest Game right now"} />
 
                 <Parallax bgImage="https://www.syfy.com/sites/syfy/files/wire/legacy/Uncharted4-Nathan-Drake.jpg" strength={350}>
-                    <section className="hero  is-large">
+                    <section className="hero is-large">
                         <div className="hero-body">
                             <div className="container">
-                                <h2 className="title is-4 is-white">
+                                <h2 className="title is-4 is-white is-centered">
                                     Explore
                              </h2>
 
@@ -46,7 +46,7 @@ class Home extends React.Component {
                     <section className="hero is-large">
                         <div className="hero-body">
                             <div className="container">
-                                <h2 className="title is-4 is-white">
+                                <h2 className="title is-4 is-white is-centered">
                                     Conenct
                              </h2>
 
@@ -72,7 +72,7 @@ class Home extends React.Component {
                     <section className="hero  is-large">
                         <div className="hero-body">
                             <div className="container">
-                                <h2 className="title is-4 is-white">
+                                <h2 className="title is-4 is-white is-centered">
                                     Play
                                 </h2>
 

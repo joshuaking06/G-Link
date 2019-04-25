@@ -50,6 +50,8 @@ body {
 			}
 		}
 	}
+
+	
 	.is-centered{
 		text-align: center;
 	}
@@ -90,7 +92,6 @@ body {
 
 	}
 
-	//line-height: 2.5;
 	.navbar{
 		position: fixed;
 		width: 100%;
@@ -107,7 +108,6 @@ body {
 				width: 400px;
 				&.input:focus{
 					outline: none;
-					// background-color: red;
 				}
 			}
 		}
