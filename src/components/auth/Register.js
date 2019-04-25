@@ -24,12 +24,13 @@ export default class Register extends React.Component {
 
 	onSubmit(e) {
 		e.preventDefault()
-		const { email, password, passwordConfirmation, username } = this.state
+		const { email, password, image, passwordConfirmation, username } = this.state
 		const mutationString = `mutation{createUser(userInput:{
 			username: "${username}", 
 			email: "${email}", 
 			password: "${password}", 
-			passwordConfirmation:"${passwordConfirmation}"
+			passwordConfirmation:"${passwordConfirmation}",
+			image: "${image}"
 		}){ _id username }}`
 		axios.post('/api/graphql', { query: mutationString }).then((data) => console.log(data.data))
 	}
