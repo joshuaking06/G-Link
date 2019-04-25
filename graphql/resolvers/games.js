@@ -7,7 +7,7 @@ module.exports = {
 		try {
 			return Game.findOne({ id: args.id }).then(async (game) => {
 				if (game) {
-					await game.populate('usersInstterestedin').execPopulate()
+					await game.populate('usersInterestedin').execPopulate()
 
 					return await game
 				}
