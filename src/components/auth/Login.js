@@ -33,9 +33,9 @@ export default class Login extends React.Component {
 	render() {
 		const { email, password } = this.state
 		return (
-			<div className="section login-section columns">
+			<div className="section form-section columns">
 				<div className="column is-4 is-offset-4">
-					<form onSubmit={this.onSubmit} className="login-form">
+					<form onSubmit={this.onSubmit} className="form">
 						{/* label and input for email */}
 						<div className="field">
 							<label className="label is-light has-text-centered">Email</label>

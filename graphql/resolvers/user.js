@@ -7,7 +7,7 @@ module.exports = {
 	createUser: async (args) => {
 		try {
 			if (args.userInput.password !== args.userInput.passwordConfirmation) {
-				throw new Error('Passwords doesnot match.')
+				throw new Error('Passwords do not match.')
 			}
 			args.userInput.password = await bcrypt.hash(args.userInput.password, 12)
 			const user = await User.create(args.userInput)

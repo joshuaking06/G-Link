@@ -23,10 +23,13 @@ body {
 	background-color: $grey;
 	height: 100vh;
 	margin: 0;
-	.login-section {
+	.form-section {
 		height: 105vh;
 		background-color: $secondary;
-		.login-form {
+		.form {
+			i {
+				color: $primary;
+			}
 			.field {
 				padding-bottom: 20px;
 			}

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 // import components
 import Login from './auth/Login'
+import Register from './auth/Register'
 
 class App extends React.Component {
 	constructor() {
@@ -16,7 +17,7 @@ class App extends React.Component {
 					<main>
 						<Switch>
 							<Route path="/login" component={Login} />
-							<Route path="/register" component={Login} />
+							<Route path="/register" component={Register} />
 							<Route path="/" component={Login} />
 						</Switch>
 					</main>
