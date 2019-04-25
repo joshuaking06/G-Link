@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 export default class Login extends React.Component {
 	constructor() {
@@ -18,7 +19,15 @@ export default class Login extends React.Component {
 	}
 
 	onSubmit(e) {
+		const { email, password } = this.state
 		e.preventDefault()
+		const queryString = `query{ login(
+			email: "${email}", 
+			password:"${password}"
+			){ token }}`
+		axios
+			.post('/api/graphql', { query: queryString })
+			.then((data) => console.log(data.data.data.login))
 	}
 
 	render() {
