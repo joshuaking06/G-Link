@@ -34,7 +34,7 @@ const Slider = ({ title, data }) => {
 	))
 	items.push(
 		<div className="column has-button">
-			<Link className="button is-primary" to="/">
+			<Link className="button  is-success" to="/">
 				{' '}
 				View More
 			</Link>

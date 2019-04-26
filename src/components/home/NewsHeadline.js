@@ -6,7 +6,7 @@ const NewsHeadline = () => {
     return (
         <article className="media">
             <figure className="media-left">
-                <img className="img" src="https://bulma.io/images/placeholders/128x128.png" />
+                <img className="img" src="https://androidportal.zoznam.sk/wp-content/uploads/2018/11/15/huawei-mate-20-pro-24.jpg" />
             </figure>
             <div className="media-content ">
                 <div className="content">

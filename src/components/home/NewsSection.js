@@ -13,7 +13,7 @@ const NewsSection = () => {
             <NewHeadline />
             <NewHeadline />
             <div className="is-centered">
-                <Link className="button is-primary" to="/"> View More News</Link>
+                <Link className="button  is-success" to="/"> View More News</Link>
             </div>
 
         </div>
