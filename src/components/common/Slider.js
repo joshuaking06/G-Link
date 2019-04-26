@@ -4,61 +4,58 @@ import { Link } from 'react-router-dom'
 
 import ImageCard from './ImageCard'
 
-class Slider extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            currentIndex: 0,
-            itemsInSlide: 1,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                767: {
-                    items: 2
 
-                },
-                1024: {
-                    items: 4
-                }
-            },
-            items: [<div className="column">
-                <ImageCard />
-            </div>, <div className="column">
-                <ImageCard />
-            </div>, <div className="column">
-                <ImageCard />
-            </div>, <div className="column">
-                <ImageCard />
-            </div>, <div className="column">
-                <ImageCard />
-            </div>,
-            <div className="column has-button">
-                <Link className="button is-primary" to="/"> View More</Link>
-            </div>]
+
+const Slider = ({ title, data }) => {
+    // const data = {
+    //     currentIndex: 0,
+    //     itemsInSlide: 1,
+    { console.log(data) }
+
+    const responsive = {
+        0: {
+            items: 1
+        },
+        767: {
+            items: 2
+
+        },
+        1024: {
+            items: 4
         }
     }
-    render() {
-        const { items, responsive, currentIndex } = this.state
+    const items = [<div className="column">
+        <ImageCard />
+    </div>, <div className="column">
+        <ImageCard />
+    </div>, <div className="column">
+        <ImageCard />
+    </div>, <div className="column">
+        <ImageCard />
+    </div>, <div className="column">
+        <ImageCard />
+    </div>,
+    <div className="column has-button">
+        <Link className="button is-primary" to="/"> View More</Link>
+    </div>]
 
-        return (
-            <section className="section" >
-                <div className="container is-set-to-zero container-full-screen">
-                    <h2 className="title is-4">{this.props.title}</h2>
-                    <div className="columns">
-                        <AliceCarousel
-                            items={items}
-                            slideToIndex={currentIndex}
-                            responsive={responsive}
-                            dotsDisabled={true}
-                            infinite={false}
-                        />
-                    </div>
+    return (
+        <section className="section" >
+            <div className="container is-set-to-zero container-full-screen">
+                <h2 className="title is-4">{title}</h2>
+                <div className="columns">
+                    <AliceCarousel
+                        items={items}
+                        responsive={responsive}
+                        dotsDisabled={true}
+                        infinite={false}
+                    />
                 </div>
+            </div>
 
-            </section >
-        )
-    }
+        </section >
+    )
+    // }
 }
 
 
