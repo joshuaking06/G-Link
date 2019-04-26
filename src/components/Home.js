@@ -23,6 +23,26 @@ class Home extends React.Component {
             .post('/api/graphql', { query: queryString })
             .then((data) => this.setState(data.data.data))
 
+        const queryString2 = `query{
+                indexGame{
+                  name
+                  id
+                  cover{
+                    image_id
+                  }
+                },
+                
+                    popularStreamers{
+                        user_name
+                      viewer_count
+                      thumbnail_url
+                      }
+                
+              }`
+        axios
+            .post('/api/graphql', { query: queryString2 })
+            .then((data) => console.log(data.data.data))
+
     }
 
     render() {

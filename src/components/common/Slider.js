@@ -20,7 +20,7 @@ const Slider = ({ title, data }) => {
             items: 4
         }
     }
-    console.log([] || undefined)
+    // console.log([] || undefined)
     // const items = data.indexGame || []
     const items = data.indexGame.map(elem =>
         <div className="column">
