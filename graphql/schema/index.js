@@ -39,7 +39,7 @@ type TwitchTv{
     community_ids: [String],
     type: String,
     title: String,
-    "viewer_count": Int,
+    viewer_count: Int,
     started_at: String,
     language: String,
     thumbnail_url: String,
@@ -98,7 +98,7 @@ type RootQuery{
     getUsers(_id: ID!): User!
     login(email: String!, password: String!): LoginData!
     indexGame:[Game!]!
-    popularStreamers: [TwitchTv]
+    popularStreamers(email: String!, password: String!): User!
 }
 
 
