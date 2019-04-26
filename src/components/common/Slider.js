@@ -22,8 +22,6 @@ const Slider = ({ title, data }) => {
             items: 4
         }
     }
-    // console.log([] || undefined)
-    // const items = data.indexGame || []
     const items = data.map(elem =>
         <div className="column">
             <ImageCard name={elem.name || elem.user_name} image={elem.cover || elem.thumbnail_url} viewers={elem.viewer_count || ' '} />
