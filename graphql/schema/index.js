@@ -98,7 +98,7 @@ type RootQuery{
     getUsers(_id: ID!): User!
     login(email: String!, password: String!): LoginData!
     indexGame:[Game!]!
-    popularStreamers(email: String!, password: String!): User!
+    popularStreamers: [TwitchTv]!
 }
 
 
