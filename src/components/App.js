@@ -3,9 +3,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 // import components
 import Login from './auth/Login'
-import Home from './Home'
+import Home from './home/Home'
 import NavBar from './common/Navbar'
 import Register from './auth/Register'
+import Search from './search/Search'
 
 class App extends React.Component {
 	constructor() {
@@ -19,6 +20,7 @@ class App extends React.Component {
 					<main>
 						<NavBar />
 						<Switch>
+							<Route path="/search" component={Search} />
 							<Route path="/register" component={Register} />
 							<Route path="/login" component={Login} />
 							<Route path="/" component={Home} />
