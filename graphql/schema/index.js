@@ -80,6 +80,8 @@ type RootQuery{
     getGame(id: Int!): Game!
     getUsers(_id: ID!): User!
     login(email: String!, password: String!): LoginData!
+    indexGame:[Game!]!
+
 }
 
 
@@ -105,6 +107,8 @@ type RootMutation{
     createUser(userInput: UserInput): User
     updateUserGameInterest(userInput: UserInterest): User
     removeUserGameInterest(userInput: UserInterest): User
+    
+
 }
 
 schema{
