@@ -2,14 +2,39 @@ import React from 'react'
 import Slider from './Slider'
 import NewsSection from './NewsSection'
 import { Parallax } from 'react-parallax'
-const image1 =
-	'https://images.unsplash.com/photo-1498092651296-641e88c3b057?auto=format&fit=crop&w=1778&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'
+import axios from 'axios'
+
 class Home extends React.Component {
 	constructor() {
 		super()
 	}
 
+	componentDidMount() {
+		const queryString = `query{
+                indexGame{
+                  name
+                  id
+                  cover{
+                    image_id
+                  }
+                },
+                
+                    popularStreamers{
+                        user_name
+                      viewer_count
+                      thumbnail_url
+                      }
+                
+              }`
+		axios
+			.post('/api/graphql', { query: queryString })
+			.then((data) => this.setState(data.data.data))
+	}
+
 	render() {
+		if (!this.state) {
+			return <h1>Loading....</h1>
+		}
 		return (
 			<div>
 				<section className="hero is-success is-fullheight  ">
@@ -20,7 +45,7 @@ class Home extends React.Component {
 						</div>
 					</div>
 				</section>
-				<Slider title={'Hottest Game right now'} />
+				<Slider title={'Hottest Game right now'} data={this.state.indexGame} />
 
 				<Parallax
 					bgImage="https://www.syfy.com/sites/syfy/files/wire/legacy/Uncharted4-Nathan-Drake.jpg"
@@ -35,7 +60,7 @@ class Home extends React.Component {
 					</section>
 				</Parallax>
 
-				<Slider title={'Popular Streamers'} />
+				<Slider title={'Popular Streamers'} data={this.state.popularStreamers} />
 
 				<Parallax
 					bgImage="https://www.gamersclassified.com/wp-content/uploads/2018/11/Is-eSports-In-Schools-On-The-Way.jpeg"
