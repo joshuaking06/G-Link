@@ -26,6 +26,7 @@ class Home extends React.Component {
     }
 
     render() {
+        if (!this.state) { return (<h1>Loading....</h1>) }
         return (
             <div>
                 <section className="hero is-success is-fullheight  ">
@@ -55,7 +56,7 @@ class Home extends React.Component {
                     </section>
                 </Parallax>
 
-                <Slider title={"Popular Streamers"} />
+                <Slider title={"Popular Streamers"} data={this.state} />
 
                 <Parallax bgImage="https://www.gamersclassified.com/wp-content/uploads/2018/11/Is-eSports-In-Schools-On-The-Way.jpeg" strength={350}>
                     <section className="hero is-large">

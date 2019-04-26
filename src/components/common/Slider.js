@@ -7,11 +7,7 @@ import ImageCard from './ImageCard'
 
 
 const Slider = ({ title, data }) => {
-    // const data = {
-    //     currentIndex: 0,
-    //     itemsInSlide: 1,
     { console.log(data) }
-
     const responsive = {
         0: {
             items: 1
@@ -24,20 +20,24 @@ const Slider = ({ title, data }) => {
             items: 4
         }
     }
-    const items = [<div className="column">
-        <ImageCard />
-    </div>, <div className="column">
-        <ImageCard />
-    </div>, <div className="column">
-        <ImageCard />
-    </div>, <div className="column">
-        <ImageCard />
-    </div>, <div className="column">
-        <ImageCard />
-    </div>,
-    <div className="column has-button">
-        <Link className="button is-primary" to="/"> View More</Link>
-    </div>]
+    console.log([] || undefined)
+    // const items = data.indexGame || []
+    const items = data.indexGame.map(elem => <div className="column"><ImageCard {...elem} /></div>)
+    items.push(<div className="column has-button"><Link className="button is-primary" to="/"> View More</Link></div >)
+    // [<div className="column">
+    //     <ImageCard />
+    // </div> , <div className="column">
+    //     <ImageCard />
+    // </div> , <div className="column">
+    //     <ImageCard />
+    // </div> , <div className="column">
+    //     <ImageCard />
+    // </div> , <div className="column">
+    //     <ImageCard />
+    // </div> ,
+    //     <div className="column has-button">
+    //         <Link className="button is-primary" to="/"> View More</Link>
+    //     </div>]
 
     return (
         <section className="section" >
