@@ -11,19 +11,6 @@ class Home extends React.Component {
 
     componentDidMount() {
         const queryString = `query{
-            indexGame{
-              name
-              id
-              cover{
-                image_id
-              }
-            }
-          }`
-        axios
-            .post('/api/graphql', { query: queryString })
-            .then((data) => this.setState(data.data.data))
-
-        const queryString2 = `query{
                 indexGame{
                   name
                   id
@@ -40,8 +27,8 @@ class Home extends React.Component {
                 
               }`
         axios
-            .post('/api/graphql', { query: queryString2 })
-            .then((data) => console.log(data.data.data))
+            .post('/api/graphql', { query: queryString })
+            .then((data) => this.setState(data.data.data))
 
     }
 
@@ -61,7 +48,7 @@ class Home extends React.Component {
                         </div>
                     </div>
                 </section>
-                <Slider title={"Hottest Game right now"} data={this.state} />
+                <Slider title={"Hottest Game right now"} data={this.state.indexGame} />
 
                 <Parallax bgImage="https://www.syfy.com/sites/syfy/files/wire/legacy/Uncharted4-Nathan-Drake.jpg" strength={350}>
                     <section className="hero is-large">
@@ -76,7 +63,7 @@ class Home extends React.Component {
                     </section>
                 </Parallax>
 
-                <Slider title={"Popular Streamers"} data={this.state} />
+                <Slider title={"Popular Streamers"} data={this.state.popularStreamers} />
 
                 <Parallax bgImage="https://www.gamersclassified.com/wp-content/uploads/2018/11/Is-eSports-In-Schools-On-The-Way.jpeg" strength={350}>
                     <section className="hero is-large">

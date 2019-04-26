@@ -8,6 +8,8 @@ import ImageCard from './ImageCard'
 
 const Slider = ({ title, data }) => {
     { console.log(data) }
+    // { console.log(data2) }
+
     const responsive = {
         0: {
             items: 1
@@ -22,9 +24,10 @@ const Slider = ({ title, data }) => {
     }
     // console.log([] || undefined)
     // const items = data.indexGame || []
-    const items = data.indexGame.map(elem =>
+    const items = data.map(elem =>
         <div className="column">
-            <ImageCard name={elem.name} image={`https://images.igdb.com/igdb/image/upload/t_cover_big/${elem.cover.image_id || "nocover_qhhlj6"}.jpg`} />
+            {/* image={`https://images.igdb.com/igdb/image/upload/t_cover_big/${elem.cover.image_id || "nocover_qhhlj6"}.jpg`} */}
+            <ImageCard name={elem.name || elem.user_name} image={elem.cover || elem.thumbnail_url} />
         </div>
     )
     items.push(<div className="column has-button"><Link className="button is-primary" to="/"> View More</Link></div >)
