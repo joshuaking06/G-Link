@@ -21,7 +21,7 @@ export default class Search extends React.Component {
 
 		this.changeKeyword = this.changeKeyword.bind(this)
 		this.search = this.search.bind(this)
-		this.changefilter = this.changeFilter.bind(this)
+		this.changeFilter = this.changeFilter.bind(this)
 	}
 
 	changeFilter() {
