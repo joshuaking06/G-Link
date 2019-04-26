@@ -2,13 +2,28 @@ import React from 'react'
 import Slider from './common/Slider'
 import NewsSection from './common/NewsSection'
 import { Parallax } from "react-parallax";
-const image1 =
-    "https://images.unsplash.com/photo-1498092651296-641e88c3b057?auto=format&fit=crop&w=1778&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D";
+import axios from 'axios'
+
 class Home extends React.Component {
     constructor() {
         super()
     }
 
+    componentDidMount() {
+        const queryString = `query{
+            indexGame{
+              name
+              id
+              cover{
+                image_id
+              }
+            }
+          }`
+        axios
+            .post('/api/graphql', { query: queryString })
+            .then((data) => this.setState(data.data.data))
+
+    }
 
     render() {
         return (
@@ -25,7 +40,7 @@ class Home extends React.Component {
                         </div>
                     </div>
                 </section>
-                <Slider title={"Hottest Game right now"} />
+                <Slider title={"Hottest Game right now"} data={this.state} />
 
                 <Parallax bgImage="https://www.syfy.com/sites/syfy/files/wire/legacy/Uncharted4-Nathan-Drake.jpg" strength={350}>
                     <section className="hero is-large">
