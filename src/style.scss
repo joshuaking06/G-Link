@@ -16,21 +16,22 @@ $input-color: $primary;
 $input-hover-border-color: $primary;
 $input-focus-border-color: $primary;
 $input-focus-box-shadow-size: 0;
+$navbar-item-color: $primary;
+$navbar-item-hover-background-color: none;
 @import "~bulma/bulma";
 @import "~react-alice-carousel/lib/alice-carousel.css";
 
-
-*{
+* {
 	scroll-behavior: smooth;
-
+	box-sizing: border-box;
 }
 
 body {
 	padding-bottom: 20px;
 	background-color: $grey;
-	height: 100vh;
 	margin: 0;
 	.form-section {
+		margin-top: 50px;
 		height: 105vh;
 		background-color: $secondary;
 		.form {
@@ -52,76 +53,92 @@ body {
 		}
 	}
 
-	
-	.is-centered{
+	.is-centered {
 		text-align: center;
 	}
 
-	.news{
+	.news {
 		height: auto;
 		width: auto;
 	}
 
-
-	.is-set-to-zero{
+	.is-set-to-zero {
 		padding: 0;
 		margin: 0;
 	}
 
-	.container-full-screen{
+	.container-full-screen {
 		min-width: 100%;
 	}
 
-	.is-white{
+	.is-white {
 		color: #ffffff;
 	}
 
-	.column{
-        &.has-button{
+	.column {
+		&.has-button {
 			padding-top: calc(125% / 2);
 			text-align: center;
-        }
+		}
 	}
-	
 
-	.media{
+	.media {
 		padding-top: 1rem;
 		padding-bottom: 1rem;
-		.media-left{
+		.media-left {
 			height: 250px;
 			width: 250px;
-			.img{
+			.img {
 				height: 250px;
-				width: 250px;			
+				width: 250px;
 			}
 		}
-		.content{
+		.content {
 			padding: 40px 70px 40px 0;
 		}
-
 	}
 
-	.navbar{
-		position: fixed;
+	.navbar {
+		.navbar-start {
+			.field {
+				max-width: 100px;
+			}
+		}
 		width: 100%;
 		background-color: $secondary;
-		.navbar-item{
-			color: #ffffff;
-			&:hover{
-				color: $secondary;
+		.navbar-item {
+			color: $primary !important;
+		}
+		a {
+			&.navbar-item {
+				color: $primary !important;
+			}
+			&:hover {
+				font-weight: 800;
+			}
+		}
+		input {
+			border-bottom: 1px solid $primary;
+			&:hover {
+				border: none;
+				border-bottom: 1px solid $primary;
 			}
 		}
 
-		.control{
-			.input{
-				width: 400px;
-				&.input:focus{
+		.control {
+			a {
+				border: none;
+				border-bottom: 1px solid $primary;
+			}
+			.input {
+				width: 285px;
+				&.input:focus {
 					outline: none;
 				}
 			}
 		}
 		.field:not(:last-child) {
-			 margin-bottom: 0rem; 
+			margin-bottom: 0rem;
 		}
 	}
 }
