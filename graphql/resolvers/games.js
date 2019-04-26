@@ -36,13 +36,13 @@ module.exports = {
 	indexGame: async () => {
 		try {
 			// return { ...args }
-			return Game.find().then(async (game) => {
+			return Game.find().limit(20).then(async (game) => {
 				// console.log(game)
-				// if (game) {
-				// 	// await game.populate('usersInterestedin').execPopulate()
-				// 	return await game
-				// }
-				return await game
+				if (game) {
+					// await game.populate('usersInterestedin').execPopulate()
+					return await game
+				}
+				return await []
 
 
 			})
