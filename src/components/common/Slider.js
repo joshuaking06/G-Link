@@ -26,8 +26,7 @@ const Slider = ({ title, data }) => {
     // const items = data.indexGame || []
     const items = data.map(elem =>
         <div className="column">
-            {/* image={`https://images.igdb.com/igdb/image/upload/t_cover_big/${elem.cover.image_id || "nocover_qhhlj6"}.jpg`} */}
-            <ImageCard name={elem.name || elem.user_name} image={elem.cover || elem.thumbnail_url} />
+            <ImageCard name={elem.name || elem.user_name} image={elem.cover || elem.thumbnail_url} viewers={elem.viewer_count || ' '} />
         </div>
     )
     items.push(<div className="column has-button"><Link className="button is-primary" to="/"> View More</Link></div >)
