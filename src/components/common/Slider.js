@@ -22,22 +22,13 @@ const Slider = ({ title, data }) => {
     }
     console.log([] || undefined)
     // const items = data.indexGame || []
-    const items = data.indexGame.map(elem => <div className="column"><ImageCard {...elem} /></div>)
+    const items = data.indexGame.map(elem =>
+        <div className="column">
+            {console.log(elem.cover.image_id)}
+            <ImageCard name={elem.name} image={`https://images.igdb.com/igdb/image/upload/t_cover_big/${elem.cover.image_id || "nocover_qhhlj6"}.jpg`} />
+        </div>
+    )
     items.push(<div className="column has-button"><Link className="button is-primary" to="/"> View More</Link></div >)
-    // [<div className="column">
-    //     <ImageCard />
-    // </div> , <div className="column">
-    //     <ImageCard />
-    // </div> , <div className="column">
-    //     <ImageCard />
-    // </div> , <div className="column">
-    //     <ImageCard />
-    // </div> , <div className="column">
-    //     <ImageCard />
-    // </div> ,
-    //     <div className="column has-button">
-    //         <Link className="button is-primary" to="/"> View More</Link>
-    //     </div>]
 
     return (
         <section className="section" >
