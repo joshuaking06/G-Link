@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class NavBar extends React.Component {
 	render() {
@@ -18,15 +18,15 @@ class NavBar extends React.Component {
 				</div>
 				<div id="navbarBasicExample" className="navbar-menu">
 					<div className="navbar-start">
-						<a className="navbar-item" to="/">
+						<Link className="navbar-item" to="/">
 							Link Up
-						</a>
-						<a className="navbar-item" to="/">
+						</Link>
+						<Link className="navbar-item" to="/">
 							Popular Games
-						</a>
-						<a className="navbar-item" to="/">
+						</Link>
+						<Link className="navbar-item" to="/">
 							Forums
-						</a>
+						</Link>
 					</div>
 					{/* login and sign up buttons */}
 					<div className="navbar-end">
@@ -35,9 +35,9 @@ class NavBar extends React.Component {
 								<input className="input" type="text" placeholder="Find a game..." />
 							</div>
 							<div className="control">
-								<a className="button is-link is-outlined">
+								<Link to="/search" className="button is-link is-outlined">
 									<i className="fas fa-search" />
-								</a>
+								</Link>
 							</div>
 						</div>
 						<div className="navbar-item">
