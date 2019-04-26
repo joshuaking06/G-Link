@@ -82,7 +82,7 @@ type Game{
 type SearchResult{
     id: Int!
     name: String!
-    summary: String
+    cover: Image
 }
 
 type LoginData{

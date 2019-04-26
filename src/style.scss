@@ -31,6 +31,8 @@ body {
 	padding-bottom: 20px;
 	background-color: $grey;
 	margin: 0;
+	height: 100vh;
+	// login and register forms
 	.form-section {
 		margin-top: 50px;
 		height: 105vh;
@@ -98,7 +100,7 @@ body {
 			padding: 40px 70px 40px 0;
 		}
 	}
-
+	// everything navbar
 	.navbar {
 		.navbar-start {
 			.field {
@@ -140,6 +142,27 @@ body {
 		}
 		.field:not(:last-child) {
 			margin-bottom: 0rem;
+		}
+	}
+
+	// everything search page
+	.search-page {
+		min-height: 100vh;
+		background-color: $secondary;
+		.search-hero {
+			background-image: url("https://bigbossbattle.com/wp-content/uploads/2018/04/GRIP-Panorama.jpg");
+			background-size: cover;
+			.is-1 {
+				color: $white;
+				font-size: 5em;
+			}
+		}
+		.search-section {
+			input {
+				border: none;
+				border-bottom: 2px solid $primary;
+				font-size: 1.5em !important;
+			}
 		}
 	}
 }
