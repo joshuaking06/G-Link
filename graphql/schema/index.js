@@ -30,6 +30,23 @@ type NestedGame{
     cover: Int
     name: String
 }
+type TwitchTv{
+
+    id: String,
+    user_id: String,
+    user_name: String,
+    game_id: String,
+    community_ids: [String],
+    type: String,
+    title: String,
+    viewer_count: Int,
+    started_at: String,
+    language: String,
+    thumbnail_url: String,
+    tag_ids: [
+        String
+    ]
+}
 
 
 type User {
@@ -80,6 +97,8 @@ type RootQuery{
     getGame(id: Int!): Game!
     getUsers(_id: ID!): User!
     login(email: String!, password: String!): LoginData!
+    indexGame:[Game!]!
+    popularStreamers: [TwitchTv]!
 }
 
 
@@ -105,6 +124,8 @@ type RootMutation{
     createUser(userInput: UserInput): User
     updateUserGameInterest(userInput: UserInterest): User
     removeUserGameInterest(userInput: UserInterest): User
+    
+
 }
 
 schema{

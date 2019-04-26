@@ -32,5 +32,22 @@ module.exports = {
 		} catch (err) {
 			throw err
 		}
+	},
+	indexGame: async () => {
+		try {
+			// return { ...args }
+			return Game.find().limit(20).then(async (game) => {
+				// console.log(game)
+				if (game) {
+					// await game.populate('usersInterestedin').execPopulate()
+					return await game
+				}
+				return await []
+
+
+			})
+		} catch (err) {
+			throw err
+		}
 	}
 }
