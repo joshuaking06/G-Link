@@ -2,7 +2,6 @@ import React from 'react'
 
 const ImageCard = ({ name, image, viewers }) => {
     // image_id
-    { console.log(image) }
     if (typeof image === "object") image = `https://images.igdb.com/igdb/image/upload/t_cover_big/${image.image_id || "nocover_qhhlj6"}.jpg`
 
     return (

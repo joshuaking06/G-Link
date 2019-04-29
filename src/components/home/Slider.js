@@ -5,11 +5,6 @@ import { Link } from 'react-router-dom'
 import ImageCard from './ImageCard'
 
 const Slider = ({ title, data }) => {
-	{
-		console.log(data)
-	}
-	// { console.log(data2) }
-
 	const responsive = {
 		0: {
 			items: 1
@@ -21,8 +16,6 @@ const Slider = ({ title, data }) => {
 			items: 4
 		}
 	}
-	// console.log([] || undefined)
-	// const items = data.indexGame || []
 	const items = data.map((elem) => (
 		<div className="column">
 			<ImageCard
