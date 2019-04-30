@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import GameResultCard from './GameResultCard'
 
 // const platforms = {
 // 	pc: 6,
@@ -39,17 +40,14 @@ export default class Search extends React.Component {
 	search(e) {
 		e.preventDefault()
 		const { keyword, filters: { platforms } } = this.state
-		let platformString = this.convertFilters(platforms)
+		const platformString = this.convertFilters(platforms)
 		const queryString = `query{ searchGames(
-			query: "search \\"${keyword}\\"; 
-			fields name, cover.url; 
-			where platforms=(${platformString}); 
-			limit 20;",
+			query: "search \\"${keyword}\\"; fields name, cover.url; where platforms=(${platformString}) & version_parent = null; limit 20;",
 			){ name, id, cover{ url } }}`
 		console.log(queryString)
-		// axios
-		// 	.post('/api/graphql', { query: queryString })
-		// 	.then((data) => console.log(data.data.data.searchGames))
+		axios
+			.post('/api/graphql', { query: queryString })
+			.then((data) => this.setState({ results: data.data.data.searchGames }))
 	}
 
 	render() {
@@ -80,6 +78,15 @@ export default class Search extends React.Component {
 						</form>
 					</div>
 				</section>
+				<div className="container">
+					{this.state.results && (
+						<div className="columns is-multiline">
+							{this.state.results.map((game) => (
+								<GameResultCard key={game.id} game={game} />
+							))}
+						</div>
+					)}
+				</div>
 			</div>
 		)
 	}

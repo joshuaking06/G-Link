@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=Muli:400,700');
+// @import 'https://fonts.googleapis.com/css?family=Muli:400, 700';
 
 //change colors
 $secondary: #282c34;
@@ -102,7 +102,7 @@ body {
 		}
 	}
 
-	.media {
+	.home-media {
 		padding-top: 1rem;
 		padding-bottom: 1rem;
 		.media-left {
@@ -179,6 +179,17 @@ body {
 				border: none;
 				border-bottom: 2px solid $primary;
 				font-size: 1.5em !important;
+			}
+		}
+		.search-result {
+			display: flex;
+			border: 1px solid $primary;
+			.media-left {
+				width: 64px;
+			}
+			strong {
+				font-size: 30px;
+				color: $primary !important;
 			}
 		}
 	}
