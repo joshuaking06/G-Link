@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import GameResultCard from './GameResultCard'
+import { Link } from 'react-router-dom'
 
 // const platforms = {
 // 	pc: 6,
@@ -82,7 +83,13 @@ export default class Search extends React.Component {
 					{this.state.results && (
 						<div className="columns is-multiline">
 							{this.state.results.map((game) => (
-								<GameResultCard key={game.id} game={game} />
+								<Link
+									to={`/games/${game.id}`}
+									key={game.id}
+									className="column is-8"
+								>
+									<GameResultCard game={game} />
+								</Link>
 							))}
 						</div>
 					)}

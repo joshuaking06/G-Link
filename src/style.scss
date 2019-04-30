@@ -184,11 +184,12 @@ body {
 		.search-result {
 			display: flex;
 			border: 1px solid $primary;
+			padding: 6px;
 			.media-left {
 				width: 64px;
 			}
 			strong {
-				font-size: 30px;
+				font-size: 26px;
 				color: $primary !important;
 			}
 		}

@@ -20,6 +20,7 @@ class App extends React.Component {
 					<main>
 						<NavBar />
 						<Switch>
+							<Route path="/games/:id" component={Login} />
 							<Route path="/search" component={Search} />
 							<Route path="/register" component={Register} />
 							<Route path="/login" component={Login} />
