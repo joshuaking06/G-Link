@@ -15,6 +15,7 @@ export default class Search extends React.Component {
 		super(props)
 
 		this.state = {
+			index: 1,
 			keyword: '',
 			filters: {
 				platforms: [ 6, 48, 49 ]
@@ -24,6 +25,7 @@ export default class Search extends React.Component {
 		this.changeKeyword = this.changeKeyword.bind(this)
 		this.search = this.search.bind(this)
 		this.changeFilter = this.changeFilter.bind(this)
+		this.getMore = this.getMore.bind(this)
 	}
 
 	changeFilter() {
@@ -38,22 +40,35 @@ export default class Search extends React.Component {
 		return array.join(',')
 	}
 
-	search(e) {
-		e.preventDefault()
-		const { keyword, filters: { platforms } } = this.state
+	getMore() {
+		this.setState({ index: this.state.index + 10 })
+		this.search(null, this.state.index + 10)
+	}
+
+	search(e, givenIndex) {
+		if (e !== null) e.preventDefault()
+		const { keyword, index, filters: { platforms } } = this.state
+		const newIndex = givenIndex || index
 		const platformString = this.convertFilters(platforms)
+
 		const queryString = `query{ searchGames(
-			query: "search \\"${keyword}\\"; fields name, cover.url; where platforms=(${platformString}) & version_parent = null; limit 20;",
+			query: "search \\"${keyword}\\"; fields name, cover.url; where platforms=(${platformString}) & version_parent = null; limit 10; offset ${newIndex};",
 			){ name, id, cover{ url } }}`
-		console.log(queryString)
-		axios
-			.post('/api/graphql', { query: queryString })
-			.then((data) => this.setState({ results: data.data.data.searchGames }))
+
+		axios.post('/api/graphql', { query: queryString }).then((data) => {
+			console.log('running')
+			console.log(!!givenIndex)
+			if (!givenIndex) this.setState({ results: data.data.data.searchGames })
+			if (givenIndex)
+				this.setState({ results: [ ...this.state.results, ...data.data.data.searchGames ] })
+		})
 	}
 
 	render() {
-		const { keyword, filters } = this.state
+		const { keyword, filters, index } = this.state
+		// if (this.state.results) console.log(this.state.results.length)
 		return (
+			// hero banner
 			<div className="search-page">
 				<section className="search-hero hero is-medium">
 					<div className="hero-body">
@@ -79,6 +94,7 @@ export default class Search extends React.Component {
 						</form>
 					</div>
 				</section>
+				{/* search results */}
 				<div className="container">
 					{this.state.results && (
 						<div className="columns is-multiline">
@@ -92,6 +108,12 @@ export default class Search extends React.Component {
 								</Link>
 							))}
 						</div>
+					)}
+					{this.state.results &&
+					this.state.results.length % 10 === 0 && (
+						<button onClick={this.getMore} className="button is-link is-outlined">
+							Load More
+						</button>
 					)}
 				</div>
 			</div>

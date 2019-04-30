@@ -27,7 +27,7 @@ module.exports = {
 	searchGames: async ({ query }) => {
 		try {
 			const results = await gameHelper.searchGames(query)
-			console.log(results.data, 'results')
+			console.log(results, 'results')
 			return results.data
 		} catch (err) {
 			throw err
@@ -43,8 +43,6 @@ module.exports = {
 					return await game
 				}
 				return await []
-
-
 			})
 		} catch (err) {
 			throw err
