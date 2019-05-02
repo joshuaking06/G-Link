@@ -16,5 +16,21 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
+    },
+    getNews: async (args) => {
+        try {
+            const results = await axios({
+                url: `https://newsapi.org/v2/top-headlines?${args}&category=technology&category=entertainment`,
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'x-api-key': process.env.NEWS_API_KEY
+                }
+            })
+            // console.log(results)
+            return await results.data.articles
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
