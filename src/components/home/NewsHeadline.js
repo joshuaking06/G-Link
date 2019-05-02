@@ -1,8 +1,8 @@
 import React from 'react'
 
 // import NewsSection from './ImageCard'
-const NewsHeadline = () => {
-    // console.log(title)
+const NewsHeadline = ({ title }) => {
+    console.log(title)
     return (
         <article className="media home-media">
             <figure className="media-left">
