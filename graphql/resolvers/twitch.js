@@ -20,15 +20,19 @@ module.exports = {
     getNews: async (args) => {
         try {
             const results = await axios({
-                url: `https://newsapi.org/v2/top-headlines?${args}&category=technology&category=entertainment`,
+                url: `https://newsapi.org/v2/top-headlines?${args.query}&category=technology&category=entertainmentt&category=general`,
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
                     'x-api-key': process.env.NEWS_API_KEY
                 }
             })
-            // console.log(results)
-            return await results.data.articles
+            console.log(results.data.articles)
+
+            return await [...new Set(results.data.articles.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
+
+            uniqueArray = a => [...new Set(results.data.articles.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
+
         } catch (err) {
             console.log(err)
         }
