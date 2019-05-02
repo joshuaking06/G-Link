@@ -17,6 +17,8 @@ module.exports = {
             console.log(err)
         }
     },
+
+    //country=au&country=ca&country=gb&country=ie&country=nz&country=ph&country=in&country=sa&country=sg&country=us&country=za
     getNews: async (args) => {
         try {
             const results = await axios({
