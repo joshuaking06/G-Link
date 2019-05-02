@@ -1,22 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 // import NewsSection from './ImageCard'
-const NewsHeadline = ({ title }) => {
+const NewsHeadline = ({ title, content, urlToImage, publishedAt, source, url }) => {
     console.log(title)
     return (
         <article className="media home-media">
             <figure className="media-left">
-                <img className="img" src="https://androidportal.zoznam.sk/wp-content/uploads/2018/11/15/huawei-mate-20-pro-24.jpg" />
+                <img className="img" src={urlToImage} />
             </figure>
             <div className="media-content ">
                 <div className="content">
-                    <h3 className="title is-5"><strong>John Smith</strong></h3>
+                    <h3 className="title is-5"><strong>{title}</strong></h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-
+                        {content.replace(/\[(.*?)\]/gi, '')} <a href={url} target="_blank"> Read more</a>
                     </p>
+                    <p>publised at: {publishedAt}  by: {source.name} </p>
                 </div>
                 {/* <nav className="level is-mobile">
 	// console.log(title)

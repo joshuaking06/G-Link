@@ -115,7 +115,7 @@ type RootQuery{
     login(email: String!, password: String!): LoginData!
     indexGame:[Game!]!
     popularStreamers: [TwitchTv]!
-    getNews(query: String!): [GameNews]
+    getNews(query: String! ): [GameNews]
 
 }
 

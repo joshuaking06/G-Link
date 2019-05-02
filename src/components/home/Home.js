@@ -27,10 +27,10 @@ class Home extends React.Component {
 											},
 											getNews(query: "q=games&q=game&q=gaming&q=video game"){
 												title
-												content
 												url
 												urlToImage
 												content
+												publishedAt
 												source{
 													name
 												}
@@ -90,7 +90,7 @@ class Home extends React.Component {
 				<section className="section">
 					<div className="container is-set-to-zero container-full-screen">
 						<h2 className="title is-4">Gaming News</h2>
-						<NewsSection news={this.state.getNews} />
+						<NewsSection news={this.state.getNews.slice(5)} />
 					</div>
 				</section>
 

@@ -9,10 +9,6 @@ const NewsSection = ({ news }) => {
     return (
         <div className="news">
             {news.map((elem, index) => <NewHeadline key={index} {...elem} />)}
-            {/* <NewHeadline />
-            <NewHeadline />
-            <NewHeadline />
-            <NewHeadline /> */}
             <div className="is-centered">
                 <Link className="button  is-success" to="/"> View More News</Link>
             </div>
