@@ -12,7 +12,9 @@ const NewsHeadline = ({ title, content, urlToImage, publishedAt, source, url }) 
                 <div className="content">
                     <h3 className="title is-5"><strong>{title}</strong></h3>
                     <p>
-                        {content.replace(/\[(.*?)\]/gi, '')} <a href={url} target="_blank"> Read more</a>
+                        {content && content.replace(/\[(.*?)\]/gi, '')}
+
+                        {content && <a href={url} target="_blank"> Read more</a>}
                     </p>
                     <p>publised at: {publishedAt}  by: {source.name} </p>
                 </div>
