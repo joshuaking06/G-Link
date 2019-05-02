@@ -27,7 +27,6 @@ module.exports = {
                     'x-api-key': process.env.NEWS_API_KEY
                 }
             })
-
             return await [...new Set(results.data.articles.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
 
         } catch (err) {

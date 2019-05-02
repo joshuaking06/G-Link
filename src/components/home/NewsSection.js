@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import NewHeadline from './NewsHeadline'
 const NewsSection = ({ news }) => {
-    console.log(news[0])
+    console.log(news)
     return (
         <div className="news">
             {news.map((elem, index) => <NewHeadline key={index} {...elem} />)}

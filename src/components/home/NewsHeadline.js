@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 // import NewsSection from './ImageCard'
 const NewsHeadline = ({ title, content, urlToImage, publishedAt, source, url }) => {
-    console.log(title)
     return (
         <article className="media home-media">
             <figure className="media-left">

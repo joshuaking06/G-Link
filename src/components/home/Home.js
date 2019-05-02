@@ -90,7 +90,7 @@ class Home extends React.Component {
 				<section className="section">
 					<div className="container is-set-to-zero container-full-screen">
 						<h2 className="title is-4">Gaming News</h2>
-						<NewsSection news={this.state.getNews.slice(5)} />
+						<NewsSection news={this.state.getNews.slice(0, 5)} />
 					</div>
 				</section>
 
