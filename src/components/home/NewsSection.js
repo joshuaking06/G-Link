@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 
 import NewHeadline from './NewsHeadline'
-const NewsSection = () => {
-    // console.log(title)
+const NewsSection = ({ news }) => {
+    console.log(news)
     return (
         <div className="news">
             <NewHeadline />

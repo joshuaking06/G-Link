@@ -20,14 +20,24 @@ class Home extends React.Component {
                     image_id
                   }
                 },
-                
                     popularStreamers{
                         user_name
                       viewer_count
                       thumbnail_url
-                      }
+											},
+											getNews(query: "q=games&q=game&q=gaming&q=video game"){
+												title
+												content
+												url
+												urlToImage
+												content
+												source{
+													name
+												}
+											}
                 
-              }`
+							}
+							`
 		axios
 			.post('/api/graphql', { query: queryString })
 			.then((data) => this.setState(data.data.data))
@@ -80,7 +90,7 @@ class Home extends React.Component {
 				<section className="section">
 					<div className="container is-set-to-zero container-full-screen">
 						<h2 className="title is-4">Gaming News</h2>
-						<NewsSection />
+						<NewsSection news={this.state.getNews} />
 					</div>
 				</section>
 
