@@ -3,6 +3,7 @@
 // Import a Google Font
 // @import url('https://fonts.googleapis.com/css?family=Nunito:400,700%27);
 @import url('https://fonts.googleapis.com/css?family=Muli:400,700%27');
+// @import 'https://fonts.googleapis.com/css?family=Muli:400, 700';
 
 //change colors
 $secondary: #282c34;
@@ -19,6 +20,7 @@ $input-focus-border-color: $primary;
 $input-focus-box-shadow-size: 0;
 $navbar-item-color: $primary;
 $navbar-item-hover-background-color: none;
+$pagination-color: $primary;
 @import "~bulma/bulma";
 @import "~react-alice-carousel/lib/alice-carousel.css";
 
@@ -28,7 +30,7 @@ $navbar-item-hover-background-color: none;
     font-family: 'Muli', sans-serif;
 }
 body {
-	padding-bottom: 20px;
+	padding-bottom: 40px;
 	background-color: $grey;
 	margin: 0;
 	height: 100vh;
@@ -56,6 +58,23 @@ body {
 		}
 	}
 
+	//home page
+	.home-hero {
+		background-image: url('https://images.alphacoders.com/942/thumb-1920-942234.jpg');
+		background-size: cover;
+		margin-top: 20px;
+		.is-1 {
+			font-size: 4em;
+		}
+		.is-3 {
+			font-size: 2.5em;
+		}
+		.is-1,
+		.is-3 {
+			color: $grey !important;
+			text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+		}
+	}
 	.is-centered {
 		text-align: center;
 	}
@@ -85,7 +104,7 @@ body {
 		}
 	}
 
-	.media {
+	.home-media {
 		padding-top: 1rem;
 		padding-bottom: 1rem;
 		.media-left {
@@ -147,6 +166,7 @@ body {
 
 	// everything search page
 	.search-page {
+		padding-bottom: 100px;
 		min-height: 100vh;
 		background-color: $secondary;
 		.search-hero {
@@ -162,6 +182,18 @@ body {
 				border: none;
 				border-bottom: 2px solid $primary;
 				font-size: 1.5em !important;
+			}
+		}
+		.search-result {
+			display: flex;
+			border: 1px solid $primary;
+			padding: 6px;
+			.media-left {
+				width: 64px;
+			}
+			strong {
+				font-size: 26px;
+				color: $primary !important;
 			}
 		}
 	}

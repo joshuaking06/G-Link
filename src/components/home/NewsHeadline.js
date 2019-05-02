@@ -4,7 +4,7 @@ import React from 'react'
 const NewsHeadline = () => {
     // console.log(title)
     return (
-        <article className="media">
+        <article className="media home-media">
             <figure className="media-left">
                 <img className="img" src="https://androidportal.zoznam.sk/wp-content/uploads/2018/11/15/huawei-mate-20-pro-24.jpg" />
             </figure>
@@ -19,6 +19,29 @@ const NewsHeadline = () => {
                     </p>
                 </div>
                 {/* <nav className="level is-mobile">
+	// console.log(title)
+	return (
+		<article className="media home-media">
+			<figure className="media-left">
+				<img className="img" src="https://bulma.io/images/placeholders/128x128.png" />
+			</figure>
+			<div className="media-content ">
+				<div className="content">
+					<h3 className="title is-5">
+						<strong>John Smith</strong>
+					</h3>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna
+						eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam
+						finibus odio quis feugiat facilisis. Lorem ipsum dolor sit amet, consectetur
+						adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum
+						ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis. Lorem
+						ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros,
+						eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus
+						odio quis feugiat facilisis.
+					</p>
+				</div>
+				{/* <nav className="level is-mobile">
                     <div className="level-left">
                         <a className="level-item">
                             <span className="icon is-small"><i className="fas fa-reply"></i></span>
@@ -32,10 +55,8 @@ const NewsHeadline = () => {
                     </div>
                 </nav> */}
             </div>
-
         </article>
     )
 }
-
 
 export default NewsHeadline

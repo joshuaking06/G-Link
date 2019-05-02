@@ -4,6 +4,8 @@ import NewsSection from './NewsSection'
 import { Parallax } from 'react-parallax'
 import axios from 'axios'
 
+// https://images.alphacoders.com/942/thumb-1920-942234.jpg SEKIRO
+
 class Home extends React.Component {
 	constructor() {
 		super()
@@ -37,7 +39,7 @@ class Home extends React.Component {
 		}
 		return (
 			<div>
-				<section className="hero is-success is-fullheight  ">
+				<section className="hero home-hero is-fullheight  ">
 					<div className="hero-body">
 						<div className="container is-centered">
 							<h1 className="title is-1">Welcome to G-Link</h1>
