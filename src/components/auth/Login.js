@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+import Auth from '../helpers/Auth'
+
 export default class Login extends React.Component {
 	constructor() {
 		super()
@@ -27,7 +29,11 @@ export default class Login extends React.Component {
 			){ token }}`
 		axios
 			.post('/api/graphql', { query: queryString })
-			.then((data) => console.log(data.data.data.login))
+			.then((data) => {
+				Auth.setToken(data.data.data.login.token)
+				this.props.history.push('/')
+			})
+			.catch((err) => console.log(err))
 	}
 
 	render() {
