@@ -13,10 +13,17 @@ class NavBar extends React.Component {
 
 		this.onChange = this.onChange.bind(this)
 		this.logout = this.logout.bind(this)
+		this.goToSearch = this.goToSearch.bind(this)
 	}
 
 	onChange({ target: { value } }) {
 		this.setState({ value })
+	}
+
+	goToSearch() {
+		if (this.state.value === '') this.props.history.push('/search')
+		else this.props.history.push(`/search/${this.state.value}`)
+		this.setState({ value: '' })
 	}
 
 	logout() {
@@ -64,12 +71,12 @@ class NavBar extends React.Component {
 									/>
 								</div>
 								<div className="control">
-									<Link
-										to={`/search/${this.state.value}`}
+									<a
+										onClick={this.goToSearch}
 										className="button is-link is-outlined"
 									>
 										<i className="fas fa-search" />
-									</Link>
+									</a>
 								</div>
 							</div>
 							{!Auth.isAuthenticated() && (

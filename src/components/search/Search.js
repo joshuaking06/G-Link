@@ -22,8 +22,8 @@ export default class Search extends React.Component {
 	}
 
 	componentDidMount() {
-		const keyword = this.props.match.params.query || ''
-		this.setState({ keyword }, () => this.search())
+		const keyword = this.props.match.params.query || undefined
+		if (keyword) this.setState({ keyword }, () => this.search())
 	}
 
 	changeFilter() {
