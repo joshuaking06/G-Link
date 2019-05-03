@@ -3,13 +3,6 @@ import axios from 'axios'
 import GameResultCard from './GameResultCard'
 import { Link } from 'react-router-dom'
 
-// const platforms = {
-// 	pc: 6,
-// 	ps4: 48,
-// 	xbox: 49,
-// 	switch: 130
-// }
-
 export default class Search extends React.Component {
 	constructor(props) {
 		super(props)
@@ -29,7 +22,7 @@ export default class Search extends React.Component {
 	}
 
 	changeFilter() {
-		console.log('changing')
+		console.log('changing filter array')
 	}
 
 	changeKeyword({ target: { value, name } }) {
@@ -56,8 +49,6 @@ export default class Search extends React.Component {
 			){ name, id, cover{ url } }}`
 
 		axios.post('/api/graphql', { query: queryString }).then((data) => {
-			console.log('running')
-			console.log(!!givenIndex)
 			if (!givenIndex) this.setState({ results: data.data.data.searchGames })
 			if (givenIndex)
 				this.setState({ results: [ ...this.state.results, ...data.data.data.searchGames ] })
@@ -66,7 +57,6 @@ export default class Search extends React.Component {
 
 	render() {
 		const { keyword, filters, index } = this.state
-		// if (this.state.results) console.log(this.state.results.length)
 		return (
 			// hero banner
 			<div className="search-page">
