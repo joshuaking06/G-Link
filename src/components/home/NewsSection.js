@@ -9,9 +9,9 @@ const NewsSection = ({ news }) => {
     return (
         <div className="news">
             {news.map((elem, index) => <NewHeadline key={index} {...elem} />)}
-            <div className="is-centered">
-                <Link className="button  is-success" to="/"> View More News</Link>
-            </div>
+            {news.length === 5 && <div className="is-centered">
+                <Link className="button  is-success" to="/news"> View More News</Link>
+            </div>}
 
         </div>
     )

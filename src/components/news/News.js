@@ -1,5 +1,5 @@
 import React from 'react'
-import NewsSection from './NewsSection'
+import NewsSection from '../home/NewsSection'
 import axios from 'axios'
 
 // https://images.alphacoders.com/942/thumb-1920-942234.jpg SEKIRO
@@ -30,7 +30,23 @@ class News extends React.Component {
 	}
 
 	render() {
-		return (<h1>here</h1>)
+		{ console.log(this.state) }
+		if (!this.state) {
+			return <h1>Loading....</h1>
+		}
+		return (
+			<div>
+				<section className="section has-margin">
+					<div className="container container-full-screen">
+						<h2 className="title is-4">Gaming News</h2>
+						<NewsSection news={this.state.getNews} />
+						{/* //.filter(elemn => (elemn.content || elemn.title)	.replace(/[a-zA-Z\s,.1-9&\/\\#,+()$~%.'":*?<>{}[(.*?)\]]/gmi, '') !== '...')} /> */}
+
+					</div>
+				</section>
+			</div>
+
+		)
 	}
 }
 
