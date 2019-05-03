@@ -12,6 +12,20 @@ class News extends React.Component {
 	}
 
 	getQueryString(number) {
+		// return `query{
+		// 	getNews(query: "q=games&q=game&q=gaming&q=video game&pageSize=100"){
+		// 		title
+		// 		url
+		// 		urlToImage
+		// 		content
+		// 		publishedAt
+		// 		source{
+		// 			name
+		// 		}
+		// 	}
+
+		// }
+		// `
 		return `query{
 			getNews(query: "q=games&q=game&q=gaming&q=video game&page=${number}"){
 				title
