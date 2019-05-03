@@ -32,7 +32,10 @@ export default class Register extends React.Component {
 			passwordConfirmation:"${passwordConfirmation}",
 			image: "${image}"
 		}){ _id username }}`
-		axios.post('/api/graphql', { query: mutationString }).then((data) => console.log(data.data))
+		axios
+			.post('/api/graphql', { query: mutationString })
+			.then(() => this.props.history.push('/login'))
+			.catch((err) => console.log(err))
 	}
 
 	render() {

@@ -3,13 +3,6 @@ import axios from 'axios'
 import GameResultCard from './GameResultCard'
 import { Link } from 'react-router-dom'
 
-// const platforms = {
-// 	pc: 6,
-// 	ps4: 48,
-// 	xbox: 49,
-// 	switch: 130
-// }
-
 export default class Search extends React.Component {
 	constructor(props) {
 		super(props)
@@ -28,8 +21,13 @@ export default class Search extends React.Component {
 		this.getMore = this.getMore.bind(this)
 	}
 
+	componentDidMount() {
+		const keyword = this.props.match.params.query || ''
+		this.setState({ keyword }, () => this.search())
+	}
+
 	changeFilter() {
-		console.log('changing')
+		console.log('changing filter array')
 	}
 
 	changeKeyword({ target: { value, name } }) {
@@ -46,7 +44,7 @@ export default class Search extends React.Component {
 	}
 
 	search(e, givenIndex) {
-		if (e !== null) e.preventDefault()
+		if (e) e.preventDefault()
 		const { keyword, index, filters: { platforms } } = this.state
 		const newIndex = givenIndex || index
 		const platformString = this.convertFilters(platforms)
@@ -55,10 +53,13 @@ export default class Search extends React.Component {
 			query: "search \\"${keyword}\\"; fields name, cover.url; where platforms=(${platformString}) & version_parent = null; limit 10; offset ${newIndex};",
 			){ name, id, cover{ url } }}`
 
+		console.log(queryString, 'queryString')
+
 		axios.post('/api/graphql', { query: queryString }).then((data) => {
-			console.log('running')
-			console.log(!!givenIndex)
-			if (!givenIndex) this.setState({ results: data.data.data.searchGames })
+			if (!givenIndex) {
+				console.log(data.data.data, 'data')
+				this.setState({ results: data.data.data.searchGames })
+			}
 			if (givenIndex)
 				this.setState({ results: [ ...this.state.results, ...data.data.data.searchGames ] })
 		})
@@ -66,7 +67,6 @@ export default class Search extends React.Component {
 
 	render() {
 		const { keyword, filters, index } = this.state
-		// if (this.state.results) console.log(this.state.results.length)
 		return (
 			// hero banner
 			<div className="search-page">
