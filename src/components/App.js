@@ -21,6 +21,7 @@ class App extends React.Component {
 						<NavBar />
 						<Switch>
 							<Route path="/games/:id" component={Login} />
+							<Route path="/search/:query" component={Search} />
 							<Route path="/search" component={Search} />
 							<Route path="/register" component={Register} />
 							<Route path="/login" component={Login} />

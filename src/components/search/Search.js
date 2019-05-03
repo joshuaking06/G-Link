@@ -21,6 +21,11 @@ export default class Search extends React.Component {
 		this.getMore = this.getMore.bind(this)
 	}
 
+	componentDidMount() {
+		const keyword = this.props.match.params.query || ''
+		this.setState({ keyword }, () => this.search())
+	}
+
 	changeFilter() {
 		console.log('changing filter array')
 	}
@@ -39,7 +44,7 @@ export default class Search extends React.Component {
 	}
 
 	search(e, givenIndex) {
-		if (e !== null) e.preventDefault()
+		if (e) e.preventDefault()
 		const { keyword, index, filters: { platforms } } = this.state
 		const newIndex = givenIndex || index
 		const platformString = this.convertFilters(platforms)
@@ -48,8 +53,13 @@ export default class Search extends React.Component {
 			query: "search \\"${keyword}\\"; fields name, cover.url; where platforms=(${platformString}) & version_parent = null; limit 10; offset ${newIndex};",
 			){ name, id, cover{ url } }}`
 
+		console.log(queryString, 'queryString')
+
 		axios.post('/api/graphql', { query: queryString }).then((data) => {
-			if (!givenIndex) this.setState({ results: data.data.data.searchGames })
+			if (!givenIndex) {
+				console.log(data.data.data, 'data')
+				this.setState({ results: data.data.data.searchGames })
+			}
 			if (givenIndex)
 				this.setState({ results: [ ...this.state.results, ...data.data.data.searchGames ] })
 		})

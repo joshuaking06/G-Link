@@ -2,6 +2,20 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 class NavBar extends React.Component {
+	constructor() {
+		super()
+
+		this.state = {
+			value: ''
+		}
+
+		this.onChange = this.onChange.bind(this)
+	}
+
+	onChange({ target: { value } }) {
+		this.setState({ value })
+	}
+
 	render() {
 		return (
 			<nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
@@ -34,13 +48,18 @@ class NavBar extends React.Component {
 							<div className="field has-addons navbar-item">
 								<div className="control ">
 									<input
+										onChange={this.onChange}
+										value={this.state.value}
 										className="input"
 										type="text"
 										placeholder="Find a game..."
 									/>
 								</div>
 								<div className="control">
-									<Link to="/search" className="button is-link is-outlined">
+									<Link
+										to={`/search/${this.state.value}`}
+										className="button is-link is-outlined"
+									>
 										<i className="fas fa-search" />
 									</Link>
 								</div>
