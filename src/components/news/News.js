@@ -7,7 +7,7 @@ import axios from 'axios'
 class News extends React.Component {
 	constructor() {
 		super()
-		this.handleScroll = this.handleScroll.bind(this)
+		this.handleClickEvent = this.handleClickEvent.bind(this)
 	}
 
 	componentDidMount() {
@@ -29,7 +29,7 @@ class News extends React.Component {
 			.post('/api/graphql', { query: queryString })
 			.then((data) => this.setState(data.data.data))
 	}
-	handleScroll(e) {
+	handleClickEvent(e) {
 		console.log('here2')
 
 		// let element = e.target
@@ -48,7 +48,7 @@ class News extends React.Component {
 				<section className="section has-margin">
 					<div className="container container-full-screen" >
 						<h2 className="title is-4">Gaming News</h2>
-						<NewsSection news={this.state.getNews} scrollEvent={this.handleScroll} />
+						<NewsSection news={this.state.getNews} clickEvent={this.handleClickEvent} />
 						{/* //.filter(elemn => (elemn.content || elemn.title)	.replace(/[a-zA-Z\s,.1-9&\/\\#,+()$~%.'":*?<>{}[(.*?)\]]/gmi, '') !== '...')} /> */}
 
 					</div>
