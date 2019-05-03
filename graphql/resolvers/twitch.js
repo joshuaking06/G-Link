@@ -34,5 +34,9 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
-    }
+    },
+
+
+
+    ///https://newsapi.org/v2/everything?q=Uncharted: Drakes Fortune&sortBy=publishedAt
 }
