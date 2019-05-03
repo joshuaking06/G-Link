@@ -8,6 +8,9 @@ class News extends React.Component {
 	constructor() {
 		super()
 		this.handleClickEvent = this.handleClickEvent.bind(this)
+		this.state = {
+			page: 1
+		}
 	}
 
 	componentDidMount() {
@@ -29,18 +32,37 @@ class News extends React.Component {
 			.post('/api/graphql', { query: queryString })
 			.then((data) => this.setState(data.data.data))
 	}
-	handleClickEvent(e) {
-		console.log('here2')
 
-		// let element = e.target
-		// if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-		// 	// do something at end of scroll
-		// 	console.log('here')
-		// }
+	handleClickEvent(e) {
+		e.preventDefault()
+		console.log(this.state.page)
+		const pageNumber = this.state.page + 1
+		// this.setState({ ...this.state, page: this.state.page + 1 })
+		const queryString = `query{
+			getNews(query: "q=games&q=game&q=gaming&q=video game&page=${pageNumber}"){
+				title
+				url
+				urlToImage
+				content
+				publishedAt
+				source{
+					name
+				}
+			}
+
+		}
+		`
+		console.log(queryString)
+		axios
+			.post('/api/graphql', { query: queryString })
+			.then((data) => {
+				console.log(data.data.data.getNews)
+				this.setState({ ...this.state, page: pageNumber })
+			})
 	}
 
 	render() {
-		if (!this.state) {
+		if (!this.state.getNews) {
 			return <h1>Loading....</h1>
 		}
 		return (

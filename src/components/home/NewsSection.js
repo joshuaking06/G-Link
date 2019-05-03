@@ -13,7 +13,10 @@ const NewsSection = ({ news, clickEvent }) => {
                 {(news.length === 5 && <Link className="button  is-success" to="/news"> View More News</Link>)
 
                     ||
-                    <Link className="button  is-success" onClick={clickEvent} to="/news"> View More News</Link>}
+                    <button onClick={clickEvent} className="button  is-success">
+                        Load More
+                    </button>
+                }
 
             </div>
 
