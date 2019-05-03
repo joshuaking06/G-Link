@@ -70,13 +70,15 @@ export default class Search extends React.Component {
 		return (
 			// hero banner
 			<div className="search-page">
-				<section className="search-hero hero is-medium">
-					<div className="hero-body">
-						<div className="container">
-							<h1 className="title is-1">Search</h1>
+				<div className="container">
+					<section className="search-hero hero is-small is-centered">
+						<div className="hero-body">
+							<div className="container">
+								<h1 className="title is-1">Search</h1>
+							</div>
 						</div>
-					</div>
-				</section>
+					</section>
+				</div>
 				<section className="search-section section">
 					<div className="container">
 						<form onSubmit={this.search} className="form columns">

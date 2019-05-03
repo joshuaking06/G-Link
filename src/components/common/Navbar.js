@@ -27,7 +27,7 @@ class NavBar extends React.Component {
 	render() {
 		return (
 			<nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-				<div className="container">
+				<div className="container nav-container">
 					<div className="navbar-brand">
 						<Link className="navbar-item" to="/">
 							G-Link

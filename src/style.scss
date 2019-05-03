@@ -2,7 +2,7 @@
 
 // Import a Google Font
 // @import url('https://fonts.googleapis.com/css?family=Nunito:400,700%27);
-@import url('https://fonts.googleapis.com/css?family=Muli:400,700%27');
+// @import 'https://fonts.googleapis.com/css?family=Muli:400, 700%27';
 // @import 'https://fonts.googleapis.com/css?family=Muli:400, 700';
 
 //change colors
@@ -25,9 +25,9 @@ $pagination-color: $primary;
 @import "~react-alice-carousel/lib/alice-carousel.css";
 
 * {
-    scroll-behavior: smooth;
-    box-sizing: border-box;
-    font-family: 'Muli', sans-serif;
+	scroll-behavior: smooth;
+	box-sizing: border-box;
+	font-family: 'Muli', sans-serif;
 }
 body {
 	padding-bottom: 40px;
@@ -166,15 +166,17 @@ body {
 
 	// everything search page
 	.search-page {
+		padding-top: 70px;
 		padding-bottom: 100px;
 		min-height: 100vh;
 		background-color: $secondary;
 		.search-hero {
-			background-image: url("https://bigbossbattle.com/wp-content/uploads/2018/04/GRIP-Panorama.jpg");
+			background-image: url("https://i.imgur.com/63EK4EK.jpg");
 			background-size: cover;
 			.is-1 {
 				color: $white;
 				font-size: 5em;
+				text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 			}
 		}
 		.search-section {
@@ -194,6 +196,23 @@ body {
 			strong {
 				font-size: 26px;
 				color: $primary !important;
+			}
+		}
+	}
+	// everything game show page
+	.game-section {
+		padding-top: 70px;
+		background-color: $secondary;
+		.game-show {
+			min-height: 100vh;
+			.game-hero {
+				background-image: url("https://i.imgur.com/lj3MVwM.jpg");
+				background-size: cover;
+				.is-1 {
+					color: $white;
+					font-size: 5em;
+					text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+				}
 			}
 		}
 	}
