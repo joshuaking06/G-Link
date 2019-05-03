@@ -42,7 +42,9 @@ class News extends React.Component {
 		axios
 			.post('/api/graphql', { query: queryString })
 			.then((data) => {
-				this.setState({ ...this.state, page: pageNumber, getNews: this.state.getNews.concat(data.data.data.getNews) })
+				if (data.data.data.getNews) {
+					this.setState({ ...this.state, page: pageNumber, getNews: this.state.getNews.concat(data.data.data.getNews) })
+				}
 			})
 	}
 
@@ -56,8 +58,6 @@ class News extends React.Component {
 					<div className="container container-full-screen" >
 						<h2 className="title is-4">Gaming News</h2>
 						<NewsSection news={this.state.getNews} clickEvent={this.handleClickEvent} />
-						{/* //.filter(elemn => (elemn.content || elemn.title)	.replace(/[a-zA-Z\s,.1-9&\/\\#,+()$~%.'":*?<>{}[(.*?)\]]/gmi, '') !== '...')} /> */}
-
 					</div>
 				</section>
 			</div>
@@ -67,6 +67,3 @@ class News extends React.Component {
 }
 
 export default News
-
-
-		//(games OR gaming OR game)
