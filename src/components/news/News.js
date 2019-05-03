@@ -2,8 +2,6 @@ import React from 'react'
 import NewsSection from '../home/NewsSection'
 import axios from 'axios'
 
-// https://images.alphacoders.com/942/thumb-1920-942234.jpg SEKIRO
-
 class News extends React.Component {
 	constructor() {
 		super()
@@ -13,33 +11,9 @@ class News extends React.Component {
 		}
 	}
 
-	componentDidMount() {
-		const queryString = `query{
-											getNews(query: "q=games&q=game&q=gaming&q=video game"){
-												title
-												url
-												urlToImage
-												content
-												publishedAt
-												source{
-													name
-												}
-											}
-                
-							}
-							`
-		axios
-			.post('/api/graphql', { query: queryString })
-			.then((data) => this.setState(data.data.data))
-	}
-
-	handleClickEvent(e) {
-		e.preventDefault()
-		console.log(this.state.page)
-		const pageNumber = this.state.page + 1
-		// this.setState({ ...this.state, page: this.state.page + 1 })
-		const queryString = `query{
-			getNews(query: "q=games&q=game&q=gaming&q=video game&page=${pageNumber}"){
+	getQueryString(number) {
+		return `query{
+			getNews(query: "q=games&q=game&q=gaming&q=video game&page=${number}"){
 				title
 				url
 				urlToImage
@@ -52,12 +26,23 @@ class News extends React.Component {
 
 		}
 		`
-		console.log(queryString)
+	}
+
+	componentDidMount() {
+		const queryString = this.getQueryString(this.state.page)
+		axios
+			.post('/api/graphql', { query: queryString })
+			.then((data) => this.setState(data.data.data))
+	}
+
+	handleClickEvent(e) {
+		e.preventDefault()
+		const pageNumber = this.state.page + 1
+		const queryString = this.getQueryString(pageNumber)
 		axios
 			.post('/api/graphql', { query: queryString })
 			.then((data) => {
-				console.log(data.data.data.getNews)
-				this.setState({ ...this.state, page: pageNumber })
+				this.setState({ ...this.state, page: pageNumber, getNews: this.state.getNews.concat(data.data.data.getNews) })
 			})
 	}
 
