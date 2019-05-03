@@ -34,5 +34,23 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
+    },
+    getGameNews: async (args) => {
+        try {
+            const results = await axios({
+                url: `https://newsapi.org/v2/everything?q="${args.query}"&sortBy=publishedAt`,
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'x-api-key': process.env.NEWS_API_KEY
+                }
+            })
+            return await [...new Set(results.data.articles.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
+
+        } catch (err) {
+            console.log(err)
+        }
     }
+
+    ///https://newsapi.org/v2/everything?q=Uncharted: Drakes Fortune&sortBy=publishedAt
 }

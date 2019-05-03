@@ -116,7 +116,7 @@ type RootQuery{
     indexGame:[Game!]!
     popularStreamers: [TwitchTv]!
     getNews(query: String! ): [GameNews]
-
+    getGameNews(query: String!): [GameNews]
 }
 
 

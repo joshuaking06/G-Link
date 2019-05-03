@@ -42,7 +42,8 @@ const Slider = ({ title, data }) => {
 					<AliceCarousel
 						items={items}
 						responsive={responsive}
-						dotsDisabled={true}
+						// dotsDisabled={true}
+						slideToIndex={4}
 						infinite={false}
 					/>
 				</div>

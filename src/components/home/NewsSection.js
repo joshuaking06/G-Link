@@ -4,14 +4,22 @@ import { Link } from 'react-router-dom'
 
 
 import NewHeadline from './NewsHeadline'
-const NewsSection = ({ news }) => {
-    console.log(news)
+const NewsSection = ({ news, clickEvent }) => {
+    // console.log(news) is-loading
     return (
         <div className="news">
             {news.map((elem, index) => <NewHeadline key={index} {...elem} />)}
             <div className="is-centered">
-                <Link className="button  is-success" to="/"> View More News</Link>
+                {(news.length === 5 && <Link className="button  is-success" to="/news"> View More News</Link>)
+
+                    ||
+                    <button onClick={clickEvent} className="button  is-success">
+                        Load More
+                    </button>
+                }
+
             </div>
+
 
         </div>
     )

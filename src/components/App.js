@@ -8,6 +8,7 @@ import NavBar from './common/Navbar'
 import Register from './auth/Register'
 import Search from './search/Search'
 import GamesShow from './games/GamesShow'
+import News from './news/News'
 
 class App extends React.Component {
 	constructor() {
@@ -22,6 +23,7 @@ class App extends React.Component {
 						<NavBar />
 						<Switch>
 							<Route path="/games/:id" component={GamesShow} />
+							<Route path="/news" component={News} />
 							<Route path="/search/:query" component={Search} />
 							<Route path="/search" component={Search} />
 							<Route path="/register" component={Register} />
