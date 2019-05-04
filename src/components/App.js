@@ -9,21 +9,23 @@ import Register from './auth/Register'
 import Search from './search/Search'
 import GamesShow from './games/GamesShow'
 import News from './news/News'
+import ChatRooms from './chat/ChatRooms'
+
 // import io from '../../node_modules/socket.io/lib/socket'
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 
 class App extends React.Component {
 	constructor() {
 		super()
+		global.socket.on('connect', function () {
+			console.log('connected')
+			global.socket.emit('chat', 'hello')
+		});
 	}
 	componentDidMount() {
 		// var socket = io();
 		// socket.emit('connection')
-		var socket = require('socket.io-client')(`http://localhost:4000`);
-		socket.on('connect', function () {
-			console.log('connected')
-			socket.emit('chat', 'hello')
-		});
+
 
 	}
 
@@ -39,6 +41,7 @@ class App extends React.Component {
 							<Route path="/search/:query" component={Search} />
 							<Route path="/search" component={Search} />
 							<Route path="/register" component={Register} />
+							<Route path="/chatrooms" component={ChatRooms} />
 							<Route path="/login" component={Login} />
 							<Route path="/" component={Home} />
 						</Switch>

@@ -57,6 +57,12 @@ class NavBar extends React.Component {
 							<Link className="navbar-item" to="/">
 								Forums
 							</Link>
+
+							{Auth.isAuthenticated() && (
+								<Link className="navbar-item" to="/chatrooms">
+									Messages
+								</Link>
+							)}
 						</div>
 						{/* login and sign up buttons */}
 						<div className="navbar-end">
@@ -102,6 +108,8 @@ class NavBar extends React.Component {
 									</button>
 								</div>
 							)}
+
+
 						</div>
 					</div>
 				</div>
