@@ -33,7 +33,7 @@ body {
 	padding-bottom: 40px;
 	background-color: $grey;
 	margin: 0;
-	height: 100vh;
+	min-height: 100vh;
 	// login and register forms
 	.form-section {
 		margin-top: 50px;
