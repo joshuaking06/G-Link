@@ -220,6 +220,37 @@ body {
 			}
 		}
 	}
+
+	.Messaging{
+		.column{
+			height: auto;
+			.inbox{
+				height: 400px;
+				overflow: scroll;
+				background: white;
+
+			}
+			&:first-child {
+				background: red;
+			}
+			&:last-child {
+				background: blue;
+				.control{
+					&:first-child {
+						width: 100%;
+					}
+
+				}
+			}
+			.chatroom{
+				background: green;
+				height: 50px;
+				width: 100%;
+				margin-bottom: 3px;
+			}
+		}
+
+	}
 }
 
 /* Change Autocomplete styles on input*/
