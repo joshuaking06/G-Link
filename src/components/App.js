@@ -20,7 +20,10 @@ class App extends React.Component {
 		// var socket = io();
 		// socket.emit('connection')
 		var socket = require('socket.io-client')(`http://localhost:4000`);
-		socket.on('connect', function () { console.log('connected') });
+		socket.on('connect', function () {
+			console.log('connected')
+			socket.emit('chat', 'hello')
+		});
 
 	}
 
