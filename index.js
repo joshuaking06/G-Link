@@ -25,4 +25,15 @@ app.use(
 	})
 )
 
-app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
+const server = app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
+const io = require('socket.io')(server)
+global.io = io
+
+// io.on('connection', socketRoutes.respond)
+
+io.on('connection', function (socket) {
+	console.log('an user connected')
+	// socket.on('disconnect', function () {
+	// 	console.log('user disconnected')
+	// })
+})

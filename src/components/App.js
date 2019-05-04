@@ -9,10 +9,19 @@ import Register from './auth/Register'
 import Search from './search/Search'
 import GamesShow from './games/GamesShow'
 import News from './news/News'
+// import io from '../../node_modules/socket.io/lib/socket'
+import io from 'socket.io-client';
 
 class App extends React.Component {
 	constructor() {
 		super()
+	}
+	componentDidMount() {
+		// var socket = io();
+		// socket.emit('connection')
+		var socket = require('socket.io-client')(`http://localhost:4000`);
+		socket.on('connect', function () { console.log('connected') });
+
 	}
 
 	render() {
