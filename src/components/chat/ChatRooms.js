@@ -20,24 +20,30 @@ class ChatRoom extends React.Component {
                                 <div className="chatroom"></div>
                                 <div className="chatroom"></div>
                                 <div className="chatroom"></div>
+                                <div className="chatroom"></div>
+                                <div className="chatroom"></div>
+
                             </div>
                         </div>
                         <div className="column">
                             <div className="inbox">
-                                <div className="chatroom"></div>
-                                <div className="chatroom"></div>
-                                <div className="chatroom"></div>
-                                <div className="chatroom"></div>
-                                <div className="chatroom"></div>
-                                <div className="chatroom"></div>
-                                <div className="chatroom"></div>
-                                <div className="chatroom"></div>
-                                <div className="chatroom"></div>
+                                <div className="message"></div>
+                                <div className="message"></div>
+                                <div className="message"></div>
+                                <div className="message"></div>
+                                <div className="message"></div>
+                                <div className="message"></div>
+                                <div className="message"></div>
+                                <div className="message"></div>
+                                <div className="message"></div>
+                                <div className="message"></div>
+                                <div className="message"></div>
+
                             </div>
                             <form className="form">
                                 <div className="field has-addons">
                                     <p className="control">
-                                        <input className="input is-large" type="text" placeholder="Your email" />
+                                        <input className="input is-large" type="text" placeholder="Write your message..." />
                                     </p>
                                     <p className="control">
                                         <a className="button is-link is-outlined is-large">
