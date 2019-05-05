@@ -1,6 +1,9 @@
 import React from 'react'
 import Message from './Message'
 // const messages = [1]
+import io from 'socket.io-client'
+// const socket = require('socket.io-client')(`http://localhost:4000`);
+
 class ChatRoom extends React.Component {
     constructor() {
         super()
@@ -8,13 +11,44 @@ class ChatRoom extends React.Component {
             messages: [1]
         }
         this.handleSumbit = this.handleSumbit.bind(this)
+        this.socket = io('http://localhost:4000')
+
+        // this.socket = io('localhost:4000');
+
+        // this.socket.on('RECEIVE_MESSAGE', function (data) {
+        //     addMessage(data);
+        // });
+
+
+
+
+        this.socket.on('chat message', (msg) => {
+            console.log(msg)
+
+            const messages = [...this.state.messages, msg]
+
+            this.setState({ ...this.state, messages })
+        }
+        )
+
     }
     handleSumbit(e) {
         e.preventDefault()
-        global.socket.emit('chat message', 'here')
-        const messages = [...this.state.messages, 9]
-        global.socket.on('chat message', this.setState({ ...this.state, messages }))
+        // global.socket.emit('chat message', 'sending')
+        this.socket.emit('chat message', 'sending')
     }
+
+    // componentDidMount() {
+    //     // global.socket.on('chat message', (msg) => {
+    //     //     console.log(msg)
+
+    //     //     const messages = [...this.state.messages, msg]
+
+    //     //     this.setState({ ...this.state, messages })
+    //     // }
+    //     // )
+
+    // }
 
     render() {
         return (

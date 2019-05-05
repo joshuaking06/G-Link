@@ -25,6 +25,12 @@ app.use(
 	})
 )
 
+app.use(express.static(`${__dirname}/dist`))
+
+
+// app.use('/*', (req, res) => res.sendFile(`${__dirname}/dist/index.html`))
+
+
 const server = app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
 const io = require('socket.io')(server)
 global.io = io
@@ -33,11 +39,8 @@ global.io = io
 
 io.on('connection', function (socket) {
 	console.log('an user connected')
-	socket.on('chat', function (msg) {
-		console.log(msg)
-	})
-
-	socket.on('chat messag', function (msg) {
-		socket.emit('hi')
+	socket.on('chat message', function (msg) {
+		// console.log(msg)
+		socket.emit('chat message', 'nice')
 	})
 })

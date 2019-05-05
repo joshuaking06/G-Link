@@ -59,7 +59,7 @@ class NavBar extends React.Component {
 							</Link>
 
 							{Auth.isAuthenticated() && (
-								<Link className="navbar-item" to="/chatrooms">
+								<Link className="navbar-item" to="/messages">
 									Messages
 								</Link>
 							)}
