@@ -9,7 +9,7 @@ import Register from './auth/Register'
 import Search from './search/Search'
 import GamesShow from './games/GamesShow'
 import News from './news/News'
-import ChatRooms from './chat/ChatRooms'
+import Messages from './chat/Messages'
 
 // import io from '../../node_modules/socket.io/lib/socket'
 // import io from 'socket.io-client';
@@ -41,7 +41,7 @@ class App extends React.Component {
 							<Route path="/search/:query" component={Search} />
 							<Route path="/search" component={Search} />
 							<Route path="/register" component={Register} />
-							<Route path="/chatrooms" component={ChatRooms} />
+							<Route path="/chatrooms" component={Messages} />
 							<Route path="/login" component={Login} />
 							<Route path="/" component={Home} />
 						</Switch>
