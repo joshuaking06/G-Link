@@ -36,4 +36,8 @@ io.on('connection', function (socket) {
 	socket.on('chat', function (msg) {
 		console.log(msg)
 	})
+
+	socket.on('chat messag', function (msg) {
+		socket.emit('hi')
+	})
 })
