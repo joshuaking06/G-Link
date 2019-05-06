@@ -245,19 +245,42 @@ body {
 
 				}
 			}
-			.inbox-users, .message{
-				background: green;
-				height: 70px;
-				width: 100%;
-				margin-bottom: 3px;
-				.send{
-					background: blue;
+			.media{
+				padding-left: 30px;
+				padding-top: 10px;
+				padding-right: 30px;
+				p{
+					&.send{
+						text-align: right;
+					}
 				}
-				.recived{
-					background: red;
-
+				.message{
+					-moz-border-radius: 10px; 
+					-webkit-border-radius: 10px; 
+					border-radius: 10px;
+					p{
+						padding: 10px;
+					}
+					
+					height: auto;
+					width: 50%;
+					margin-bottom: 3px;
+					&.send{
+						background: #3C79FC;
+						color: #ffffff;
+						margin-left: auto;	
+					}
 				}
 			}
+
+
+
+
+
+
+			// .inbox-users,
+
+
 
 		}
 

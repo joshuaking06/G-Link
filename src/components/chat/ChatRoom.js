@@ -6,7 +6,7 @@ class ChatRoom extends React.Component {
         super()
         this.state = {
             message: '',
-            messages: [{ "_id": "5cb727fc08b7103341940947", "text": "hello" }]
+            messages: [{ "_id": "5cb727fc08b7103341940947", "text": "hello", "createdAt": "2019-04-17T13:19:56.831Z" }]
         }
         this.handleSumbit = this.handleSumbit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -30,22 +30,35 @@ class ChatRoom extends React.Component {
 
     handleSumbit(e) {
         e.preventDefault()
-        global.socket.emit('chat message', { "_id": "5cb727fc08b7103341940947", "text": this.state.message })
-        this.setState({ ...this.state, message: '' })
+        if (this.state.message) {
+            global.socket.emit('chat message', { "_id": "", "text": this.state.message })
+            this.setState({ ...this.state, message: '' })
+        }
 
     }
+    componentDidMount() {
+        this.scrollToBottom();
+    }
 
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
+    scrollToBottom() {
+        this.el.scrollIntoView({ behavior: 'smooth' });
+    }
     render() {
-        { console.log(this.state) }
         return (
             <div className="column">
                 <div className="inbox">
                     {this.state.messages.map((elemn, index) =>
 
                         < Message key={index}  {...elemn} />
-                    )
-                    }
 
+                    )
+
+                    }
+                    <div ref={el => { this.el = el; }} />
                 </div>
 
                 <form className="form" onSubmit={this.handleSumbit}>
