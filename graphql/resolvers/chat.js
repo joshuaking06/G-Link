@@ -10,10 +10,11 @@ module.exports = {
     },
     updateChatroom: async (args) => {
         try {
-            const chatRoom = await Chatroom.find({ 'user': { $all: args.userInput.user } })
-            await chatRoom[0].messages.push(args.userInput.message)
-            await chatRoom[0].save()
-            return { ...args.userInput.message, chatRoomId: chatRoom[0].id }
+            const chatRoom = await Chatroom.findOne({ 'user': { $all: args.userInput.user } })
+            console.log(chatRoom)
+            await chatRoom.messages.push(args.userInput.message)
+            await chatRoom.save()
+            return { ...args.userInput.message, chatRoomId: chatRoom.id }
         } catch (err) {
             throw err
         }
