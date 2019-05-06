@@ -30,7 +30,7 @@ class ChatRoom extends React.Component {
 
     handleSumbit(e) {
         e.preventDefault()
-        global.socket.emit('chat message', 'sending')
+        global.socket.emit('chat message', { "_id": "5cb727fc08b7103341940947", "text": this.state.message })
         this.setState({ ...this.state, message: '' })
 
     }
