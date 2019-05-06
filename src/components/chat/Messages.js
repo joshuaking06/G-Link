@@ -1,7 +1,150 @@
 import React from 'react'
 import ChatRoom from './ChatRoom'
 import Inbox from './Inbox'
-const messages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const messages = [{
+    "user": [
+        {
+            "_id": "5cb51949c94e70535a38a039",
+            "email": "hi1",
+            "username": "lorasdd"
+        },
+        {
+            "_id": "5cb5174249414f4e9dec2709",
+            "email": "hi",
+            "username": "lord"
+        }
+    ],
+    "_id": "5cb727fc08b7103341940946"
+}, {
+    "user": [
+        {
+            "_id": "5cb51949c94e70535a38a039",
+            "email": "hi1",
+            "username": "lorasdd"
+        },
+        {
+            "_id": "5cb5174249414f4e9dec2709",
+            "email": "hi",
+            "username": "lord"
+        }
+    ],
+    "_id": "5cb727fc08b7103341940946"
+}, {
+    "user": [
+        {
+            "_id": "5cb51949c94e70535a38a039",
+            "email": "hi1",
+            "username": "lorasdd"
+        },
+        {
+            "_id": "5cb5174249414f4e9dec2709",
+            "email": "hi",
+            "username": "lord"
+        }
+    ],
+    "_id": "5cb727fc08b7103341940946"
+}, {
+    "user": [
+        {
+            "_id": "5cb51949c94e70535a38a039",
+            "email": "hi1",
+            "username": "lorasdd"
+        },
+        {
+            "_id": "5cb5174249414f4e9dec2709",
+            "email": "hi",
+            "username": "lord"
+        }
+    ],
+    "_id": "5cb727fc08b7103341940946"
+}, {
+    "user": [
+        {
+            "_id": "5cb51949c94e70535a38a039",
+            "email": "hi1",
+            "username": "lorasdd"
+        },
+        {
+            "_id": "5cb5174249414f4e9dec2709",
+            "email": "hi",
+            "username": "lord"
+        }
+    ],
+    "_id": "5cb727fc08b7103341940946"
+}, {
+    "user": [
+        {
+            "_id": "5cb51949c94e70535a38a039",
+            "email": "hi1",
+            "username": "lorasdd"
+        },
+        {
+            "_id": "5cb5174249414f4e9dec2709",
+            "email": "hi",
+            "username": "lord"
+        }
+    ],
+    "_id": "5cb727fc08b7103341940946"
+}, {
+    "user": [
+        {
+            "_id": "5cb51949c94e70535a38a039",
+            "email": "hi1",
+            "username": "lorasdd"
+        },
+        {
+            "_id": "5cb5174249414f4e9dec2709",
+            "email": "hi",
+            "username": "lord"
+        }
+    ],
+    "_id": "5cb727fc08b7103341940946"
+}, {
+    "user": [
+        {
+            "_id": "5cb51949c94e70535a38a039",
+            "email": "hi1",
+            "username": "lorasdd"
+        },
+        {
+            "_id": "5cb5174249414f4e9dec2709",
+            "email": "hi",
+            "username": "lord"
+        }
+    ],
+    "_id": "5cb727fc08b7103341940946"
+}, {
+    "user": [
+        {
+            "_id": "5cb51949c94e70535a38a039",
+            "email": "hi1",
+            "username": "lorasdd"
+        },
+        {
+            "_id": "5cb5174249414f4e9dec2709",
+            "email": "hi",
+            "username": "lord"
+        }
+    ],
+    "_id": "5cb727fc08b7103341940946"
+}, {
+    "user": [
+        {
+            "_id": "5cb51949c94e70535a38a039",
+            "email": "hi1",
+            "username": "lorasdd"
+        },
+        {
+            "_id": "5cb5174249414f4e9dec2709",
+            "email": "hi",
+            "username": "lord"
+        }
+    ],
+    "_id": "5cb727fc08b7103341940946"
+}
+
+
+]
 
 class Messages extends React.Component {
 
@@ -15,7 +158,7 @@ class Messages extends React.Component {
                             <h3 className="title is-5">Recent</h3>
                             <div className="inbox">
                                 {messages.map((number, index) =>
-                                    < Inbox key={index} />
+                                    < Inbox key={index} {...number} />
                                 )
                                 }
 

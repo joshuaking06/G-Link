@@ -19,6 +19,7 @@ class ChatRoom extends React.Component {
         global.socket.on('RECEIVE_MESSAGE', (msg) => {
             const messages = [...this.state.messages, msg]
             this.setState({ ...this.state, messages })
+            this.scrollToBottom();
         }
         )
     }
@@ -40,12 +41,8 @@ class ChatRoom extends React.Component {
         this.scrollToBottom();
     }
 
-    componentDidUpdate() {
-        this.scrollToBottom();
-    }
-
     scrollToBottom() {
-        this.el.scrollIntoView({ behavior: 'smooth' });
+        this.el.scrollIntoView();
     }
     render() {
         return (

@@ -234,9 +234,11 @@ body {
 				background: red;
 			}
 			&:last-child {
-				background: blue;
+				// background: blue;
 				.form{
 					margin-top: 20px;
+					color: #000;
+					background: blue;
 				}
 				.control{
 					&:first-child {
@@ -249,6 +251,13 @@ body {
 				padding-left: 30px;
 				padding-top: 10px;
 				padding-right: 30px;
+				margin-bottom: 10px;
+				border-top: 0;
+				&.inbox-users{
+					padding-left: 10px;
+					padding-right: 10px;
+
+				}
 				p{
 					&.send{
 						text-align: right;
@@ -272,16 +281,6 @@ body {
 					}
 				}
 			}
-
-
-
-
-
-
-			// .inbox-users,
-
-
-
 		}
 
 	}
