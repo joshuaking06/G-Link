@@ -108,10 +108,13 @@ type LoginData{
 }
 
 type Message{
-    chatRoomId: ID!,
-    user: ID!,
-    text: String! 
-}
+        chatRoomId: ID!,
+        _id: ID!,
+        user: ID!,
+        text: String!
+        createdAt: String!
+        updatedAt: String!
+    }
 
 
 type ChatRoom{
@@ -119,8 +122,6 @@ type ChatRoom{
     user: [User!]!
     messages:[Message]!
 }
-
-
 
 type RootQuery{
     searchGames(query: String!): [SearchResult]
@@ -131,6 +132,7 @@ type RootQuery{
     popularStreamers: [TwitchTv]!
     getNews(query: String! ): [GameNews]
     getGameNews(query: String!): [GameNews]
+    showChatroom(query: [ID!]!): ChatRoom!
 }
 
 
