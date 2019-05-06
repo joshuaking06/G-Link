@@ -107,6 +107,20 @@ type LoginData{
     tokenExpiration: Int! 
 }
 
+type Message{
+    _id: ID!
+    user: User!,
+    text: String! 
+}
+
+
+type ChatRoom{
+    _id: ID!
+    user: [User!]!
+    messages:[Message]!
+}
+
+
 
 type RootQuery{
     searchGames(query: String!): [SearchResult]
@@ -131,6 +145,9 @@ input UserInput {
 }
 
 
+input ChatRoomsInput {
+    user: [ID!]
+}
 
 input UserInterest {
     _id: ID!
@@ -142,7 +159,7 @@ type RootMutation{
     createUser(userInput: UserInput): User
     updateUserGameInterest(userInput: UserInterest): User
     removeUserGameInterest(userInput: UserInterest): User
-    
+    createChatroom(userInput: ChatRoomsInput): ChatRoom
 
 }
 

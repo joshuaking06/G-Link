@@ -40,7 +40,7 @@ const io = require('socket.io')(server)
 io.on('connection', function (socket) {
 	console.log('an user connected')
 	socket.on('chat message', function (msg) {
-		console.log(msg)
-		io.emit('RECEIVE_MESSAGE', { ...msg, "createdAt": "2019-04-17T13:19:56.831Z" })
+		// console.log(new Date())
+		io.emit('RECEIVE_MESSAGE', { ...msg, "createdAt": new Date() })
 	})
 })
