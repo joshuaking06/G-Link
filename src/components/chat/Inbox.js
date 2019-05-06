@@ -1,12 +1,11 @@
+
 import React from 'react'
-
-class Inbox extends React.Component {
-
-    render() {
-        return (
-            <div className="inbox-users">
-            </div>
-        )
-    }
+const Inbox = ({ _id, text }) => {
+    return (
+        <div className="inbox-users">
+            <p>{text}</p>
+        </div>
+    )
 }
+
 export default Inbox

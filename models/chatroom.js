@@ -12,7 +12,7 @@ const messageSchema = new mongoose.Schema({
 //Data structure model
 const chatroomSchema = new mongoose.Schema({
     user: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
-    message: [messageSchema]
+    messages: [messageSchema]
 })
 
 chatroomSchema.set('toJSON', {

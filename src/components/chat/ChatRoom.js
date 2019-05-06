@@ -8,7 +8,7 @@ class ChatRoom extends React.Component {
         super()
         this.state = {
             message: 'dd',
-            messages: [1]
+            messages: [{ "_id": "5cb727fc08b7103341940947", "text": "hello" }]
         }
         this.handleSumbit = this.handleSumbit.bind(this)
 
@@ -18,8 +18,7 @@ class ChatRoom extends React.Component {
         })
 
         global.socket.on('RECEIVE_MESSAGE', (msg) => {
-            console.log(msg)
-            console.log(this.state)
+            console.log(this.state.messages)
             const messages = [...this.state.messages, msg]
 
             this.setState({ ...this.state, messages })
@@ -32,25 +31,13 @@ class ChatRoom extends React.Component {
         global.socket.emit('chat message', 'sending')
     }
 
-    // componentDidMount() {
-    //     console.log(this.state)
-    //     global.socket.on('chat message', (msg) => {
-    //         console.log(msg)
-
-    //         const messages = [...this.state.messages, msg]
-
-    //         this.setState({ ...this.state, messages })
-    //     }
-    //     )
-
-    // }
-
     render() {
         return (
             <div className="column">
                 <div className="inbox">
-                    {this.state.messages.map((number, index) =>
-                        < Message key={index} />
+                    {this.state.messages.map((elemn, index) =>
+                        // console.log(elemn)
+                        < Message key={index}  {...elemn} />
                     )
                     }
 

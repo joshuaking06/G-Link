@@ -41,6 +41,6 @@ io.on('connection', function (socket) {
 	console.log('an user connected')
 	socket.on('chat message', function (msg) {
 		console.log(msg)
-		io.emit('RECEIVE_MESSAGE', 'nice')
+		io.emit('RECEIVE_MESSAGE', { "_id": " ", "text": "hello" })
 	})
 })
