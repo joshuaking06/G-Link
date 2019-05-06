@@ -33,14 +33,14 @@ app.use(express.static(`${__dirname}/dist`))
 
 const server = app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
 const io = require('socket.io')(server)
-global.io = io
+// global.io = io
 
 // io.on('connection', socketRoutes.respond)
 
 io.on('connection', function (socket) {
 	console.log('an user connected')
 	socket.on('chat message', function (msg) {
-		// console.log(msg)
-		socket.emit('chat message', 'nice')
+		console.log(msg)
+		io.emit('RECEIVE_MESSAGE', 'nice')
 	})
 })
