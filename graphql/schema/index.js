@@ -108,8 +108,8 @@ type LoginData{
 }
 
 type Message{
-    _id: ID!
-    user: User!,
+    chatRoomId: ID!,
+    user: ID!,
     text: String! 
 }
 
@@ -149,10 +149,22 @@ input ChatRoomsInput {
     user: [ID!]
 }
 
+input ChatRoomsUpdateInput {
+    user: [ID!],
+    message: ChatMessage!
+}
+
+input ChatMessage {
+    user: ID!,
+    text: String! 
+}
+
+
 input UserInterest {
     _id: ID!
     gameId: ID!
 }
+
 
 
 type RootMutation{
@@ -160,6 +172,7 @@ type RootMutation{
     updateUserGameInterest(userInput: UserInterest): User
     removeUserGameInterest(userInput: UserInterest): User
     createChatroom(userInput: ChatRoomsInput): ChatRoom
+    updateChatroom(userInput: ChatRoomsUpdateInput): Message
 
 }
 
@@ -174,5 +187,10 @@ schema{
 //     username
 // }
 
-// getUsers(_id: ID!): User!
-// gamesInterestedIn: [ID]
+// {
+// 	"user": ["5cb5174249414f4e9dec2709","5cb51949c94e70535a38a039"],
+// 	"message":{
+// 		"user": "5cb51dc4452adb56b8127eeb",
+// 		"text": "hello hill"
+// 	}
+// }
