@@ -133,6 +133,8 @@ type RootQuery{
     getNews(query: String! ): [GameNews]
     getGameNews(query: String!): [GameNews]
     showChatroom(query: [ID!]!): ChatRoom!
+    showIndexChatroom(query: ID!):[ChatRoom]!
+
 }
 
 
