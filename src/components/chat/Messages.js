@@ -7,7 +7,8 @@ class Messages extends React.Component {
     constructor() {
         super()
         this.state = {
-            pageId: ''
+            pageId: '',
+            showChatroom: []
         }
         this.handleSumbit = this.handleSumbit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -28,17 +29,20 @@ class Messages extends React.Component {
                 showIndexChatroom(query: "5cb61d12744c127fb5cd972d"){
                   _id
                   user{_id,username}
-                },
-                showChatroom(query: "5cd1dd34a85d702d344ce577"){
-                    _id
-                    messages{
-                        text
-                        user
-                        createdAt
-                      }
                 }
               }
-                    `
+                  
+              `
+
+        //     ,
+        // showChatroom(query: "5cd1dd34a85d702d344ce577"){
+        //     _id
+        //     messages{
+        //         text
+        //         user
+        //         createdAt
+        //       }
+        // }
         axios
             .post('/api/graphql', { query: queryString })
             .then((data) => this.setState(data.data.data))
@@ -50,10 +54,26 @@ class Messages extends React.Component {
 
 
     componentDidUpdate() {
-        if (this.state.pageId !== this.props.match.params.id) {
-            console.log(this.props.match.params.id)
-            this.setState({ ...this.state, pageId: this.props.match.params.id })
-
+        if (this.state.pageId !== this.props.match.params.id && this.props.match.params.id) {
+            const queryString = `
+            {    
+                showChatroom(query: "${this.props.match.params.id}"){
+                    _id
+                    messages{
+                        text
+                        user
+                        createdAt
+                      }
+                }
+              }
+                    `
+            axios
+                .post('/api/graphql', { query: queryString })
+                .then((data) => {
+                    const lol = data.data.data.showChatroom
+                    console.log(lol)
+                    this.setState({ ...this.state, showChatroom: lol, pageId: this.props.match.params.id })
+                })
         }
 
     }
@@ -63,14 +83,12 @@ class Messages extends React.Component {
         console.log('here in submit')
         e.preventDefault()
         if (this.state.message) {
-            global.socket.emit('chat message', { user: "5cd1dd34a85d702d344ce577", message: { "user": "5cb51dc4452adb56b8127eeb", "text": this.state.message } })
+            global.socket.emit('chat message', { chatId: this.props.match.params.id, message: { "user": "5cb51dc4452adb56b8127eeb", "text": this.state.message } })
             this.setState({ ...this.state, message: '' })
         }
     }
     render() {
-        if (!this.state.showIndexChatroom && !this.state.showChatroom) return <h1>loading</h1>
-        // console.log(this.state)
-
+        if (!this.state.showIndexChatroom) return <h1>loading</h1>
         return (
             <section className="section has-margin">
                 <div className="container container-full-screen" >
@@ -86,6 +104,7 @@ class Messages extends React.Component {
 
                             </div>
                         </div>
+
                         <ChatRoom data={this.state.showChatroom} handleSumbitEvent={this.handleSumbit} handleChangeEvent={this.handleChange} message={this.state.message} />
 
 

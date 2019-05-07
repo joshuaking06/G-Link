@@ -153,10 +153,6 @@ input ChatRoomsInput {
     user: [ID!]
 }
 
-input ChatRoomsUpdateInput {
-    user: ID!,
-    message: ChatMessage!
-}
 
 input ChatMessage {
     user: ID!,
@@ -176,7 +172,6 @@ type RootMutation{
     updateUserGameInterest(userInput: UserInterest): User
     removeUserGameInterest(userInput: UserInterest): User
     createChatroom(userInput: ChatRoomsInput): ChatRoom
-    updateChatroom(userInput: ChatRoomsUpdateInput): Message
 
 }
 
