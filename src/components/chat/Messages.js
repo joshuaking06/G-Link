@@ -6,6 +6,8 @@ import axios from 'axios'
 class Messages extends React.Component {
     constructor() {
         super()
+        this.handleSumbit = this.handleSumbit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
     componentDidMount() {
         const queryString = `
@@ -27,9 +29,22 @@ class Messages extends React.Component {
             .post('/api/graphql', { query: queryString })
             .then((data) => this.setState(data.data.data))
     }
+
+    handleChange({ target: { name, value } }) {
+        this.setState({ ...this.state, [name]: value })
+    }
+
+
+    handleSumbit(e) {
+        e.preventDefault()
+        if (this.state.message) {
+            // global.socket.emit('chat message', { "_id": "", "text": this.state.message })
+            this.setState({ ...this.state, message: '' })
+        }
+
+    }
     render() {
         if (!this.state) return <h1>loading</h1>
-        { console.log(this.state) }
         return (
             <section className="section has-margin">
                 <div className="container container-full-screen" >
@@ -45,7 +60,7 @@ class Messages extends React.Component {
 
                             </div>
                         </div>
-                        <ChatRoom />
+                        <ChatRoom data={this.state.showChatroom} handleSumbitEvent={this.handleSumbit} handleChangeEvent={this.handleChange} message={this.state.message} />
 
 
                     </div>

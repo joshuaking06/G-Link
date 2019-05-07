@@ -3,8 +3,6 @@ import React from 'react'
 let username
 const Inbox = ({ _id, user }) => {
     username = user.filter(elemn => elemn._id !== "5cb61d12744c127fb5cd972d")
-    { console.log(username) }
-
     return (
         <div className="media inbox-users">
             <figure className="media-left">
