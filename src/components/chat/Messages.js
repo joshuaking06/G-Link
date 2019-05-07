@@ -12,7 +12,7 @@ class Messages extends React.Component {
         global.socket.on('RECEIVE_MESSAGE', (msg) => {
             const messages = [...this.state.showChatroom.messages, msg.messages[0]]
             const showChatroom = { ...this.state.showChatroom, messages }
-            console.log(msg._id)
+            console.log(showChatroom)
 
             this.setState({ ...this.state, showChatroom })
         }
@@ -26,7 +26,7 @@ class Messages extends React.Component {
                   _id
                   user{_id,username}
                 },
-                showChatroom(query: "5cd0c69fe262b20c7a356c62"){
+                showChatroom(query: "5cd1da11759d102c3b2f6bdc"){
                     _id
                     messages{
                         text
@@ -44,11 +44,11 @@ class Messages extends React.Component {
         this.setState({ ...this.state, [name]: value })
     }
 
-    // {user:"5cd0c69fe262b20c7a356c62" , message: {user: "5cb51dc4452adb56b8127eeb",text: "lool"} }
+    // {user:"5cd1da11759d102c3b2f6bdc" , message: {user: "5cb51dc4452adb56b8127eeb",text: "lool"} }
     handleSumbit(e) {
         e.preventDefault()
         if (this.state.message) {
-            global.socket.emit('chat message', { user: "5cd0c69fe262b20c7a356c62", message: { "_id": "5cb51dc4452adb56b8127eeb", "text": this.state.message } })
+            global.socket.emit('chat message', { user: "5cd1da11759d102c3b2f6bdc", message: { "user": "5cb51dc4452adb56b8127eeb", "text": this.state.message } })
             this.setState({ ...this.state, message: '' })
         }
 
