@@ -2,7 +2,8 @@
 import React from 'react'
 let username
 const Inbox = ({ _id, user }) => {
-    username = user.filter(elemn => elemn._id !== "5cb51949c94e70535a38a039")
+    username = user.filter(elemn => elemn._id !== "5cb61d12744c127fb5cd972d")
+    { console.log(username) }
 
     return (
         <div className="media inbox-users">
@@ -13,7 +14,10 @@ const Inbox = ({ _id, user }) => {
             </figure>
             <div className="media-content">
                 <div className='content'>
-                    <p>{username[0].username}</p>
+                    <p>{username[0].username}
+                        <br />
+                        I am onlnie
+                    </p>
                 </div>
             </div>
 

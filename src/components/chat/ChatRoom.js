@@ -1,5 +1,6 @@
 import React from 'react'
 import Message from './Message'
+import axios from 'axios'
 
 class ChatRoom extends React.Component {
     constructor() {
@@ -38,6 +39,7 @@ class ChatRoom extends React.Component {
 
     }
     componentDidMount() {
+
         this.scrollToBottom();
     }
 

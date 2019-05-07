@@ -31,7 +31,10 @@ module.exports = {
     },
     showIndexChatroom: async (args) => {
         try {
-            const indexchatRoom = await Chatroom.find({ 'user': { $in: [args.query] } })
+            let indexchatRoom = await Chatroom.find({ 'user': { $in: [args.query] } })
+            indexchatRoom = await indexchatRoom.map(elem => elem.populate('user').execPopulate())
+            console.log(indexchatRoom)
+
             return indexchatRoom
         } catch (err) {
             throw err
