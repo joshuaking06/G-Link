@@ -8,8 +8,16 @@ class Messages extends React.Component {
         super()
         this.handleSumbit = this.handleSumbit.bind(this)
         this.handleChange = this.handleChange.bind(this)
+
+        global.socket.on('RECEIVE_MESSAGE', (msg) => {
+            const messages = [...this.state.showChatroom.messages, msg]
+            const showChatroom = { ...this.state.showChatroom, messages }
+            this.setState({ ...this.state, showChatroom })
+        }
+        )
     }
     componentDidMount() {
+        console.log('here')
         const queryString = `
             {    
                 showIndexChatroom(query: "5cb61d12744c127fb5cd972d"){
@@ -38,7 +46,7 @@ class Messages extends React.Component {
     handleSumbit(e) {
         e.preventDefault()
         if (this.state.message) {
-            // global.socket.emit('chat message', { "_id": "", "text": this.state.message })
+            global.socket.emit('chat message', { "_id": "", "text": this.state.message })
             this.setState({ ...this.state, message: '' })
         }
 

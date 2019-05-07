@@ -86,6 +86,7 @@ import React from 'react'
 import Message from './Message'
 const ChatRoom = ({ data, handleSumbitEvent, handleChangeEvent, message }) => {
     const { _id, messages } = data
+    // console.log(messages)
     return (
         <div className="column">
             <div className="inbox">

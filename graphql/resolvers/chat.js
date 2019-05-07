@@ -10,7 +10,7 @@ module.exports = {
     },
     updateChatroom: async (args) => {
         try {
-            const chatRoom = await Chatroom.findOne({ 'user': { $all: args.userInput.user } })
+            const chatRoom = await Chatroom.findById(args.userInput.user)
             await chatRoom.messages.push(args.userInput.message)
             await chatRoom.save()
             return { ...args.userInput.message, chatRoomId: chatRoom.id }

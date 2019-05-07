@@ -154,7 +154,7 @@ input ChatRoomsInput {
 }
 
 input ChatRoomsUpdateInput {
-    user: [ID!],
+    user: ID!,
     message: ChatMessage!
 }
 
