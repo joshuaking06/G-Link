@@ -10,17 +10,10 @@ import Search from './search/Search'
 import GamesShow from './games/GamesShow'
 import News from './news/News'
 import Messages from './chat/Messages'
-import Here from './home/Here'
-
-// import io from '../../node_modules/socket.io/lib/socket'
 
 class App extends React.Component {
 	constructor() {
 		super()
-		// global.socket.on('connect', function () {
-		// 	console.log('connected')
-		// 	global.socket.emit('chat', 'hello')
-		// });
 	}
 
 	render() {

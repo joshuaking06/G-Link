@@ -17,24 +17,34 @@ module.exports = {
         } catch (err) {
             throw err
         }
-    },
-    showChatroom: async (args) => {
+    }, showChatroom: async (args) => {
         try {
-            const chatRoom = await Chatroom.findOne({ 'user': { $all: args.query } })
+            const chatRoom = await Chatroom.findById(args.query)
             await chatRoom.populate('user').execPopulate()
             await chatRoom.populate('messages').execPopulate()
-            await chatRoom.populate('messages user').execPopulate()
             return { ...chatRoom._doc, _id: chatRoom.id }
         } catch (err) {
             throw err
         }
     },
+
+
+    // showChatroom: async (args) => {
+    //     try {
+    //         const chatRoom = await Chatroom.findOne({ 'user': { $all: args.query } })
+    //         await chatRoom.populate('user').execPopulate()
+    //         await chatRoom.populate('messages').execPopulate()
+    //         await chatRoom.populate('messages user').execPopulate()
+    //         return { ...chatRoom._doc, _id: chatRoom.id }
+    //     } catch (err) {
+    //         throw err
+    //     }
+    // },
+
     showIndexChatroom: async (args) => {
         try {
             let indexchatRoom = await Chatroom.find({ 'user': { $in: [args.query] } })
             indexchatRoom = await indexchatRoom.map(elem => elem.populate('user').execPopulate())
-            console.log(indexchatRoom)
-
             return indexchatRoom
         } catch (err) {
             throw err

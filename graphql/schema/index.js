@@ -120,7 +120,7 @@ type Message{
 type ChatRoom{
     _id: ID!
     user: [User!]!
-    messages:[Message]!
+    messages:[Message]
 }
 
 type RootQuery{
@@ -132,7 +132,7 @@ type RootQuery{
     popularStreamers: [TwitchTv]!
     getNews(query: String! ): [GameNews]
     getGameNews(query: String!): [GameNews]
-    showChatroom(query: [ID!]!): ChatRoom!
+    showChatroom(query: ID!): ChatRoom!
     showIndexChatroom(query: ID!):[ChatRoom]!
 
 }
