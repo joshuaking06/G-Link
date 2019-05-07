@@ -6,6 +6,9 @@ import axios from 'axios'
 class Messages extends React.Component {
     constructor() {
         super()
+        this.state = {
+            pageId: ''
+        }
         this.handleSumbit = this.handleSumbit.bind(this)
         this.handleChange = this.handleChange.bind(this)
 
@@ -26,11 +29,12 @@ class Messages extends React.Component {
                   _id
                   user{_id,username}
                 },
-                showChatroom(query: "5cd1da11759d102c3b2f6bdc"){
+                showChatroom(query: "5cd1dd34a85d702d344ce577"){
                     _id
                     messages{
                         text
                         user
+                        createdAt
                       }
                 }
               }
@@ -44,17 +48,29 @@ class Messages extends React.Component {
         this.setState({ ...this.state, [name]: value })
     }
 
-    // {user:"5cd1da11759d102c3b2f6bdc" , message: {user: "5cb51dc4452adb56b8127eeb",text: "lool"} }
-    handleSumbit(e) {
-        e.preventDefault()
-        if (this.state.message) {
-            global.socket.emit('chat message', { user: "5cd1da11759d102c3b2f6bdc", message: { "user": "5cb51dc4452adb56b8127eeb", "text": this.state.message } })
-            this.setState({ ...this.state, message: '' })
+
+    componentDidUpdate() {
+        if (this.state.pageId !== this.props.match.params.id) {
+            console.log(this.props.match.params.id)
+            this.setState({ ...this.state, pageId: this.props.match.params.id })
+
         }
 
     }
+
+
+    handleSumbit(e) {
+        console.log('here in submit')
+        e.preventDefault()
+        if (this.state.message) {
+            global.socket.emit('chat message', { user: "5cd1dd34a85d702d344ce577", message: { "user": "5cb51dc4452adb56b8127eeb", "text": this.state.message } })
+            this.setState({ ...this.state, message: '' })
+        }
+    }
     render() {
-        if (!this.state) return <h1>loading</h1>
+        if (!this.state.showIndexChatroom && !this.state.showChatroom) return <h1>loading</h1>
+        // console.log(this.state)
+
         return (
             <section className="section has-margin">
                 <div className="container container-full-screen" >
@@ -64,7 +80,7 @@ class Messages extends React.Component {
                             <h3 className="title is-5">Recent</h3>
                             <div className="inbox">
                                 {this.state.showIndexChatroom.map((number, index) =>
-                                    < Inbox key={index} {...number} />
+                                    < Inbox key={index} data={number} handleClick={this.handleClick} />
                                 )
                                 }
 

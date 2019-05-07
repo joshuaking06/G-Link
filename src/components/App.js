@@ -28,7 +28,7 @@ class App extends React.Component {
 							<Route path="/search/:query" component={Search} />
 							<Route path="/search" component={Search} />
 							<Route path="/register" component={Register} />
-							<Route path="/messages/:id" component={Messages} />
+							<Route path="/messages/:id/show" component={Messages} />
 							<Route path="/messages" component={Messages} />
 							<Route path="/login" component={Login} />
 							<Route path="/" component={Home} />

@@ -8,16 +8,18 @@ module.exports = {
             throw err
         }
     },
-    updateChatroom: async (args) => {
-        try {
-            const chatRoom = await Chatroom.findById(args.userInput.user)
-            await chatRoom.messages.push(args.userInput.message)
-            await chatRoom.save()
-            return { ...args.userInput.message, chatRoomId: chatRoom.id }
-        } catch (err) {
-            throw err
-        }
-    }, showChatroom: async (args) => {
+    // updateChatroom: async (args) => {
+    //     try {
+    //         const chatRoom = await Chatroom.findById(args.userInput.user)
+    //         await chatRoom.messages.push(args.userInput.message)
+    //         await chatRoom.save()
+    //         return { ...args.userInput.message, chatRoomId: chatRoom.id }
+    //     } catch (err) {
+    //         throw err
+    //     }
+    // },
+
+    showChatroom: async (args) => {
         try {
             const chatRoom = await Chatroom.findById(args.query)
             await chatRoom.populate('user').execPopulate()
@@ -50,15 +52,11 @@ module.exports = {
             throw err
         }
     },
-    testing: async (args) => {
-        // console.log(args.user)
+    updateChatroom: async (args) => {
         try {
             const chatRoom = await Chatroom.findById(args.user)
             await chatRoom.messages.push(args.message)
             await chatRoom.save()
-            // console.log(chatRoom)
-
-            // console.log({ messages: [{ ...args.message, "createdAt": new Date() }], _id: chatRoom.id })
             return { messages: [{ ...args.message, "createdAt": new Date() }], _id: chatRoom.id }
         } catch (err) {
             throw err

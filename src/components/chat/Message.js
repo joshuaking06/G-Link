@@ -15,7 +15,7 @@ const Message = ({ _id, text, createdAt }) => {
                         {text}
                     </p>
                 </div>
-                <p className={`${cssName}`}><small>{moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}</small></p>
+                <p className={`${cssName}`}><small>{moment(new Date(parseInt(createdAt)) || createdAt).format('MMMM Do YYYY, h:mm:ss a')}</small></p>
 
             </div>
 
