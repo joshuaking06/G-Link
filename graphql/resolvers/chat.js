@@ -49,5 +49,19 @@ module.exports = {
         } catch (err) {
             throw err
         }
+    },
+    testing: async (args) => {
+        // console.log(args.user)
+        try {
+            const chatRoom = await Chatroom.findById(args.user)
+            await chatRoom.messages.push(args.message)
+            await chatRoom.save()
+            // console.log(chatRoom)
+
+            // console.log({ messages: [{ ...args.message, "createdAt": new Date() }], _id: chatRoom.id })
+            return { messages: [{ ...args.message, "createdAt": new Date() }], _id: chatRoom.id }
+        } catch (err) {
+            throw err
+        }
     }
 }

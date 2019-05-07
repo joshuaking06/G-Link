@@ -7,6 +7,7 @@ const secureRoute = require('./middleware/secureRoute')
 
 const graphQLSchema = require('./graphql/schema/index')
 const graphQLResolver = require('./graphql/resolvers/index')
+const testing = require('./graphql/resolvers/chat');
 
 const PORT = process.env.PORT || 4000
 const app = express()
@@ -39,8 +40,7 @@ const io = require('socket.io')(server)
 
 io.on('connection', function (socket) {
 	console.log('an user connected')
-	socket.on('chat message', function (msg) {
-		// console.log(new Date())
-		io.emit('RECEIVE_MESSAGE', { ...msg, "createdAt": new Date() })
+	socket.on('chat message', async (msg) => {
+		io.emit('RECEIVE_MESSAGE', { ...await testing.testing(msg) })
 	})
 })
