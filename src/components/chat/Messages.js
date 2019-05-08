@@ -8,7 +8,8 @@ class Messages extends React.Component {
         super()
         this.state = {
             pageId: '',
-            showChatroom: []
+            showChatroom: [],
+            showIndexChatroom: []
         }
         this.handleSumbit = this.handleSumbit.bind(this)
         this.handleChange = this.handleChange.bind(this)
