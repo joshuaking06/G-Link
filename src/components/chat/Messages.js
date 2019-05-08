@@ -28,23 +28,12 @@ class Messages extends React.Component {
         if (Auth.isAuthenticated()) {
             const queryString = `
             {    
-                showIndexChatroom(query: "5cb61d12744c127fb5cd972d"){
+                showIndexChatroom(query: "${Auth.getUserID()}"){
                   _id
                   user{_id,username}
                 }
-              }
-                  
+              }   
               `
-
-            //     ,
-            // showChatroom(query: "5cd1dd34a85d702d344ce577"){
-            //     _id
-            //     messages{
-            //         text
-            //         user
-            //         createdAt
-            //       }
-            // }
             axios
                 .post('/api/graphql', { query: queryString })
                 .then((data) => this.setState(data.data.data))
@@ -87,7 +76,7 @@ class Messages extends React.Component {
         console.log('here in submit')
         e.preventDefault()
         if (this.state.message) {
-            global.socket.emit('chat message', { chatId: this.props.match.params.id, message: { "user": "5cb51dc4452adb56b8127eeb", "text": this.state.message } })
+            global.socket.emit('chat message', { chatId: this.props.match.params.id, message: { "user": Auth.getUserID(), "text": this.state.message } })
             this.setState({ ...this.state, message: '' })
         }
     }

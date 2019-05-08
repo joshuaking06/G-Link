@@ -16,8 +16,6 @@ class Auth {
 
         if (parts.length < 3) return false
         try {
-            console.log(JSON.parse(atob(parts[1])))
-
             return JSON.parse(atob(parts[1]))
         } catch {
             return false

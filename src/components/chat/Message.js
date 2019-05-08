@@ -1,9 +1,13 @@
 import React from 'react'
 import moment from 'moment'
+import Auth from '../../lib/Auth'
 
-const Message = ({ _id, text, createdAt }) => {
+const Message = ({ user, text, createdAt }) => {
     let cssName
-    if (_id === '5cb727fc08b7103341940947') {
+    console.log(user)
+
+    console.log(user, Auth.getUserID())
+    if (user === Auth.getUserID()) {
         cssName = 'send'
     }
 
