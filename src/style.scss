@@ -78,7 +78,7 @@ body {
 	.is-centered {
 		text-align: center;
 	}
-	.has-margin{
+	.has-margin {
 		margin-top: 30px;
 		height: auto;
 	}
@@ -175,6 +175,8 @@ body {
 		min-height: 100vh;
 		background-color: $secondary;
 		.search-hero {
+			box-shadow: inset 0px 0px 16px 16px $primary;
+			border-radius: 5px;
 			background-image: url("https://i.imgur.com/63EK4EK.jpg");
 			background-size: cover;
 			.is-1 {
@@ -210,6 +212,8 @@ body {
 		.game-show {
 			min-height: 100vh;
 			.game-hero {
+				border-radius: 5px;
+				box-shadow: inset 0px 0px 16px 16px $primary;
 				background-image: url("https://i.imgur.com/lj3MVwM.jpg");
 				background-size: cover;
 				.is-1 {
