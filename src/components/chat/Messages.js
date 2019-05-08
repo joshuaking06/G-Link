@@ -2,7 +2,7 @@ import React from 'react'
 import ChatRoom from './ChatRoom'
 import Inbox from './Inbox'
 import axios from 'axios'
-
+import Auth from '../../lib/Auth'
 class Messages extends React.Component {
     constructor() {
         super()
@@ -24,8 +24,9 @@ class Messages extends React.Component {
         )
     }
     componentDidMount() {
-        console.log('here')
-        const queryString = `
+        console.log(Auth.getUserID())
+        if (Auth.isAuthenticated()) {
+            const queryString = `
             {    
                 showIndexChatroom(query: "5cb61d12744c127fb5cd972d"){
                   _id
@@ -35,18 +36,20 @@ class Messages extends React.Component {
                   
               `
 
-        //     ,
-        // showChatroom(query: "5cd1dd34a85d702d344ce577"){
-        //     _id
-        //     messages{
-        //         text
-        //         user
-        //         createdAt
-        //       }
-        // }
-        axios
-            .post('/api/graphql', { query: queryString })
-            .then((data) => this.setState(data.data.data))
+            //     ,
+            // showChatroom(query: "5cd1dd34a85d702d344ce577"){
+            //     _id
+            //     messages{
+            //         text
+            //         user
+            //         createdAt
+            //       }
+            // }
+            axios
+                .post('/api/graphql', { query: queryString })
+                .then((data) => this.setState(data.data.data))
+        }
+
     }
 
     handleChange({ target: { name, value } }) {
