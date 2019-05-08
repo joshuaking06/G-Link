@@ -1,12 +1,12 @@
-
 import React from 'react'
 let username
-import { Link, withRouter } from 'react-router-dom'
+import Auth from '../../lib/Auth'
+import { Link } from 'react-router-dom'
 
-const Inbox = ({ data, handleClick }) => {
+const Inbox = ({ data }) => {
 
     const { _id, user } = data
-    username = user.filter(elemn => elemn._id !== "5cb61d12744c127fb5cd972d")
+    username = user.filter(elemn => elemn._id !== Auth.getUserID())
     return (
         <Link to={`/messages/${_id}/show`} className={_id}>
 
@@ -30,4 +30,4 @@ const Inbox = ({ data, handleClick }) => {
     )
 }
 
-export default withRouter(Inbox)
+export default Inbox

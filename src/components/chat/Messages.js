@@ -74,6 +74,8 @@ class Messages extends React.Component {
     handleSumbit(e) {
         e.preventDefault()
         if (this.state.message) {
+            console.log('here')
+
             global.socket.emit('chat message', { chatId: this.props.match.params.id, message: { "user": Auth.getUserID(), "text": this.state.message } })
             this.setState({ ...this.state, message: '' })
         }
