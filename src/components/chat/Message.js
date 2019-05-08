@@ -4,9 +4,6 @@ import Auth from '../../lib/Auth'
 
 const Message = ({ user, text, createdAt }) => {
     let cssName
-    console.log(user)
-
-    console.log(user, Auth.getUserID())
     if (user === Auth.getUserID()) {
         cssName = 'send'
     }
@@ -19,7 +16,7 @@ const Message = ({ user, text, createdAt }) => {
                         {text}
                     </p>
                 </div>
-                <p className={`${cssName}`}><small>{moment(new Date(parseInt(createdAt)) || createdAt).format('MMMM Do YYYY, h:mm:ss a')}</small></p>
+                <p className={`${cssName}`}><small>{moment(new Date(parseInt(createdAt))).format('MMMM Do YYYY, h:mm:ss a')}</small></p>
 
             </div>
 

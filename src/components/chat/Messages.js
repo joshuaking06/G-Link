@@ -15,16 +15,16 @@ class Messages extends React.Component {
         this.handleChange = this.handleChange.bind(this)
 
         global.socket.on('RECEIVE_MESSAGE', (msg) => {
-            const messages = [...this.state.showChatroom.messages, msg.messages[0]]
-            const showChatroom = { ...this.state.showChatroom, messages }
-            console.log(showChatroom)
+            if (msg._id === this.props.match.params.id) {
+                const messages = [...this.state.showChatroom.messages, msg.messages[0]]
+                const showChatroom = { ...this.state.showChatroom, messages }
+                this.setState({ ...this.state, showChatroom })
+            }
 
-            this.setState({ ...this.state, showChatroom })
         }
         )
     }
     componentDidMount() {
-        console.log(Auth.getUserID())
         if (Auth.isAuthenticated()) {
             const queryString = `
             {    
@@ -64,7 +64,6 @@ class Messages extends React.Component {
                 .post('/api/graphql', { query: queryString })
                 .then((data) => {
                     const lol = data.data.data.showChatroom
-                    console.log(lol)
                     this.setState({ ...this.state, showChatroom: lol, pageId: this.props.match.params.id })
                 })
         }
@@ -73,7 +72,6 @@ class Messages extends React.Component {
 
 
     handleSumbit(e) {
-        console.log('here in submit')
         e.preventDefault()
         if (this.state.message) {
             global.socket.emit('chat message', { chatId: this.props.match.params.id, message: { "user": Auth.getUserID(), "text": this.state.message } })
