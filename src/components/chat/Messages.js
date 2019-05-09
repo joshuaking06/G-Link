@@ -94,7 +94,7 @@ class Messages extends React.Component {
     handleScroll(e) {
         const container = e.target
         const currentPosition = container.scrollTop + container.offsetHeight
-        const condiction = container.scrollHeight - (container.offsetHeight / 3)
+        const condiction = container.scrollHeight - (container.offsetHeight / 2)
         this.shouldScroll = currentPosition >= condiction
 
     }
@@ -126,7 +126,7 @@ class Messages extends React.Component {
                             handleChangeEvent={this.handleChange}
                             message={this.state.message}
                             handleScroll={this.handleScroll}
-                            testing={<div ref={el => { this.el = el; }} className="testing" />}
+                            scrollBottom={<div ref={el => { this.el = el; }} className="testing" />}
                         />
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import Message from './Message'
 
-const ChatRoom = ({ data, handleSumbitEvent, handleChangeEvent, message, handleScroll, testing }) => {
+const ChatRoom = ({ data, handleSumbitEvent, handleChangeEvent, message, handleScroll, scrollBottom }) => {
     const { _id, messages } = data
     return (
         <div className="column">
@@ -10,7 +10,7 @@ const ChatRoom = ({ data, handleSumbitEvent, handleChangeEvent, message, handleS
                     < Message key={index}  {...elemn} />
                 )
                 }
-                {testing}
+                {scrollBottom}
             </div>
 
             <form className="form" onSubmit={handleSumbitEvent}>
