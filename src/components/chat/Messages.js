@@ -15,12 +15,16 @@ class Messages extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleScroll = this.handleScroll.bind(this)
 
+        this.shouldScroll = true
+
         global.socket.on('RECEIVE_MESSAGE', (msg) => {
             if (msg._id === this.props.match.params.id) {
                 const messages = [...this.state.showChatroom.messages, msg.messages[0]]
                 const showChatroom = { ...this.state.showChatroom, messages }
                 this.setState({ ...this.state, showChatroom })
-                this.scrollToBottom('smooth');
+                if (this.shouldScroll) {
+                    this.scrollToBottom('smooth')
+                }
             }
 
         }
@@ -69,9 +73,7 @@ class Messages extends React.Component {
                     const lol = data.data.data.showChatroom
                     this.setState({ ...this.state, showChatroom: lol, pageId: this.props.match.params.id })
                     this.scrollToBottom('auto');
-
                 })
-
         }
 
     }
@@ -90,27 +92,15 @@ class Messages extends React.Component {
     }
 
     handleScroll(e) {
-        // console.log(e.target)
-        // this.el.scrollIntoView();
-        // console.log(e)
-        // console.log(this.el.scrollHeight)
-        // console.log(this.el.scrollTop)
-        // this.el.scrollTop = this.el.scrollHeight - this.el.clientHeight
+        const container = e.target
+        const currentPosition = container.scrollTop + container.offsetHeight
+        const condiction = container.scrollHeight - (container.offsetHeight / 3)
+        this.shouldScroll = currentPosition >= condiction
 
     }
     scrollToBottom(behavior) {
-        console.log(behavior)
-        this.el.scrollIntoView({ behavior: behavior, block: "end", inline: "nearest" });
-        console.log(this.el.offsetTop)
-        console.log(this.el)
-
-        // console.log(this.el.offsetHeight)
-        // // console.log(this.el.scrollHeight)
-        // console.log(this.el.clientHeight)
-
-
+        this.el.scrollIntoView({ behavior: behavior, block: "end", inline: "nearest" })
     }
-
 
     render() {
         if (!this.state.showIndexChatroom) return <h1>loading</h1>
