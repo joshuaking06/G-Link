@@ -85,15 +85,17 @@
 import React from 'react'
 import Message from './Message'
 
-const ChatRoom = ({ data, handleSumbitEvent, handleChangeEvent, message }) => {
+const ChatRoom = ({ data, handleSumbitEvent, handleChangeEvent, message, handleScroll, testing }) => {
     const { _id, messages } = data
+    // console.log(<testing > </testing>)
     return (
         <div className="column">
-            <div className="inbox">
+            <div className="inbox" onScroll={handleScroll} onChange={handleScroll}>
                 {messages && messages.map((elemn, index) =>
                     < Message key={index}  {...elemn} />
                 )
                 }
+                {testing}
             </div>
 
             <form className="form" onSubmit={handleSumbitEvent}>
