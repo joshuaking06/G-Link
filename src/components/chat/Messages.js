@@ -1,4 +1,6 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+
 import ChatRoom from './ChatRoom'
 import Inbox from './Inbox'
 import axios from 'axios'
@@ -96,18 +98,13 @@ class Messages extends React.Component {
     scrollToBottom() {
         this.el.scrollIntoView({ behavior: "auto", block: "end", inline: "nearest" });
         this.el.scrollTop = this.el.scrollHeight - this.el.clientHeight
-        // console.log(this.el.offsetTop)
-        // console.log(this.el.scrollTop)
+        console.log(this.el.offsetTop)
+        console.log(this.el)
+
         // console.log(this.el.offsetHeight)
         // // console.log(this.el.scrollHeight)
         // console.log(this.el.clientHeight)
 
-        // window.scrollTo(1888);
-
-        // this.el.scrollTop = 1888
-
-        // this.shouldScrollBottom = this.el.scrollTop +
-        //     this.el.offsetHeight === this.el.scrollHeight;
 
     }
 
