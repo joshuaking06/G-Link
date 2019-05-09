@@ -41,8 +41,8 @@ const io = require('socket.io')(server)
 io.on('connection', function (socket) {
 	console.log('an user connected')
 	socket.on('chat message', async (msg) => {
-		io.emit('RECEIVE_MESSAGE', { ...await graphQLWebSocketResolver.updateChatroom(msg) })
-		// io.emit('RECEIVE_MESSAGE', { messages: [{ ...msg.message, "createdAt": Number(new Date()) }], _id: msg.chatId })
+		// io.emit('RECEIVE_MESSAGE', { ...await graphQLWebSocketResolver.updateChatroom(msg) })
+		io.emit('RECEIVE_MESSAGE', { messages: [{ ...msg.message, "createdAt": Number(new Date()) }], _id: msg.chatId })
 
 	})
 })

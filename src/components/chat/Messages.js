@@ -22,7 +22,7 @@ class Messages extends React.Component {
                 const messages = [...this.state.showChatroom.messages, msg.messages[0]]
                 const showChatroom = { ...this.state.showChatroom, messages }
                 this.setState({ ...this.state, showChatroom })
-                if (this.shouldScroll) {
+                if (this.shouldScroll || msg.messages[0].user === Auth.getUserID()) {
                     this.scrollToBottom('smooth')
                 }
             }
