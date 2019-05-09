@@ -1,6 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-
 import ChatRoom from './ChatRoom'
 import Inbox from './Inbox'
 import axios from 'axios'
@@ -22,7 +20,7 @@ class Messages extends React.Component {
                 const messages = [...this.state.showChatroom.messages, msg.messages[0]]
                 const showChatroom = { ...this.state.showChatroom, messages }
                 this.setState({ ...this.state, showChatroom })
-                this.scrollToBottom();
+                this.scrollToBottom('smooth');
             }
 
         }
@@ -41,7 +39,11 @@ class Messages extends React.Component {
               `
             axios
                 .post('/api/graphql', { query: queryString })
-                .then((data) => this.setState(data.data.data))
+                .then((data) => {
+                    this.setState(data.data.data)
+                    this.scrollToBottom('auto');
+
+                })
         }
 
     }
@@ -66,7 +68,8 @@ class Messages extends React.Component {
                 .then((data) => {
                     const lol = data.data.data.showChatroom
                     this.setState({ ...this.state, showChatroom: lol, pageId: this.props.match.params.id })
-                    this.scrollToBottom();
+                    this.scrollToBottom('auto');
+
                 })
 
         }
@@ -87,7 +90,7 @@ class Messages extends React.Component {
     }
 
     handleScroll(e) {
-        // console.log('here')
+        // console.log(e.target)
         // this.el.scrollIntoView();
         // console.log(e)
         // console.log(this.el.scrollHeight)
@@ -95,9 +98,9 @@ class Messages extends React.Component {
         // this.el.scrollTop = this.el.scrollHeight - this.el.clientHeight
 
     }
-    scrollToBottom() {
-        this.el.scrollIntoView({ behavior: "auto", block: "end", inline: "nearest" });
-        this.el.scrollTop = this.el.scrollHeight - this.el.clientHeight
+    scrollToBottom(behavior) {
+        console.log(behavior)
+        this.el.scrollIntoView({ behavior: behavior, block: "end", inline: "nearest" });
         console.log(this.el.offsetTop)
         console.log(this.el)
 
