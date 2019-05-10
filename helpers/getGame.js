@@ -1,5 +1,4 @@
 const axios = require('axios')
-const darksouls = '2155'
 
 require('dotenv').config()
 

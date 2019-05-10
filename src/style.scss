@@ -11,6 +11,7 @@ $primary: #61dafb;
 $link: $primary;
 $grey: #dbd9d6;
 $label-color: $grey;
+// form customization
 $input-background-color: transparent;
 $input-border-color: none;
 $input-shadow: $primary;
@@ -18,9 +19,16 @@ $input-color: $primary;
 $input-hover-border-color: $primary;
 $input-focus-border-color: $primary;
 $input-focus-box-shadow-size: 0;
+// navbar customization
 $navbar-item-color: $primary;
 $navbar-item-hover-background-color: none;
 $pagination-color: $primary;
+// tabs customization
+$tabs-boxed-link-active-background-color: $primary;
+$tabs-link-active-color: white;
+$tabs-link-color: $primary;
+$tabs-boxed-link-hover-background-color: none;
+$tabs-link-hover-color: $primary;
 @import "~bulma/bulma";
 @import "~react-alice-carousel/lib/alice-carousel.css";
 
@@ -142,6 +150,8 @@ body {
 			}
 			&:hover {
 				font-weight: 800;
+				text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+				color: white !important;
 			}
 		}
 		input {
@@ -213,6 +223,7 @@ body {
 		.game-show {
 			min-height: 100vh;
 			.game-hero {
+				margin-bottom: 35px;
 				border-radius: 5px;
 				box-shadow: inset 0px 0px 16px 16px $primary;
 				background-image: url("https://i.imgur.com/lj3MVwM.jpg");
@@ -223,70 +234,86 @@ body {
 					text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 				}
 			}
+			.card {
+				background-color: $secondary;
+				height: 330px;
+				width: 250px;
+				.card-content {
+					padding: 0;
+					padding-top: 25px;
+				}
+			}
+			.tabs {
+				.is-active {
+					text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+				}
+				.tab-link {
+					&:hover {
+						color: white;
+						text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+					}
+				}
+			}
 		}
 	}
-
-	.Messaging{
-		.column{
+	// everything for chat room
+	.Messaging {
+		.column {
 			height: auto;
-			.inbox{
+			.inbox {
 				height: 70vh;
 				overflow: scroll;
 				background: white;
 				scroll-behavior: auto;
-
 			}
 
 			&:last-child {
 				// background: blue;
-				.form{
+				.form {
 					margin-top: 20px;
 					color: #000;
 					background: blue;
 				}
-				.control{
+				.control {
 					&:first-child {
 						width: 100%;
 					}
-
 				}
 			}
-			.media{
+			.media {
 				padding-left: 30px;
 				padding-top: 10px;
 				padding-right: 30px;
 				margin-bottom: 10px;
 				border-top: 0;
-				&.inbox-users{
+				&.inbox-users {
 					padding-left: 10px;
 					padding-right: 10px;
-
 				}
-				p{
-					&.send{
+				p {
+					&.send {
 						text-align: right;
 					}
 				}
-				.message{
-					-moz-border-radius: 10px; 
-					-webkit-border-radius: 10px; 
+				.message {
+					-moz-border-radius: 10px;
+					-webkit-border-radius: 10px;
 					border-radius: 10px;
-					p{
+					p {
 						padding: 10px;
 					}
-					
+
 					height: auto;
 					width: 50%;
 					margin-bottom: 3px;
-					&.send{
-						background: #3C79FC;
+					&.send {
+						background: #3c79fc;
 						color: #ffffff;
-						margin-left: auto;	
+						margin-left: auto;
 					}
 				}
 			}
 		}
-
 	}
 }
 
