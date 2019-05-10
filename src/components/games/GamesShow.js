@@ -51,11 +51,11 @@ export default class GamesShow extends React.Component {
 						</div>
 					</section>
 
-					<div className="columns game-info-section">
+					<div className="columns">
 						<div className="column is-4">
 							<GameCoverImageCard game={game} />
 						</div>
-						<div className="column is-8">
+						<div className="column is-8 data-section">
 							<TabBox game={game} />
 						</div>
 					</div>

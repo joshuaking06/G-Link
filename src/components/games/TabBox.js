@@ -10,6 +10,10 @@ export default class TabBox extends React.Component {
 	}
 
 	render() {
+		const { active } = this.state
+		const { game } = this.props
+		console.log(game.genres)
+		const genres = game.genres.reduce((string, word) => string + `${word.name}, `, '')
 		return (
 			<div>
 				<div className="tabs is-boxed is-medium">
@@ -31,7 +35,17 @@ export default class TabBox extends React.Component {
 						</li>
 					</ul>
 				</div>
-				<p>{this.props.game.summary}</p>
+				{active === 'info' && (
+					<div>
+						<p className="info">{game.summary}</p>
+						<p className="info">
+							<strong>Genres:</strong> {genres}
+						</p>
+						<p className="info">
+							<strong>Rating:</strong> {Math.round(game.rating)}%
+						</p>
+					</div>
+				)}
 			</div>
 		)
 	}
