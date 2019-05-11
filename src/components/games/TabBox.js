@@ -7,29 +7,37 @@ export default class TabBox extends React.Component {
 		this.state = {
 			active: 'info'
 		}
+
+		this.changeActive = this.changeActive.bind(this)
+	}
+
+	changeActive(newActive) {
+		this.setState({ active: newActive })
 	}
 
 	render() {
 		const { active } = this.state
 		const { game } = this.props
-		console.log(game.genres)
 		const genres = game.genres.reduce((string, word) => string + `${word.name}, `, '')
 		return (
 			<div>
 				<div className="tabs is-boxed is-medium">
 					<ul>
 						<li className="is-active">
-							<a className="tab-link">
+							<a onClick={() => this.changeActive('info')} className="tab-link">
 								<span>Game Info</span>
 							</a>
 						</li>
 						<li>
-							<a className="tab-link">
+							<a
+								onClick={() => this.changeActive('screenshots')}
+								className="tab-link"
+							>
 								<span>Screenshots</span>
 							</a>
 						</li>
 						<li>
-							<a className="tab-link">
+							<a onClick={() => this.changeActive('videos')} className="tab-link">
 								<span>Videos</span>
 							</a>
 						</li>
