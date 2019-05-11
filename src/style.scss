@@ -24,11 +24,13 @@ $navbar-item-color: $primary;
 $navbar-item-hover-background-color: none;
 $pagination-color: $primary;
 // tabs customization
-$tabs-boxed-link-active-background-color: $primary;
+$tabs-boxed-link-active-background-color: none;
+$tabs-boxed-link-active-border-color: none;
 $tabs-link-active-color: white;
 $tabs-link-color: $primary;
 $tabs-boxed-link-hover-background-color: none;
 $tabs-link-hover-color: $primary;
+$tabs-border-bottom-color: $primary;
 @import "~bulma/bulma";
 @import "~react-alice-carousel/lib/alice-carousel.css";
 

@@ -18,17 +18,18 @@ export default class TabBox extends React.Component {
 	render() {
 		const { active } = this.state
 		const { game } = this.props
+		console.log(game.screenshots)
 		const genres = game.genres.reduce((string, word) => string + `${word.name}, `, '')
 		return (
 			<div>
 				<div className="tabs is-boxed is-medium">
 					<ul>
-						<li className="is-active">
+						<li className={this.state.active === 'info' ? 'is-active' : ''}>
 							<a onClick={() => this.changeActive('info')} className="tab-link">
 								<span>Game Info</span>
 							</a>
 						</li>
-						<li>
+						<li className={this.state.active === 'screenshots' ? 'is-active' : ''}>
 							<a
 								onClick={() => this.changeActive('screenshots')}
 								className="tab-link"
@@ -36,13 +37,14 @@ export default class TabBox extends React.Component {
 								<span>Screenshots</span>
 							</a>
 						</li>
-						<li>
+						<li className={this.state.active === 'videos' ? 'is-active' : ''}>
 							<a onClick={() => this.changeActive('videos')} className="tab-link">
 								<span>Videos</span>
 							</a>
 						</li>
 					</ul>
 				</div>
+				{/* summary and genre info */}
 				{active === 'info' && (
 					<div>
 						<p className="info">{game.summary}</p>
@@ -52,6 +54,20 @@ export default class TabBox extends React.Component {
 						<p className="info">
 							<strong>Rating:</strong> {Math.round(game.rating)}%
 						</p>
+					</div>
+				)}
+				{/* screenshot gallery */}
+				{active === 'screenshots' && (
+					<div className="columns is-multiline">
+						{game.screenshots.map((image) => (
+							<div className="column is-2" key={image.url}>
+								<figure className="image is-96x96">
+									<a>
+										<img src={`https:${image.url}`} />
+									</a>
+								</figure>
+							</div>
+						))}
 					</div>
 				)}
 			</div>
