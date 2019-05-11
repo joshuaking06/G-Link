@@ -5,20 +5,31 @@ export default class TabBox extends React.Component {
 		super(props)
 
 		this.state = {
-			active: 'info'
+			active: 'info',
+			modalUrl: ''
 		}
 
 		this.changeActive = this.changeActive.bind(this)
+		this.openModal = this.openModal.bind(this)
+		this.closeModal = this.closeModal.bind(this)
 	}
 
 	changeActive(newActive) {
 		this.setState({ active: newActive })
 	}
 
+	openModal(url) {
+		const newUrl = `https:${url}`.replace('thumb', 'screenshot_big')
+		this.setState({ modalUrl: newUrl })
+	}
+
+	closeModal(e) {
+		this.setState({ modalUrl: '' })
+	}
+
 	render() {
-		const { active } = this.state
+		const { active, modalUrl } = this.state
 		const { game } = this.props
-		console.log(game.screenshots)
 		const genres = game.genres.reduce((string, word) => string + `${word.name}, `, '')
 		return (
 			<div>
@@ -62,7 +73,7 @@ export default class TabBox extends React.Component {
 						{game.screenshots.map((image) => (
 							<div className="column is-2" key={image.url}>
 								<figure className="image is-96x96">
-									<a>
+									<a onClick={() => this.openModal(image.url)}>
 										<img src={`https:${image.url}`} />
 									</a>
 								</figure>
@@ -70,6 +81,23 @@ export default class TabBox extends React.Component {
 						))}
 					</div>
 				)}
+
+				<div
+					onClick={this.closeModal}
+					className={this.state.modalUrl === '' ? 'modal' : 'modal is-active'}
+				>
+					<div className="modal-background" />
+					<div className="modal-content">
+						<p className="image is-3by2">
+							<img src={this.state.modalUrl || ''} />
+						</p>
+					</div>
+					<button
+						onClick={this.closeModal}
+						className="modal-close is-large"
+						aria-label="close"
+					/>
+				</div>
 			</div>
 		)
 	}
