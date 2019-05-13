@@ -4,18 +4,21 @@ require('dotenv').config()
 
 // fields we will use to build our game Object, with the related query fields for each api call
 const fields = {
-    covers: 'fields game,height,image_id,url,width;',
-    artworks: 'fields game,height,image_id,url,width;',
-    genres: 'fields id,name,slug;',
-    platforms: 'fields id,abbreviation,alternative_name,name;',
-    game_modes: 'fields name,slug,id;',
-    screenshots: 'fields *;',
-    game_videos: 'fields *;',
-    games: 'fields cover,id,name;',
-    player_perspectives: 'fields id,name,slug;',
-    gamesShow:
-        'fields cover, dlcs,summary, similar_games, screenshots, id, rating, rating_count,platforms, player_perspectives, genres, game_modes, artworks, name, url, videos; exclude tags;'
+    cover: 'cover.game, cover.height, cover.image_id, cover.url, cover.width',
+    artworks: 'artworks.game, artworks.height, artworks.image_id, artworks.url, artworks.width',
+    genres: 'genres.id, genres.name, genres.slug',
+    platforms: 'platforms.id, platforms.abbreviation, platforms.alternative_name, platforms.name',
+    game_modes: 'game_modes.name, game_modes.slug, game_modes.id',
+    screenshots: 'screenshots.*',
+    videos: 'videos.*',
+    similar_games: 'similar_games.cover, similar_games.id, similar_games.name',
+    dlcs: 'dlcs.cover, dlcs.id, dlcs.name',
+    player_perspectives: 'player_perspectives.id, player_perspectives.name, player_perspectives.slug',
+    game:
+        'fields summary, id, rating, rating_count, game_modes, name, url, videos'
 }
+
+//exclude tags;
 
 // requesting a single bit of data from an endpoint, data is the querystring
 // const getSingleData = async (endpoint, data) => {
@@ -81,21 +84,23 @@ const fields = {
 // take the array of data and spread them into a larger game Object, to be returned
 const assignGameToObj = async (gameId) => {
     // let game = await getGameDataFromApi(gameId)
-    try {
-        let game = await axios({
-            url: `https://api-v3.igdb.com/${endpoint}`,
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'user-key': process.env.USER_KEY
-            },
-            data: data
-        })
-        console.log(game)
 
-    } catch (error) {
-        console.log(data)
-    }
+    console.log(`${fields.game}, ${fields.cover}, ${fields.artworks}, ${fields.genres}, ${fields.platforms}, ${fields.game_modes}, ${fields.screenshots}, ${fields.videos}, ${fields.similar_games}, ${fields.dlcs}, ${fields.player_perspectives};exclude tags;`)
+    // try {
+    //     let game = await axios({
+    //         url: 'https://api-v3.igdb.com/games',
+    //         method: 'POST',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'user-key': process.env.USER_KEY
+    //         },
+    //         data: data
+    //     })
+    //     console.log(game)
+
+    // } catch (error) {
+    //     console.log(data)
+    // }
     // return Object.assign({}, ...game)
 }
 
