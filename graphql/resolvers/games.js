@@ -1,6 +1,6 @@
 const Game = require('../../models/game')
 
-const gameHelper = require('../../helpers/getGame')
+const gameHelper = require('../../helpers/getGame-v2')
 
 module.exports = {
 	getGame: async (args) => {
