@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const GameCoverImageCard = ({ game }) => {
-	const cover = game.cover.url.replace('thumb', 'cover_big')
-	console.log(cover)
+	const cover = (game.cover.url || `//images.igdb.com/igdb/image/upload/t_cover_big/nocover_qhhlj6.jpg`).replace('thumb', 'cover_big')
+
 	return (
 		<div className="card">
 			<div className="card-image">
