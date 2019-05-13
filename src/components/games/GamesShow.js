@@ -19,7 +19,7 @@ const queryString = (id) => {
 			videos { name video_id }
 			genres { name }
 			game_modes { name }
-			similar_games { name }
+			similar_games { name id }
 		}
 	}`
 }
@@ -38,6 +38,7 @@ export default class GamesShow extends React.Component {
 
 	render() {
 		if (!this.state) return <h1>Loading...</h1>
+		console.log(this.state)
 		const { game } = this.state
 		return (
 			<section className="section game-section">
