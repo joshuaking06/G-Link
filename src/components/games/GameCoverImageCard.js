@@ -9,6 +9,8 @@ const GameCoverImageCard = ({ game }) => {
 			<div className="card-image">
 				<figure className="image cover-image">
 					<img src={`https:${cover}`} alt="Cover Image" />
+
+
 				</figure>
 			</div>
 			<div className="card-content">
