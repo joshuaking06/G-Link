@@ -55,24 +55,29 @@ export default class GamesShow extends React.Component {
 
 	addGameToInterests(id) {
 		const str = addGameMutation(id)
-		console.log(str, headers)
 		axios
 			.post('/api/graphql', { query: str }, headers)
-			.then((res) => console.log(res))
+			.then((res) => this.setState({ isInterested: true }))
 			.catch((err) => console.log(err))
 	}
 
 	componentDidMount() {
 		axios
 			.post('/api/graphql', { query: getGameQuery(this.props.match.params.id) })
-			.then((data) => this.setState({ game: data.data.data.getGame }))
+			.then((data) => {
+				const isInterested = data.data.data.getGame.usersInterestedin.some((user) => {
+					return user._id === Auth.getUserID()
+				})
+
+				this.setState({ game: data.data.data.getGame, isInterested })
+			})
 			.catch((err) => console.log(err))
 	}
 
 	render() {
 		if (!this.state) return <h1>Loading...</h1>
-		const { game } = this.state
-		console.log(game)
+		const { game, isInterested } = this.state
+		console.log(isInterested)
 		return (
 			<section className="section game-section">
 				<div className=" game-show container">
@@ -88,6 +93,7 @@ export default class GamesShow extends React.Component {
 					<div className="columns">
 						<div className="column is-4">
 							<GameCoverImageCard
+								isInterested={isInterested}
 								addGameToInterests={this.addGameToInterests}
 								game={game}
 							/>
