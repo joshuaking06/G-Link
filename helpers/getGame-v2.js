@@ -42,6 +42,7 @@ const getGameDataFromApi = async (gameId) => {
 // requesting a single bit of data from an endpoint, data is the querystring
 const twitchGameId = async (gameName) => {
 
+    console.log(gameName)
 
     try {
         const results = await axios({
@@ -52,7 +53,9 @@ const twitchGameId = async (gameName) => {
                 'Client-ID': process.env.TWITCH_KEY
             }
         })
-        console.log(results.data.data[0].id)
+        return await results.data.data[0].id
+
+        // console.log(results.data.data[0].id || 1)
 
     } catch (error) {
         console.log(error)
@@ -63,13 +66,11 @@ const twitchGameId = async (gameName) => {
 
 // take the array of data and spread them into a larger game Object, to be returned
 const assignGameToObj = async (gameId) => {
-    // let game = await getGameDataFromApi(gameId)
-    //game.data[0].name
-
-    let twtichId = await twitchGameId("Horizon Zero Dawn")
+    let game = await getGameDataFromApi(gameId)
+    let twtichId = await twitchGameId(game.data[0].name)
 
 
-    console.log(await twtichId)
+    console.log(Object.assign({}, ...game.data, { "twtichId": twtichId || 0 }))
     // return Object.assign({}, ...game.data)
 }
 
