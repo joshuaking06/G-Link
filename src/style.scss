@@ -264,6 +264,10 @@ body {
 					}
 					color: $primary;
 				}
+				#video-modal {
+					height: 315px !important;
+					width: 560px !important;
+				}
 			}
 		}
 	}

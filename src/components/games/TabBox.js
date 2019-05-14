@@ -19,7 +19,7 @@ export default class TabBox extends React.Component {
 	}
 
 	openModal(url) {
-		const newUrl = `https:${url}`.replace('thumb', 'screenshot_big')
+		const newUrl = url.length > 15 ? `https:${url}`.replace('thumb', 'screenshot_big') : url
 		this.setState({ modalUrl: newUrl })
 	}
 
@@ -81,16 +81,42 @@ export default class TabBox extends React.Component {
 						))}
 					</div>
 				)}
+				{active === 'videos' && (
+					<div className="columns is-multiline">
+						{game.videos.map((vid) => (
+							<div className="column is-2" key={vid.video_id}>
+								<figure className="image is-96x96">
+									<a onClick={() => this.openModal(vid.video_id)}>
+										<img
+											src={`https://img.youtube.com/vi/${vid.video_id}/0.jpg`}
+										/>
+									</a>
+								</figure>
+							</div>
+						))}
+					</div>
+				)}
 
-				<div
-					onClick={this.closeModal}
-					className={this.state.modalUrl === '' ? 'modal' : 'modal is-active'}
-				>
+				<div className={modalUrl === '' ? 'modal' : 'modal is-active'}>
 					<div className="modal-background" />
 					<div className="modal-content">
-						<p className="image is-3by2">
-							<img src={this.state.modalUrl || ''} />
-						</p>
+						{modalUrl.length > 15 && (
+							<p className="image is-3by2">
+								<img src={modalUrl || ''} />
+							</p>
+						)}
+
+						{modalUrl.length < 16 && (
+							<iframe
+								id="video-modal"
+								width="560"
+								height="315"
+								src={`https://www.youtube.com/embed/${modalUrl}`}
+								frameBorder="0"
+								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+								allowFullScreen
+							/>
+						)}
 					</div>
 					<button
 						onClick={this.closeModal}

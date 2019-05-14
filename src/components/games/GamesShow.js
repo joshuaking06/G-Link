@@ -38,8 +38,8 @@ export default class GamesShow extends React.Component {
 
 	render() {
 		if (!this.state) return <h1>Loading...</h1>
-		console.log(this.state)
 		const { game } = this.state
+		console.log(game)
 		return (
 			<section className="section game-section">
 				<div className=" game-show container">

@@ -11,7 +11,7 @@ export default class Search extends React.Component {
 			index: 1,
 			keyword: '',
 			filters: {
-				platforms: [6, 48, 49]
+				platforms: [ 6, 48, 49 ]
 			}
 		}
 
@@ -50,7 +50,7 @@ export default class Search extends React.Component {
 		const platformString = this.convertFilters(platforms)
 
 		const queryString = `query{ searchGames(
-			query: "search \\"${keyword}\\"; fields name, cover.url; where platforms=(${platformString}) & version_parent = null; limit 10; offset ${newIndex};",
+			query: "search \\"${keyword}\\"; fields name, cover.url; where platforms=(${platformString}); limit 10; offset ${newIndex};",
 			){ name, id, cover{ url } }}`
 
 		console.log(queryString, 'queryString')
@@ -61,7 +61,7 @@ export default class Search extends React.Component {
 				this.setState({ results: data.data.data.searchGames })
 			}
 			if (givenIndex)
-				this.setState({ results: [...this.state.results, ...data.data.data.searchGames] })
+				this.setState({ results: [ ...this.state.results, ...data.data.data.searchGames ] })
 		})
 	}
 
@@ -112,11 +112,11 @@ export default class Search extends React.Component {
 						</div>
 					)}
 					{this.state.results &&
-						this.state.results.length % 10 === 0 && (
-							<button onClick={this.getMore} className="button is-link is-outlined">
-								Load More
+					this.state.results.length % 10 === 0 && (
+						<button onClick={this.getMore} className="button is-link is-outlined">
+							Load More
 						</button>
-						)}
+					)}
 				</div>
 			</div>
 		)
