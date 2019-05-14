@@ -1,4 +1,12 @@
 const mongoose = require('mongoose')
+const imageSchema = new mongoose.Schema({
+	id: { type: Number },
+	game: { type: Number },
+	height: { type: Number },
+	image_id: { type: String },
+	url: { type: String },
+	width: { type: Number }
+})
 
 const gameSchema = new mongoose.Schema({
 	name: {
@@ -24,29 +32,15 @@ const gameSchema = new mongoose.Schema({
 	similar_games: [
 		{
 			id: { type: Number },
-			cover: { type: Number },
+			cover: imageSchema,
 			name: { type: String }
 		}
 	],
 	screenshots: [
-		{
-			id: { type: Number },
-			game: { type: Number },
-			height: { type: Number },
-			image_id: { type: String },
-			url: { type: String },
-			width: { type: Number }
-		}
+		imageSchema
 	],
 	artworks: [
-		{
-			id: { type: Number },
-			game: { type: Number },
-			height: { type: Number },
-			image_id: { type: String },
-			url: { type: String },
-			width: { type: Number }
-		}
+		imageSchema
 	],
 	platforms: [
 		{
@@ -72,18 +66,11 @@ const gameSchema = new mongoose.Schema({
 	dlcs: [
 		{
 			id: { type: Number },
-			cover: { type: Number },
+			cover: imageSchema,
 			name: { type: String }
 		}
 	],
-	cover: {
-		id: { type: Number },
-		game: { type: Number },
-		height: { type: Number },
-		image_id: { type: String },
-		url: { type: String },
-		width: { type: Number }
-	}
+	cover: imageSchema
 })
 
 gameSchema.virtual('usersInterestedin', {

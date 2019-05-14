@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
+
+// moment(new Date(parseInt(createdAt))).format('MMMM Do YYYY, h:mm:ss a')
 // import NewsSection from './ImageCard'
 const NewsHeadline = ({ title, content, urlToImage, publishedAt, source, url }) => {
     return (
@@ -17,7 +20,9 @@ const NewsHeadline = ({ title, content, urlToImage, publishedAt, source, url }) 
                         {!content && <a href={url} target="_blank">See the cotent</a>}
 
                     </p>
-                    <p>publised at: {publishedAt}  by: {source.name} </p>
+
+
+                    <p>publised at: {moment(new Date(publishedAt)).format('MMMM Do YYYY')}  by: {source.name} </p>
                 </div>
                 {/* <nav className="level is-mobile">
 	// console.log(title)

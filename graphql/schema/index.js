@@ -27,7 +27,7 @@ type GenreGameMode{
 
 type NestedGame{
     id: Int!
-    cover: Int
+    cover: Image
     name: String
 }
 type TwitchTv{
