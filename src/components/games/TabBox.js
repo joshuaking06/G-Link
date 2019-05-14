@@ -31,6 +31,7 @@ export default class TabBox extends React.Component {
 		const { active, modalUrl } = this.state
 		const { game } = this.props
 		const genres = game.genres.reduce((string, word) => string + `${word.name}, `, '')
+		const gameModes = game.game_modes.reduce((string, word) => string + `${word.name}, `, '')
 		return (
 			<div>
 				<div className="tabs is-boxed is-medium">
@@ -40,17 +41,17 @@ export default class TabBox extends React.Component {
 								<span>Game Info</span>
 							</a>
 						</li>
+						<li className={this.state.active === 'videos' ? 'is-active' : ''}>
+							<a onClick={() => this.changeActive('videos')} className="tab-link">
+								<span>Videos</span>
+							</a>
+						</li>
 						<li className={this.state.active === 'screenshots' ? 'is-active' : ''}>
 							<a
 								onClick={() => this.changeActive('screenshots')}
 								className="tab-link"
 							>
 								<span>Screenshots</span>
-							</a>
-						</li>
-						<li className={this.state.active === 'videos' ? 'is-active' : ''}>
-							<a onClick={() => this.changeActive('videos')} className="tab-link">
-								<span>Videos</span>
 							</a>
 						</li>
 					</ul>
@@ -63,24 +64,14 @@ export default class TabBox extends React.Component {
 							<strong>Genres:</strong> {genres}
 						</p>
 						<p className="info">
+							<strong>Modes:</strong> {gameModes}
+						</p>
+						<p className="info">
 							<strong>Rating:</strong> {Math.round(game.rating)}%
 						</p>
 					</div>
 				)}
-				{/* screenshot gallery */}
-				{active === 'screenshots' && (
-					<div className="columns is-multiline">
-						{game.screenshots.map((image) => (
-							<div className="column is-2" key={image.url}>
-								<figure className="image is-96x96">
-									<a onClick={() => this.openModal(image.url)}>
-										<img src={`https:${image.url}`} />
-									</a>
-								</figure>
-							</div>
-						))}
-					</div>
-				)}
+
 				{active === 'videos' && (
 					<div className="columns is-multiline">
 						{game.videos.map((vid) => (
@@ -90,6 +81,21 @@ export default class TabBox extends React.Component {
 										<img
 											src={`https://img.youtube.com/vi/${vid.video_id}/0.jpg`}
 										/>
+									</a>
+								</figure>
+							</div>
+						))}
+					</div>
+				)}
+
+				{/* screenshot gallery */}
+				{active === 'screenshots' && (
+					<div className="columns is-multiline">
+						{game.screenshots.map((image) => (
+							<div className="column is-2" key={image.url}>
+								<figure className="image is-96x96">
+									<a onClick={() => this.openModal(image.url)}>
+										<img src={`https:${image.url}`} />
 									</a>
 								</figure>
 							</div>
