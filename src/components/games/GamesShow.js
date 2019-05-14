@@ -17,6 +17,14 @@ const addGameMutation = (id) => {
 	}`
 }
 
+const removeGameMutation = (id) => {
+	return `mutation{
+		removeUserGameInterest(gameId:"${id}"){
+			_id username gamesInterestedIn { name id }
+		}
+	}`
+}
+
 const getGameQuery = (id) => {
 	return `query{
 		getGame(id:${id}){
