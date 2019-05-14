@@ -70,7 +70,8 @@ const gameSchema = new mongoose.Schema({
 			name: { type: String }
 		}
 	],
-	cover: imageSchema
+	cover: imageSchema,
+	twtichId: { type: Number }
 })
 
 gameSchema.virtual('usersInterestedin', {

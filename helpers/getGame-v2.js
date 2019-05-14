@@ -36,14 +36,8 @@ const getGameDataFromApi = async (gameId) => {
     }
 }
 
-// https://api.twitch.tv/helix/games?name=Fortnite
-
-
 // requesting a single bit of data from an endpoint, data is the querystring
 const twitchGameId = async (gameName) => {
-
-    console.log(gameName)
-
     try {
         const results = await axios({
             url: `https://api.twitch.tv/helix/games?name=${gameName}`,
@@ -54,9 +48,6 @@ const twitchGameId = async (gameName) => {
             }
         })
         return await results.data.data[0].id
-
-        // console.log(results.data.data[0].id || 1)
-
     } catch (error) {
         console.log(error)
     }
@@ -68,10 +59,7 @@ const twitchGameId = async (gameName) => {
 const assignGameToObj = async (gameId) => {
     let game = await getGameDataFromApi(gameId)
     let twtichId = await twitchGameId(game.data[0].name)
-
-
-    console.log(Object.assign({}, ...game.data, { "twtichId": twtichId || 0 }))
-    // return Object.assign({}, ...game.data)
+    return Object.assign({}, ...game.data, { "twtichId": parseInt(twtichId) || 0 })
 }
 
 // function to search through the database based on user input(queryString)
