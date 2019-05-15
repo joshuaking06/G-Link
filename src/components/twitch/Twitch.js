@@ -7,8 +7,6 @@ class Twitch extends React.Component {
         super()
         this.state = {
             targetID: 'twitch-embed',
-            width: '940',
-            height: '480',
             channel: 'monstercat',
             allowfullscreen: true,
             theme: "dark"
@@ -16,29 +14,28 @@ class Twitch extends React.Component {
         }
     }
 
-    // componentDidMount() {
-    //     let embed;
-    //     const script = document.createElement('script');
-    //     script.setAttribute(
-    //         'src',
-    //         EMBED_URL
-    //     );
-    //     // embed = new window.Twitch.Embed('twitch-embed', { ...this.props })
-    //     script.addEventListener('load', () => {
-    //         embed = new window.Twitch.Embed('twitch-embed', { ...this.state });
-    //     });
-    //     document.body.appendChild(script);
+    componentDidMount() {
+        console.log(this.props.match.params.twitchstreamer)
+        let embed;
+        const script = document.createElement('script');
+        script.setAttribute(
+            'src',
+            EMBED_URL
+        );
+        script.addEventListener('load', () => {
+            embed = new window.Twitch.Embed('twitch-embed', { ...this.state });
+        });
+        document.body.appendChild(script);
 
 
-    // }
+    }
     render() {
-
+        { console.log(this.state) }
         return (
+            <section className="section has-margin">
 
-            <div>
-                <h1>here</h1>
                 <div id='twitch-embed'></div>
-            </div>
+            </section>
         )
     }
 }

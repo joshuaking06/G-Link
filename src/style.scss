@@ -326,6 +326,20 @@ body {
 			}
 		}
 	}
+
+
+	//
+	#twitch-embed{
+		height: 480px;
+		width: 940px;
+		background-color: red;
+		iframe{
+			height: 100%;
+			width: 100%;
+
+		}
+
+	}
 }
 
 /* Change Autocomplete styles on input*/

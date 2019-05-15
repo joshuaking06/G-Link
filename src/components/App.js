@@ -10,6 +10,7 @@ import Search from './search/Search'
 import GamesShow from './games/GamesShow'
 import News from './news/News'
 import Messages from './chat/Messages'
+import TwitchShow from './twitch/Twitch'
 
 class App extends React.Component {
 	constructor() {
@@ -28,6 +29,7 @@ class App extends React.Component {
 							<Route path="/search/:query" component={Search} />
 							<Route path="/search" component={Search} />
 							<Route path="/register" component={Register} />
+							<Route path="/twitch/:twitchstreamer/show" component={TwitchShow} />
 							<Route path="/messages/:id/show" component={Messages} />
 							<Route path="/messages" component={Messages} />
 							<Route path="/login" component={Login} />

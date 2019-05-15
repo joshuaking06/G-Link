@@ -25,7 +25,6 @@ const NewsHeadline = ({ title, content, urlToImage, publishedAt, source, url }) 
                     <p>publised at: {moment(new Date(publishedAt)).format('MMMM Do YYYY')}  by: {source.name} </p>
                 </div>
                 {/* <nav className="level is-mobile">
-	// console.log(title)
 	return (
 		<article className="media home-media">
 			<figure className="media-left">

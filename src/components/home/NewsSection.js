@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 
 import NewHeadline from './NewsHeadline'
 const NewsSection = ({ news, clickEvent }) => {
-    // console.log(news) is-loading
     return (
         <div className="news">
             {news.map((elem, index) => <NewHeadline key={index} {...elem} />)}

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import ImageCard from './ImageCard'
 
 const Slider = ({ title, data }) => {
-	console.log(data)
 	const responsive = {
 		0: {
 			items: 1
@@ -18,8 +17,9 @@ const Slider = ({ title, data }) => {
 		}
 	}
 	const items = data.map((elem) => (
+		//`/twitch/${user_name}/show`
 		<Link
-			to={(!!elem.id && `/games/${elem.id}`) || '/'}
+			to={(!!elem.id && `/games/${elem.id}`) || `/twitch/${elem.user_name}/show`}
 			key={elem.id}
 		>
 			< div className="column" >
@@ -32,7 +32,7 @@ const Slider = ({ title, data }) => {
 					viewers={elem.viewer_count || ' '}
 				/>
 			</div >
-		</Link>
+		</Link >
 	))
 	items.push(
 		<div className="column has-button">
