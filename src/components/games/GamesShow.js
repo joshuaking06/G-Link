@@ -51,6 +51,7 @@ export default class GamesShow extends React.Component {
 		super(props)
 
 		this.addGameToInterests = this.addGameToInterests.bind(this)
+		this.removeGameFromInterests = this.removeGameFromInterests.bind(this)
 	}
 
 	addGameToInterests(id) {
@@ -58,6 +59,14 @@ export default class GamesShow extends React.Component {
 		axios
 			.post('/api/graphql', { query: str }, headers)
 			.then((res) => this.setState({ isInterested: true }))
+			.catch((err) => console.log(err))
+	}
+
+	removeGameFromInterests(id) {
+		const str = removeGameMutation(id)
+		axios
+			.post('/api/graphql', { query: str }, headers)
+			.then((res) => this.setState({ isInterested: false }))
 			.catch((err) => console.log(err))
 	}
 
@@ -77,7 +86,7 @@ export default class GamesShow extends React.Component {
 	render() {
 		if (!this.state) return <h1>Loading...</h1>
 		const { game, isInterested } = this.state
-		console.log(isInterested)
+		console.log(game.usersInterestedin)
 		return (
 			<section className="section game-section">
 				<div className=" game-show container">
@@ -94,9 +103,33 @@ export default class GamesShow extends React.Component {
 						<div className="column is-4">
 							<GameCoverImageCard
 								isInterested={isInterested}
+								removeGameFromInterests={this.removeGameFromInterests}
 								addGameToInterests={this.addGameToInterests}
 								game={game}
 							/>
+							<div className="card linkup-card">
+								<header className="card-header">
+									<p className="card-header-title">Link Up with Others</p>
+								</header>
+								<div className="card-content">
+									<div className="content">
+										{game.usersInterestedin.map((user) => (
+											<p key={user._id} className="user-interested">
+												<span>{user.username}</span>
+												<span className="icon is-small is-left">
+													<i class="fas fa-comment" />
+												</span>
+											</p>
+										))}
+										<p className="user-interested">
+											<span>Josh2test</span>
+											<span className="icon is-small is-left">
+												<i class="fas fa-comment" />
+											</span>
+										</p>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div className="column is-8 data-section">
 							<TabBox game={game} />
