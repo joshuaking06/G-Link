@@ -31,7 +31,6 @@ $tabs-link-color: $primary;
 $tabs-boxed-link-hover-background-color: none;
 $tabs-link-hover-color: $primary;
 $tabs-border-bottom-color: $primary;
-$card-shadow: none;
 @import "~bulma/bulma";
 @import "~react-alice-carousel/lib/alice-carousel.css";
 
@@ -239,14 +238,14 @@ body {
 			}
 			.card {
 				background-color: $secondary;
-				height: 330px;
+				min-height: 330px;
 				width: 250px;
 				.card-content {
 					.button {
 						margin-bottom: 12px;
 					}
 					padding: 0;
-					margin-top: 25px;
+					margin-top: 15px;
 				}
 				&.linkup-card {
 					border: 1px solid $primary;
@@ -254,8 +253,8 @@ body {
 					.card-header-title {
 						color: $primary;
 					}
+					margin-top: 36px;
 					color: $primary;
-					margin-top: 110px;
 					.user-interested {
 						display: flex;
 						justify-content: space-between;
