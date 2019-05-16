@@ -161,17 +161,14 @@ input ChatMessage {
 }
 
 
-input UserInterest {
-    _id: ID!
-    gameId: ID!
-}
+
 
 
 
 type RootMutation{
     createUser(userInput: UserInput): User
-    updateUserGameInterest(userInput: UserInterest): User
-    removeUserGameInterest(userInput: UserInterest): User
+    updateUserGameInterest(gameId: ID!): User
+    removeUserGameInterest(gameId: ID!): User
     createChatroom(userInput: ChatRoomsInput): ChatRoom
 
 }

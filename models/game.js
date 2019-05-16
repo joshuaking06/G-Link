@@ -36,12 +36,8 @@ const gameSchema = new mongoose.Schema({
 			name: { type: String }
 		}
 	],
-	screenshots: [
-		imageSchema
-	],
-	artworks: [
-		imageSchema
-	],
+	screenshots: [ imageSchema ],
+	artworks: [ imageSchema ],
 	platforms: [
 		{
 			id: { type: Number },

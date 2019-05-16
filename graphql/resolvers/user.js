@@ -34,11 +34,11 @@ module.exports = {
 		}
 		try {
 			let user = await User.findById(req.userId)
-			const game = await Game.findById(args.userInput.gameId)
+			const game = await Game.findById(args.gameId)
 			if (!user) {
 				throw new Error('User does not exist!')
 			}
-			if (user.gamesInterestedIn.some((game) => game.equals(args.userInput.gameId))) {
+			if (user.gamesInterestedIn.some((game) => game.equals(args.gameId))) {
 				throw new Error('Games has already been added')
 			}
 			user.gamesInterestedIn.push(game)
@@ -54,10 +54,7 @@ module.exports = {
 			throw new Error('Oops! You need to be logged in to do that!')
 		}
 		try {
-			await User.update(
-				{ _id: req.userId },
-				{ $pull: { gamesInterestedIn: args.userInput.gameId } }
-			)
+			await User.update({ _id: req.userId }, { $pull: { gamesInterestedIn: args.gameId } })
 			const user = await User.findById(req.userId)
 			await user.populate('gamesInterestedIn').execPopulate()
 			if (!user) {
@@ -98,5 +95,3 @@ module.exports = {
 //             throw err;
 //         }
 //     }
-
-
