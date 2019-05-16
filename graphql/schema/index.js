@@ -92,7 +92,8 @@ type Game{
     game_modes: [GenreGameMode]!
     dlcs: [NestedGame]!
     similar_games: [NestedGame]!
-    usersInterestedin: [User]
+    usersInterestedin: [User],
+    twtichId: Int!
 }
 
 type SearchResult{
