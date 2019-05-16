@@ -40,7 +40,7 @@ const getGameQuery = (id) => {
 			videos { name video_id }
 			genres { name }
 			game_modes { name }
-			similar_games { name id }
+			similar_games { name id cover { url } }
 			usersInterestedin { username _id }
 		}
 	}`
@@ -86,7 +86,7 @@ export default class GamesShow extends React.Component {
 	render() {
 		if (!this.state) return <h1>Loading...</h1>
 		const { game, isInterested } = this.state
-		console.log(game.usersInterestedin)
+		console.log(game)
 		return (
 			<section className="section game-section">
 				<div className=" game-show container">
@@ -117,14 +117,14 @@ export default class GamesShow extends React.Component {
 											<p key={user._id} className="user-interested">
 												<span>{user.username}</span>
 												<span className="icon is-small is-left">
-													<i class="fas fa-comment" />
+													<i className="fas fa-comment" />
 												</span>
 											</p>
 										))}
 										<p className="user-interested">
 											<span>Josh2test</span>
 											<span className="icon is-small is-left">
-												<i class="fas fa-comment" />
+												<i className="fas fa-comment" />
 											</span>
 										</p>
 									</div>
