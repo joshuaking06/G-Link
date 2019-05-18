@@ -64,6 +64,19 @@ type GameNews{
     content: String
 }
 
+type Reply{
+    _id: ID!
+    content: String!
+    author: User!
+}
+
+type forumPost{
+    _id: ID!
+    subject: String!
+    content: String!
+    author: User!
+    replies: [Reply]!
+}
 
 type User {
     _id: ID!
@@ -87,6 +100,7 @@ type Game{
     cover: Image
     artworks: [Image]!
     screenshots: [Image]!
+    messageBoard: [forumPost]
     videos: [Video]!
     genres: [GenreGameMode]!
     game_modes: [GenreGameMode]!
@@ -123,6 +137,8 @@ type ChatRoom{
     user: [User!]!
     messages:[Message]
 }
+
+
 
 type RootQuery{
     searchGames(query: String!): [SearchResult]
