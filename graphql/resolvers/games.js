@@ -44,5 +44,11 @@ module.exports = {
 		} catch (err) {
 			throw err
 		}
+	},
+	createForumPost: async ({ postInput }) => {
+		console.log(postInput.content)
+	},
+	replyToPost: async ({ reply }) => {
+		console.log(reply.content)
 	}
 }

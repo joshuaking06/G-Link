@@ -145,7 +145,7 @@ type RootQuery{
     getGame(id: Int!): Game!
     getUsers(_id: ID!): User!
     login(email: String!, password: String!): LoginData!
-    indexGame:[Game!]!
+    indexGame: [Game]!
     popularStreamers: [TwitchTv]!
     getNews(query: String! ): [GameNews]
     getGameNews(query: String!): [GameNews]
@@ -177,11 +177,20 @@ input ChatMessage {
 }
 
 
+input PostInput {
+    content: String!
+    subject: String!
+    gameId: ID!
+}
 
-
-
+input ReplyInput{
+    content: String!
+    postId: ID!
+}
 
 type RootMutation{
+    createForumPost(postInput: PostInput!): Game!
+    replyToPost(reply: ReplyInput): Game!
     createUser(userInput: UserInput): User
     updateUserGameInterest(gameId: ID!): User
     removeUserGameInterest(gameId: ID!): User
@@ -207,3 +216,5 @@ schema{
 // 		"text": "hello hill"
 // 	}
 // }
+
+//
