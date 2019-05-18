@@ -45,8 +45,20 @@ module.exports = {
 			throw err
 		}
 	},
-	createForumPost: async ({ postInput }) => {
-		console.log(postInput.content)
+	createForumPost: async ({ postInput }, req) => {
+		if (!req.isAuth) {
+			throw new Error('Oops! You need to be logged in to do that!')
+		}
+		const game = await Game.findById(postInput.gameId)
+		const user = await User.findById(req.userId)
+		game.messageBoard.push({
+			content: postInput.content,
+			subject: postInput.subject,
+			author: user
+		})
+		await game.save()
+		await game.populate('messageBoard').execPopulate()
+		return game
 	},
 	replyToPost: async ({ reply }) => {
 		console.log(reply.content)
