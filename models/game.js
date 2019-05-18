@@ -8,6 +8,18 @@ const imageSchema = new mongoose.Schema({
 	width: { type: Number }
 })
 
+const replySchema = new mongoose.Schema({
+	content: { type: String, required: true },
+	author: { type: mongoose.Schema.ObjectId, ref: 'User' }
+})
+
+const forumPostSchema = new mongoose.Schema({
+	subject: { type: String, required: true },
+	content: { type: String, required: true },
+	author: { type: mongoose.Schema.ObjectId, ref: 'User' },
+	replies: [ replySchema ]
+})
+
 const gameSchema = new mongoose.Schema({
 	name: {
 		type: String,
@@ -21,6 +33,7 @@ const gameSchema = new mongoose.Schema({
 	rating_count: { type: Number },
 	url: { type: String },
 	summary: { type: String },
+	messageBoard: [ forumPostSchema ],
 	videos: [
 		{
 			id: { type: Number },
