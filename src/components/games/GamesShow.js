@@ -12,7 +12,7 @@ const headers = { headers: { Authorization: `Bearer ${Auth.getToken()}` } }
 const addGameMutation = (id) => {
 	return `mutation{
 		updateUserGameInterest(gameId:"${id}"){
-			_id username gamesInterestedIn { name id }
+			_id username 
 		}
 	}`
 }
@@ -20,7 +20,7 @@ const addGameMutation = (id) => {
 const removeGameMutation = (id) => {
 	return `mutation{
 		removeUserGameInterest(gameId:"${id}"){
-			_id username gamesInterestedIn { name id }
+			_id username
 		}
 	}`
 }
@@ -58,7 +58,12 @@ export default class GamesShow extends React.Component {
 		const str = addGameMutation(id)
 		axios
 			.post('/api/graphql', { query: str }, headers)
-			.then((res) => this.setState({ isInterested: true }))
+			.then((res) => {
+				console.log(res.data.data.updateUserGameInterest)
+				const usersInterestedin = [...this.state.game.usersInterestedin, res.data.data.updateUserGameInterest]
+				const game = { ...this.state.game, usersInterestedin: usersInterestedin }
+				this.setState({ ...this.state, isInterested: true, game })
+			})
 			.catch((err) => console.log(err))
 	}
 
@@ -66,7 +71,12 @@ export default class GamesShow extends React.Component {
 		const str = removeGameMutation(id)
 		axios
 			.post('/api/graphql', { query: str }, headers)
-			.then((res) => this.setState({ isInterested: false }))
+			.then((res) => {
+				const userId = res.data.data.removeUserGameInterest._id
+				const usersInterestedin = this.state.game.usersInterestedin.filter(elem => elem === userId)
+				const game = { ...this.state.game, usersInterestedin: usersInterestedin }
+				this.setState({ ...this.state, isInterested: false, game })
+			})
 			.catch((err) => console.log(err))
 	}
 
@@ -87,7 +97,7 @@ export default class GamesShow extends React.Component {
 	render() {
 		if (!this.state) return <h1>Loading...</h1>
 		const { game, isInterested } = this.state
-		console.log(game)
+		// console.log(game)
 		return (
 			<section className="section game-section">
 				<div className=" game-show container">
