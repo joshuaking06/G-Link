@@ -10,7 +10,7 @@ const GameCoverImageCard = ({
 	const cover = (game.cover.url ||
 		`//images.igdb.com/igdb/image/upload/t_cover_big/nocover_qhhlj6.jpg`)
 		.replace('thumb', 'cover_big')
-
+	console.log(isInterested)
 	return (
 		<div className="card">
 			<div className="card-image">

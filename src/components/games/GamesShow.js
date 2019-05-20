@@ -74,6 +74,7 @@ export default class GamesShow extends React.Component {
 		axios
 			.post('/api/graphql', { query: getGameQuery(this.props.match.params.id) })
 			.then((data) => {
+				console.log(data.data.data.getGame.usersInterestedin)
 				const isInterested = data.data.data.getGame.usersInterestedin.some((user) => {
 					return user._id === Auth.getUserID()
 				})
@@ -116,17 +117,11 @@ export default class GamesShow extends React.Component {
 										{game.usersInterestedin.map((user) => (
 											<p key={user._id} className="user-interested">
 												<span>{user.username}</span>
-												<span className="icon is-small is-left">
+												{Auth.isAuthenticated() && (user._id !== Auth.getUserID()) && <span className="icon is-small is-left">
 													<i className="fas fa-comment" />
-												</span>
+												</span>}
 											</p>
 										))}
-										<p className="user-interested">
-											<span>Josh2test</span>
-											<span className="icon is-small is-left">
-												<i className="fas fa-comment" />
-											</span>
-										</p>
 									</div>
 								</div>
 							</div>
