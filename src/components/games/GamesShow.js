@@ -88,7 +88,8 @@ export default class GamesShow extends React.Component {
 			.post('/api/graphql', { query: str }, headers)
 			.then((res) => {
 				const userId = res.data.data.removeUserGameInterest._id
-				const usersInterestedin = this.state.game.usersInterestedin.filter(elem => elem === userId)
+				const usersInterestedin = this.state.game.usersInterestedin.filter(elem => elem._id !== userId)
+				console.log(usersInterestedin)
 				const game = { ...this.state.game, usersInterestedin: usersInterestedin }
 				this.setState({ ...this.state, isInterested: false, game })
 			})
