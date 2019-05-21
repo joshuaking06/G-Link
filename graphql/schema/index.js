@@ -194,7 +194,7 @@ type RootMutation{
     createUser(userInput: UserInput): User
     updateUserGameInterest(gameId: ID!): User
     removeUserGameInterest(gameId: ID!): User
-    createChatroom(userInput: ChatRoomsInput): ChatRoom
+    getChatroom(userInput: ChatRoomsInput): ChatRoom
 
 }
 

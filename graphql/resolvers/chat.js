@@ -1,19 +1,12 @@
 const Chatroom = require('../../models/chatroom')
 module.exports = {
-    createChatroom: async (args) => {
-        // console.log(args.userInput.user)
-
+    getChatroom: async (args) => {
         try {
-            // console.log(args)
             let chatRoom = await Chatroom.find({ 'user': { $all: args.userInput.user } })
-            console.log(chatRoom.length == 0)
             if (chatRoom.length == 0) {
                 chatRoom = await Chatroom.create(args.userInput)
             }
-            console.log(chatRoom)
-
-            //     // const chatRoom = await Chatroom.create(args.userInput)
-            return { ...chatRoom._doc, _id: chatRoom.id }
+            return { ...chatRoom[0]._doc, _id: chatRoom[0].id }
         } catch (err) {
             throw err
         }

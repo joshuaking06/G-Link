@@ -50,7 +50,7 @@ const getGameQuery = (id) => {
 
 const getChatId = (id) => {
 	return `mutation{
-		createChatroom(userInput: {user: ["${Auth.getUserID()}","${id}"] }){
+		getChatroom(userInput: {user: ["${Auth.getUserID()}","${id}"] }){
 			_id
 		}
 	}`
@@ -74,7 +74,7 @@ export default class GamesShow extends React.Component {
 		axios
 			.post('/api/graphql', { query: str }, headers)
 			.then((res) => {
-				console.log(res.data.data.updateUserGameInterest)
+				// console.log(res.data.data.updateUserGameInterest)
 				const usersInterestedin = [...this.state.game.usersInterestedin, res.data.data.updateUserGameInterest]
 				const game = { ...this.state.game, usersInterestedin: usersInterestedin }
 				this.setState({ ...this.state, isInterested: true, game })
@@ -110,21 +110,13 @@ export default class GamesShow extends React.Component {
 	}
 
 	createMessage(e) {
-		// console.log(getChatId(e.target.id))
-		// this.props.history.push('/');
 		const str = getChatId(e.target.id)
-		console.log(str)
-
 		axios
 			.post('/api/graphql', { query: str }, headers)
 			.then((res) => {
-				console.log(res.data.data)
-				// const usersInterestedin = [...this.state.game.usersInterestedin, res.data.data.updateUserGameInterest]
-				// const game = { ...this.state.game, usersInterestedin: usersInterestedin }
-				// this.setState({ ...this.state, isInterested: true, game })
+				this.props.history.push(`/messages/${res.data.data.getChatroom._id}/show`);
 			})
 			.catch((err) => console.log(err))
-
 	}
 
 	render() {
