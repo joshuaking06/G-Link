@@ -23,9 +23,9 @@ const Slider = ({ title, data }) => {
 			key={elem.id}
 		>
 			< div className="column" >
-				{
+				{/* {
 					console.log(!!elem.id && `/games/${elem.id}`)
-				}
+				} */}
 				<ImageCard
 					name={elem.name || elem.user_name}
 					image={elem.cover || elem.thumbnail_url}

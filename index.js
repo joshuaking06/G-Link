@@ -34,15 +34,8 @@ app.use(express.static(`${__dirname}/dist`))
 
 const server = app.listen(PORT, () => console.log(`express is running on port ${PORT}`))
 const io = require('socket.io')(server)
-// global.io = io
-
-// io.on('connection', socketRoutes.respond)
-
 io.on('connection', function (socket) {
-	console.log('an user connected')
 	socket.on('chat message', async (msg) => {
-		// io.emit('RECEIVE_MESSAGE', { ...await graphQLWebSocketResolver.updateChatroom(msg) })
-		io.emit('RECEIVE_MESSAGE', { messages: [{ ...msg.message, "createdAt": Number(new Date()) }], _id: msg.chatId })
-
+		io.emit('RECEIVE_MESSAGE', { ...await graphQLWebSocketResolver.updateChatroom(msg) })
 	})
 })

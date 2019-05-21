@@ -74,7 +74,6 @@ export default class GamesShow extends React.Component {
 		axios
 			.post('/api/graphql', { query: str }, headers)
 			.then((res) => {
-				// console.log(res.data.data.updateUserGameInterest)
 				const usersInterestedin = [...this.state.game.usersInterestedin, res.data.data.updateUserGameInterest]
 				const game = { ...this.state.game, usersInterestedin: usersInterestedin }
 				this.setState({ ...this.state, isInterested: true, game })
@@ -89,7 +88,6 @@ export default class GamesShow extends React.Component {
 			.then((res) => {
 				const userId = res.data.data.removeUserGameInterest._id
 				const usersInterestedin = this.state.game.usersInterestedin.filter(elem => elem._id !== userId)
-				console.log(usersInterestedin)
 				const game = { ...this.state.game, usersInterestedin: usersInterestedin }
 				this.setState({ ...this.state, isInterested: false, game })
 			})
