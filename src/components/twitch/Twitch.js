@@ -1,5 +1,5 @@
 import React from 'react'
-const EMBED_URL = 'https://embed.twitch.tv/embed/v1.js';
+// const EMBED_URL = 'https://embed.twitch.tv/embed/v1.js';
 
 class Twitch extends React.Component {
 

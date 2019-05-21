@@ -46,6 +46,18 @@ const getGameQuery = (id) => {
 		}
 	}`
 }
+
+
+const getChatId = (id) => {
+	return `mutation{
+		createChatroom(userInput: {user: ["${Auth.getUserID()}","${id}"] }){
+			_id
+		}
+	}`
+}
+
+
+
 // component code-----------------------------------------------------------------------------------------
 export default class GamesShow extends React.Component {
 	constructor(props) {
@@ -53,6 +65,8 @@ export default class GamesShow extends React.Component {
 
 		this.addGameToInterests = this.addGameToInterests.bind(this)
 		this.removeGameFromInterests = this.removeGameFromInterests.bind(this)
+		this.createMessage = this.createMessage.bind(this)
+
 	}
 
 	addGameToInterests(id) {
@@ -95,6 +109,24 @@ export default class GamesShow extends React.Component {
 			.catch((err) => console.log(err))
 	}
 
+	createMessage(e) {
+		// console.log(getChatId(e.target.id))
+		// this.props.history.push('/');
+		const str = getChatId(e.target.id)
+		console.log(str)
+
+		axios
+			.post('/api/graphql', { query: str }, headers)
+			.then((res) => {
+				console.log(res.data.data)
+				// const usersInterestedin = [...this.state.game.usersInterestedin, res.data.data.updateUserGameInterest]
+				// const game = { ...this.state.game, usersInterestedin: usersInterestedin }
+				// this.setState({ ...this.state, isInterested: true, game })
+			})
+			.catch((err) => console.log(err))
+
+	}
+
 	render() {
 		if (!this.state) return <h1>Loading...</h1>
 		const { game, isInterested } = this.state
@@ -130,9 +162,9 @@ export default class GamesShow extends React.Component {
 												<span>{user.username}</span>
 												{Auth.isAuthenticated() && (user._id !== Auth.getUserID()) && <span className="icon is-small is-left">
 
-													<Link className="navbar-item" to={`/messages/${Auth.getUserID()}/show`}>
-														<i className="fas fa-comment" />
-													</Link>
+													<a className="navbar-item" onClick={this.createMessage} id={user._id}>
+														<i className="fas fa-comment" id={user._id} />
+													</a>
 												</span>}
 											</p>
 										))}

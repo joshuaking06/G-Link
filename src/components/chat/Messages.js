@@ -41,9 +41,6 @@ class Messages extends React.Component {
                 }
               }   
               `
-            if (this.props.match.params.id) {
-                console.log('here')
-            }
             axios
                 .post('/api/graphql', { query: queryString })
                 .then((data) => {
