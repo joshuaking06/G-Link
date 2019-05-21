@@ -3,7 +3,6 @@ import ChatRoom from './ChatRoom'
 import Inbox from './Inbox'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
-import WebSocket from '../../lib/WebSocket'
 class Messages extends React.Component {
     constructor() {
         super()
@@ -31,7 +30,6 @@ class Messages extends React.Component {
         }
 
         )
-        // WebSocket.printMessage()
     }
     componentDidMount() {
         if (Auth.isAuthenticated()) {
@@ -85,7 +83,6 @@ class Messages extends React.Component {
         e.preventDefault()
         if (this.state.message) {
             global.socket.emit('chat message', { chatId: this.props.match.params.id, message: { "user": Auth.getUserID(), "text": this.state.message } })
-            // WebSocket.sendMessage(this.props.match.params.id, this.state.message)
             this.setState({ ...this.state, message: '' })
         }
     }

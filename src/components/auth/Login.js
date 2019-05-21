@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 
 import Auth from '../helpers/Auth'
-import WebSocket from '../../lib/WebSocket'
 export default class Login extends React.Component {
 	constructor() {
 		super()
