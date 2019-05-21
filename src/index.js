@@ -4,7 +4,8 @@ import Auth from './lib/Auth'
 //import styles
 import './style.scss'
 
-if (Auth.isAuthenticated()) {
+console.log(!global.socket)
+if (!global.socket && Auth.isAuthenticated()) {
     global.socket = require('socket.io-client')(`http://localhost:4000`);
 }
 import App from './components/App'

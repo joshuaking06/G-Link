@@ -16,20 +16,23 @@ class Messages extends React.Component {
         this.handleScroll = this.handleScroll.bind(this)
 
         this.shouldScroll = true
+        if (Auth.isAuthenticated()) {
 
-        global.socket.on('RECEIVE_MESSAGE', (msg) => {
-            if (msg._id === this.props.match.params.id) {
-                const messages = [...this.state.showChatroom.messages, msg.messages[0]]
-                const showChatroom = { ...this.state.showChatroom, messages }
-                this.setState({ ...this.state, showChatroom })
-                if (this.shouldScroll || msg.messages[0].user === Auth.getUserID()) {
-                    this.scrollToBottom('smooth')
+            global.socket.on('RECEIVE_MESSAGE', (msg) => {
+                if (msg._id === this.props.match.params.id) {
+                    const messages = [...this.state.showChatroom.messages, msg.messages[0]]
+                    const showChatroom = { ...this.state.showChatroom, messages }
+                    this.setState({ ...this.state, showChatroom })
+                    if (this.shouldScroll || msg.messages[0].user === Auth.getUserID()) {
+                        this.scrollToBottom('smooth')
+                    }
                 }
+
             }
 
-        }
 
-        )
+            )
+        }
     }
     componentDidMount() {
         if (Auth.isAuthenticated()) {
@@ -48,6 +51,9 @@ class Messages extends React.Component {
                     this.scrollToBottom('auto');
 
                 })
+        } else {
+            this.props.history.push('/');
+
         }
 
     }

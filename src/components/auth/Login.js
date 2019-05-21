@@ -30,6 +30,7 @@ export default class Login extends React.Component {
 			.post('/api/graphql', { query: queryString })
 			.then((data) => {
 				Auth.setToken(data.data.data.login.token)
+				global.socket = require('socket.io-client')(`http://localhost:4000`);
 				this.props.history.push('/')
 			})
 			.catch((err) => console.log(err))
