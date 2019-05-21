@@ -8,6 +8,7 @@ import TabBox from './TabBox'
 // helpers ------------------------------------------------------------------------------------------
 import Auth from '../../lib/Auth'
 const headers = { headers: { Authorization: `Bearer ${Auth.getToken()}` } }
+import { Link } from 'react-router-dom'
 
 const addGameMutation = (id) => {
 	return `mutation{
@@ -128,7 +129,10 @@ export default class GamesShow extends React.Component {
 											<p key={user._id} className="user-interested">
 												<span>{user.username}</span>
 												{Auth.isAuthenticated() && (user._id !== Auth.getUserID()) && <span className="icon is-small is-left">
-													<i className="fas fa-comment" />
+
+													<Link className="navbar-item" to={`/messages/${Auth.getUserID()}/show`}>
+														<i className="fas fa-comment" />
+													</Link>
 												</span>}
 											</p>
 										))}
