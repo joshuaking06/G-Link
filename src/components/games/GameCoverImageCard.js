@@ -19,7 +19,10 @@ const GameCoverImageCard = ({
 				</figure>
 			</div>
 			<div className="card-content">
-				<Link to={'/'} className="button is-link is-fullwidth is-outlined">
+				<Link
+					to={`/games/${game.id}/forums`}
+					className="button is-link is-fullwidth is-outlined"
+				>
 					Discusson Board
 				</Link>
 				{!isInterested && (

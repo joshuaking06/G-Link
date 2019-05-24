@@ -11,6 +11,7 @@ import GamesShow from './games/GamesShow'
 import News from './news/News'
 import Messages from './chat/Messages'
 import TwitchShow from './twitch/Twitch'
+import MessageBoard from './games/MessageBoard'
 
 class App extends React.Component {
 	constructor() {
@@ -24,6 +25,7 @@ class App extends React.Component {
 					<main>
 						<NavBar />
 						<Switch>
+							<Route path="/games/:id/forums" component={MessageBoard} />
 							<Route path="/games/:id" component={GamesShow} />
 							<Route path="/news" component={News} />
 							<Route path="/search/:query" component={Search} />
