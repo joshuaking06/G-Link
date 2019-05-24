@@ -70,7 +70,7 @@ type Reply{
     author: User!
 }
 
-type forumPost{
+type ForumPost{
     _id: ID!
     subject: String!
     content: String!
@@ -100,7 +100,7 @@ type Game{
     cover: Image
     artworks: [Image]!
     screenshots: [Image]!
-    messageBoard: [forumPost]!
+    messageBoard: [ForumPost]!
     videos: [Video]!
     genres: [GenreGameMode]!
     game_modes: [GenreGameMode]!
@@ -141,6 +141,7 @@ type ChatRoom{
 
 
 type RootQuery{
+    showForumPost(gameId: Int!, postId: ID!): ForumPost!
     searchGames(query: String!): [SearchResult]
     getGame(id: Int!): Game!
     getUsers(_id: ID!): User!

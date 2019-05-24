@@ -43,6 +43,11 @@ module.exports = {
 			throw err
 		}
 	},
+	showForumPost: async ({ gameId, postId }) => {
+		const game = await Game.findOne({ id: gameId })
+		const post = await game.messageBoard.id(postId)
+		return post
+	},
 	createForumPost: async ({ postInput }, req) => {
 		if (!req.isAuth) {
 			throw new Error('Oops! You need to be logged in to do that!')
