@@ -7,8 +7,10 @@ module.exports = {
 		try {
 			return Game.findOne({ id: args.id }).then(async (game) => {
 				if (game) {
-					await game.populate('usersInterestedin').execPopulate()
-					console.log(game)
+					await game
+						// .populate('usersInterestedin')
+						.populate({ path: 'messageBoard', populate: { path: 'author' } })
+						.execPopulate()
 					return await game
 				}
 				if (!game) {
@@ -27,7 +29,6 @@ module.exports = {
 	searchGames: async ({ query }) => {
 		try {
 			const results = await gameHelper.searchGames(query)
-			console.log(results, 'results')
 			return results.data
 		} catch (err) {
 			throw err

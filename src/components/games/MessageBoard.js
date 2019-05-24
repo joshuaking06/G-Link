@@ -11,7 +11,7 @@ const getGameQuery = (id) => {
 			id
 			name
             cover{ url }
-            messageBoard { _id subject content author { _id username}}
+            messageBoard { _id subject content author { _id }}
 		}
 	}`
 }
@@ -31,6 +31,7 @@ const MessageBoard = (props) => {
 		axios
 			.post('/api/graphql', { query: getGameQuery(props.match.params.id) })
 			.then((data) => {
+				console.log(data.data.data.getGame)
 				setGame(data.data.data.getGame)
 			})
 			.catch((err) => console.log(err))
@@ -47,23 +48,27 @@ const MessageBoard = (props) => {
 			})
 			.catch((err) => console.log(err))
 	}
-	if (game) console.log(game)
-	return (
-		<div>
-			<h1>Hello world</h1>
-			<section className="hero">
-				<div className="hero-body">
-					<div className="container">
-						<h1 className="title">Hero title</h1>
-						<h2 className="subtitle">Hero subtitle</h2>
+
+	if (game !== {}) {
+		return (
+			<div>
+				<section className="hero">
+					<div className="hero-body">
+						<div className="container">
+							<h1 className="title">Forums</h1>
+							<h2 className="subtitle">{game.title}</h2>
+						</div>
 					</div>
-				</div>
-			</section>
-			<div className="button" onClick={submitPost}>
-				Hello there
+				</section>
+				{/* {game.messageBoard.map((post) => (
+					<div className="forum-post" key={post._id}>
+						<p>{post.subject}</p>
+					</div>
+				))} */}
 			</div>
-		</div>
-	)
+		)
+	}
+	return <h1>Loading...</h1>
 }
 
 export default MessageBoard
