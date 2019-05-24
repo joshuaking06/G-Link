@@ -7,7 +7,10 @@ module.exports = {
 		try {
 			return Game.findOne({ id: args.id }).then(async (game) => {
 				if (game) {
-					await game.populate('usersInterestedin').execPopulate()
+					await game
+						.populate('usersInterestedin')
+						.populate('messageBoard.0.author')
+						.execPopulate()
 					return game
 				}
 				if (!game) {
@@ -44,11 +47,14 @@ module.exports = {
 		}
 	},
 	showForumPost: async ({ gameId, postId }) => {
-		const game = await Game.findOne({ id: gameId })
-		const post = await game.messageBoard.id(postId)
-		const user = await User.findById(post.author._id)
-		console.log(post)
-		return post
+		try {
+			const game = await Game.findOne({ id: gameId })
+			await game.populate(`messageBoard.0.author`).execPopulate()
+			const post = await game.messageBoard.id(postId)
+			return post
+		} catch (err) {
+			throw err
+		}
 	},
 	createForumPost: async ({ postInput }, req) => {
 		if (!req.isAuth) {
@@ -56,7 +62,6 @@ module.exports = {
 		}
 		const game = await Game.findOne({ id: postInput.gameId })
 		const user = await User.findById(req.userId)
-		console.log(user)
 		game.messageBoard.push({
 			content: postInput.content,
 			subject: postInput.subject,

@@ -5,7 +5,7 @@ const getPostsQuery = (gameId, postId) => {
 	return `query{ showForumPost(
 		gameId: ${gameId}, 
 		postId:"${postId}"
-		){ _id content subject author { _id } }}`
+		){ _id content subject author { _id username} }}`
 }
 
 const MessageBoardShow = (props) => {

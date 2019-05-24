@@ -12,7 +12,7 @@ const getPostsQuery = (id) => {
 			id
 			name
             cover{ url }
-            messageBoard { _id subject content author { _id }}
+            messageBoard { _id subject content author { _id username }}
 		}
 	}`
 }
