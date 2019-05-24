@@ -1,5 +1,5 @@
 const Game = require('../../models/game')
-
+const User = require('../../models/user')
 const gameHelper = require('../../helpers/getGame-v2')
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
 			return Game.findOne({ id: args.id }).then(async (game) => {
 				if (game) {
 					await game.populate('usersInterestedin').execPopulate()
-
+					console.log(game)
 					return await game
 				}
 				if (!game) {
@@ -49,16 +49,15 @@ module.exports = {
 		if (!req.isAuth) {
 			throw new Error('Oops! You need to be logged in to do that!')
 		}
-		const game = await Game.findById(postInput.gameId)
+		const game = await Game.findOne({ id: postInput.gameId })
 		const user = await User.findById(req.userId)
 		game.messageBoard.push({
 			content: postInput.content,
 			subject: postInput.subject,
 			author: user
 		})
-		await game.save()
 		await game.populate('messageBoard').execPopulate()
-		return game
+		return await game.save()
 	},
 	replyToPost: async ({ reply }) => {
 		console.log(reply.content)

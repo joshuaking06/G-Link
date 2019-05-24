@@ -180,7 +180,7 @@ input ChatMessage {
 input PostInput {
     content: String!
     subject: String!
-    gameId: ID!
+    gameId: Int!
 }
 
 input ReplyInput{
