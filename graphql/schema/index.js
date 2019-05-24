@@ -75,7 +75,6 @@ type ForumPost{
     subject: String!
     content: String!
     author: User!
-    replies: [Reply]!
 }
 
 type User {

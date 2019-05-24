@@ -46,6 +46,8 @@ module.exports = {
 	showForumPost: async ({ gameId, postId }) => {
 		const game = await Game.findOne({ id: gameId })
 		const post = await game.messageBoard.id(postId)
+		const user = await User.findById(post.author._id)
+		console.log(post)
 		return post
 	},
 	createForumPost: async ({ postInput }, req) => {
