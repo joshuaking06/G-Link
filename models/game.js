@@ -89,6 +89,12 @@ gameSchema.virtual('usersInterestedin', {
 	foreignField: 'gamesInterestedIn'
 })
 
+gameSchema.virtual('messageBoard.author', {
+	ref: 'User',
+	localField: '_id',
+	foreignField: 'author'
+})
+
 gameSchema.set('toJSON', {
 	virtuals: true,
 	transform(doc, json) {

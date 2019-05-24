@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Auth from '../helpers/Auth'
 
 const headers = { headers: { Authorization: `Bearer ${Auth.getToken()}` } }
 
-const getGameQuery = (id) => {
+const getPostsQuery = (id) => {
 	return `query{
 		getGame(id:${id}){
 			_id
@@ -29,17 +30,16 @@ const MessageBoard = (props) => {
 
 	useEffect(() => {
 		axios
-			.post('/api/graphql', { query: getGameQuery(props.match.params.id) })
+			.post('/api/graphql', { query: getPostsQuery(props.match.params.id) })
 			.then((data) => {
-				console.log(data.data.data.getGame)
 				setGame(data.data.data.getGame)
 			})
 			.catch((err) => console.log(err))
 	}, [])
 
 	const submitPost = () => {
-		const sub = 'the first post subject'
-		const cont = 'the story of my first post content'
+		const sub = 'the second post subject'
+		const cont = 'the story of my second post content'
 		const str = postMutation(sub, cont, props.match.params.id)
 		axios
 			.post('/api/graphql', { query: str }, headers)
@@ -49,25 +49,33 @@ const MessageBoard = (props) => {
 			.catch((err) => console.log(err))
 	}
 
-	if (game !== {}) {
+	console.log(game)
+	if (game)
 		return (
 			<div>
 				<section className="hero">
 					<div className="hero-body">
 						<div className="container">
 							<h1 className="title">Forums</h1>
-							<h2 className="subtitle">{game.title}</h2>
+							<h2 className="subtitle">{game.name}</h2>
 						</div>
 					</div>
 				</section>
-				{/* {game.messageBoard.map((post) => (
-					<div className="forum-post" key={post._id}>
-						<p>{post.subject}</p>
-					</div>
-				))} */}
+				<div className="button" onClick={submitPost}>
+					Submit post
+				</div>
+				{game.messageBoard &&
+					game.messageBoard.map((post) => (
+						<Link
+							to={`/games/${props.match.params.id}/forums/${post._id}`}
+							className="forum-post"
+							key={post._id}
+						>
+							{post.subject}
+						</Link>
+					))}
 			</div>
 		)
-	}
 	return <h1>Loading...</h1>
 }
 

@@ -7,11 +7,8 @@ module.exports = {
 		try {
 			return Game.findOne({ id: args.id }).then(async (game) => {
 				if (game) {
-					await game
-						// .populate('usersInterestedin')
-						.populate({ path: 'messageBoard', populate: { path: 'author' } })
-						.execPopulate()
-					return await game
+					await game.populate('usersInterestedin').execPopulate()
+					return game
 				}
 				if (!game) {
 					return gameHelper.fetchGame(args.id).then((res) => {
@@ -52,12 +49,13 @@ module.exports = {
 		}
 		const game = await Game.findOne({ id: postInput.gameId })
 		const user = await User.findById(req.userId)
+		console.log(user)
 		game.messageBoard.push({
 			content: postInput.content,
 			subject: postInput.subject,
 			author: user
 		})
-		await game.populate('messageBoard').execPopulate()
+		await game.populate({ path: 'messageBoard', populate: { path: 'author' } }).execPopulate()
 		return await game.save()
 	},
 	replyToPost: async ({ reply }) => {
