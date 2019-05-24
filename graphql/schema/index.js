@@ -100,7 +100,7 @@ type Game{
     cover: Image
     artworks: [Image]!
     screenshots: [Image]!
-    messageBoard: [forumPost]
+    messageBoard: [forumPost]!
     videos: [Video]!
     genres: [GenreGameMode]!
     game_modes: [GenreGameMode]!
