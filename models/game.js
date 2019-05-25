@@ -98,6 +98,7 @@ gameSchema.virtual('messageBoard.author', {
 })
 
 gameSchema.plugin(deepPopulate)
+forumPostSchema.plugin(deepPopulate)
 
 gameSchema.set('toJSON', {
 	virtuals: true,
