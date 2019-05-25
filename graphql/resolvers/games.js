@@ -7,11 +7,13 @@ module.exports = {
 		try {
 			return Game.findOne({ id: args.id }).then(async (game) => {
 				if (game) {
-					await game
-						.populate('usersInterestedin')
-						.populate('messageBoard.0.author')
-						.execPopulate()
-					return game
+					let usersInterestedin
+					await game.populate('usersInterestedin').execPopulate()
+					usersInterestedin = game.usersInterestedin
+					return game.deepPopulate('messageBoard.author').then((newgame) => {
+						newgame.usersInterestedin = usersInterestedin
+						return newgame
+					})
 				}
 				if (!game) {
 					return gameHelper.fetchGame(args.id).then((res) => {

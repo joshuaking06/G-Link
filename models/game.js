@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const deepPopulate = require('mongoose-deep-populate')(mongoose)
+
 const imageSchema = new mongoose.Schema({
 	id: { type: Number },
 	game: { type: Number },
@@ -94,6 +96,8 @@ gameSchema.virtual('messageBoard.author', {
 	localField: '_id',
 	foreignField: 'author'
 })
+
+gameSchema.plugin(deepPopulate)
 
 gameSchema.set('toJSON', {
 	virtuals: true,

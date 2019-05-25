@@ -47,7 +47,6 @@ const getGameQuery = (id) => {
 	}`
 }
 
-
 const getChatId = (id) => {
 	return `mutation{
 		getChatroom(userInput: {user: ["${Auth.getUserID()}","${id}"] }){
@@ -55,8 +54,6 @@ const getChatId = (id) => {
 		}
 	}`
 }
-
-
 
 // component code-----------------------------------------------------------------------------------------
 export default class GamesShow extends React.Component {
@@ -66,7 +63,6 @@ export default class GamesShow extends React.Component {
 		this.addGameToInterests = this.addGameToInterests.bind(this)
 		this.removeGameFromInterests = this.removeGameFromInterests.bind(this)
 		this.createMessage = this.createMessage.bind(this)
-
 	}
 
 	addGameToInterests(id) {
@@ -74,7 +70,10 @@ export default class GamesShow extends React.Component {
 		axios
 			.post('/api/graphql', { query: str }, headers)
 			.then((res) => {
-				const usersInterestedin = [...this.state.game.usersInterestedin, res.data.data.updateUserGameInterest]
+				const usersInterestedin = [
+					...this.state.game.usersInterestedin,
+					res.data.data.updateUserGameInterest
+				]
 				const game = { ...this.state.game, usersInterestedin: usersInterestedin }
 				this.setState({ ...this.state, isInterested: true, game })
 			})
@@ -87,7 +86,9 @@ export default class GamesShow extends React.Component {
 			.post('/api/graphql', { query: str }, headers)
 			.then((res) => {
 				const userId = res.data.data.removeUserGameInterest._id
-				const usersInterestedin = this.state.game.usersInterestedin.filter(elem => elem._id !== userId)
+				const usersInterestedin = this.state.game.usersInterestedin.filter(
+					(elem) => elem._id !== userId
+				)
 				const game = { ...this.state.game, usersInterestedin: usersInterestedin }
 				this.setState({ ...this.state, isInterested: false, game })
 			})
@@ -95,10 +96,11 @@ export default class GamesShow extends React.Component {
 	}
 
 	componentDidMount() {
+		console.log(getGameQuery(this.props.match.params.id))
 		axios
 			.post('/api/graphql', { query: getGameQuery(this.props.match.params.id) })
 			.then((data) => {
-				console.log(data.data.data.getGame.usersInterestedin)
+				console.log(data.data.data.getGame)
 				const isInterested = data.data.data.getGame.usersInterestedin.some((user) => {
 					return user._id === Auth.getUserID()
 				})
@@ -113,7 +115,7 @@ export default class GamesShow extends React.Component {
 		axios
 			.post('/api/graphql', { query: str }, headers)
 			.then((res) => {
-				this.props.history.push(`/messages/${res.data.data.getChatroom._id}/show`);
+				this.props.history.push(`/messages/${res.data.data.getChatroom._id}/show`)
 			})
 			.catch((err) => console.log(err))
 	}
@@ -151,12 +153,21 @@ export default class GamesShow extends React.Component {
 										{game.usersInterestedin.map((user) => (
 											<p key={user._id} className="user-interested">
 												<span>{user.username}</span>
-												{Auth.isAuthenticated() && (user._id !== Auth.getUserID()) && <span className="icon is-small is-left">
-
-													<a className="navbar-item" onClick={this.createMessage} id={user._id}>
-														<i className="fas fa-comment" id={user._id} />
-													</a>
-												</span>}
+												{Auth.isAuthenticated() &&
+												user._id !== Auth.getUserID() && (
+													<span className="icon is-small is-left">
+														<a
+															className="navbar-item"
+															onClick={this.createMessage}
+															id={user._id}
+														>
+															<i
+																className="fas fa-comment"
+																id={user._id}
+															/>
+														</a>
+													</span>
+												)}
 											</p>
 										))}
 									</div>
